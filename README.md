@@ -1,2 +1,3 @@
-# hse_ami_project
-3 course project
+# Агрегатор учебных дедлайнов
+
+
