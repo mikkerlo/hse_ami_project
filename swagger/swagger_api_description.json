@@ -186,61 +186,6 @@
     }
   },
   "definitions": {
-    "Name": {
-      "type": "object",
-      "properties": {
-        "first_name": {
-          "type": "string",
-          "example": "Иван"
-        },
-        "last_name": {
-          "type": "string",
-          "example": "Иванов"
-        },
-        "patronymic_name": {
-          "type": "string",
-          "example": "Иванович"
-        },
-        "full_name": {
-          "type": "string",
-          "example": "Иван Иванов"
-        },
-        "legal_name": {
-          "type": "string",
-          "example": "Иванов Иван Иванович"
-        }
-      }
-    },
-    "StudentBase": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "$ref": "#/definitions/Name"
-        },
-        "birth_date": {
-          "$ref": "#/definitions/Date"
-        },
-        "emails": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Email"
-          }
-        },
-        "telegram_account": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "role": {
-          "type": "string",
-          "enum": [
-            "moderator",
-            "admin"
-          ]
-        }
-      }
-    },
     "Student": {
       "allOf": [
         {
@@ -253,7 +198,7 @@
           }
         },
         {
-          "$ref": "#/definitions/StudentBase"
+          "$ref": "#/components/schemas/StudentBase"
         }
       ]
     },
@@ -305,7 +250,7 @@
           "format": "uint64"
         },
         "created_at": {
-          "$ref": "#/definitions/DateTime"
+          "$ref": "#/components/schemas/DateTime"
         },
         "header": {
           "type": "string"
@@ -327,7 +272,7 @@
           "format": "uint64"
         },
         "created_at": {
-          "$ref": "#/definitions/DateTime"
+          "$ref": "#/components/schemas/DateTime"
         },
         "header": {
           "type": "string"
@@ -336,7 +281,7 @@
           "type": "string"
         },
         "valid_until": {
-          "$ref": "#/definitions/DateTime"
+          "$ref": "#/components/schemas/DateTime"
         }
       }
     },
@@ -352,7 +297,7 @@
           "format": "uint64"
         },
         "created_at": {
-          "$ref": "#/definitions/DateTime"
+          "$ref": "#/components/schemas/DateTime"
         },
         "header": {
           "type": "string"
@@ -379,122 +324,107 @@
           }
         }
       }
-    },
-    "DateTime": {
-      "type": "object",
-      "properties": {
-        "day": {
-          "type": "integer",
-          "description": "1 <= day <= 31"
-        },
-        "month": {
-          "type": "integer",
-          "description": "1 <= month <= 12"
-        },
-        "year": {
-          "type": "integer",
-          "description": "0 <= year"
-        },
-        "hour": {
-          "type": "integer"
-        },
-        "minute": {
-          "type": "integer"
-        },
-        "second": {
-          "type": "integer"
-        },
-        "timestamp": {
-          "type": "integer"
-        },
-        "formatted": {
-          "type": "object",
-          "properties": {
-            "date": {
-              "type": "string",
-              "format": "date",
-              "description": "for example, \"2019-12-31\""
-            },
-            "time": {
-              "type": "string"
-            },
-            "datetime": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
-    "Time": {
-      "type": "object",
-      "properties": {
-        "hour": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 23
-        },
-        "minute": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 59
-        },
-        "second": {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 59
-        },
-        "formatted": {
-          "type": "string",
-          "format": "time"
-        }
-      }
-    },
-    "Date": {
-      "type": "object",
-      "properties": {
-        "day": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 31
-        },
-        "month": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 12
-        },
-        "year": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "formatted": {
-          "type": "string",
-          "format": "date",
-          "description": "for example, \"2019-12-31\""
-        }
-      }
-    },
-    "ApiResponse": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "type": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "Email": {
-      "type": "string",
-      "format": "email"
     }
   },
   "components": {
     "schemas": {
+      "Email": {
+        "type": "string",
+        "format": "email"
+      },
+      "DateTime": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "integer",
+            "description": "1 <= day <= 31"
+          },
+          "month": {
+            "type": "integer",
+            "description": "1 <= month <= 12"
+          },
+          "year": {
+            "type": "integer",
+            "description": "0 <= year"
+          },
+          "hour": {
+            "type": "integer"
+          },
+          "minute": {
+            "type": "integer"
+          },
+          "second": {
+            "type": "integer"
+          },
+          "timestamp": {
+            "type": "integer"
+          },
+          "formatted": {
+            "type": "object",
+            "properties": {
+              "date": {
+                "type": "string",
+                "format": "date",
+                "description": "for example, \"2019-12-31\""
+              },
+              "time": {
+                "type": "string"
+              },
+              "datetime": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Time": {
+        "type": "object",
+        "properties": {
+          "hour": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 23
+          },
+          "minute": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 59
+          },
+          "second": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 59
+          },
+          "formatted": {
+            "type": "string",
+            "format": "time"
+          }
+        }
+      },
+      "Date": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 31
+          },
+          "month": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 12
+          },
+          "year": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "formatted": {
+            "type": "string",
+            "format": "date",
+            "description": "for example, \"2019-12-31\""
+          }
+        }
+      },
       "StudentPost": {
         "$ref": "#/definitions/StudentBase"
       },
@@ -518,6 +448,76 @@
                 "type": "string"
               }
             }
+          }
+        }
+      },
+      "Name": {
+        "type": "object",
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "example": "Иван"
+          },
+          "last_name": {
+            "type": "string",
+            "example": "Иванов"
+          },
+          "patronymic_name": {
+            "type": "string",
+            "example": "Иванович"
+          },
+          "full_name": {
+            "type": "string",
+            "example": "Иван Иванов"
+          },
+          "legal_name": {
+            "type": "string",
+            "example": "Иванов Иван Иванович"
+          }
+        }
+      },
+      "StudentBase": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/Name"
+          },
+          "birth_date": {
+            "$ref": "#/components/schemas/Date"
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Email"
+            }
+          },
+          "telegram_account": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "moderator",
+              "admin"
+            ]
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
           }
         }
       }
