@@ -81,14 +81,14 @@ class ContentElement(Model):
         content_file (file):     Attached files if any are provided
 
     """
+    class Meta:
+        abstract = True
+
     group_id = models.ForeignKey(Group, on_delete=models.CASCADE)
     created_at = models.DateTimeField()
     header = models.TextField()
     content = models.TextField(blank=True)
     content_file = models.ManyToManyField(File, blank=True)
-
-    class Meta:
-        abstract = True
 
 
 class Material(ContentElement):
