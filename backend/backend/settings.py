@@ -14,6 +14,20 @@ import os
 
 from django.core.management.utils import get_random_secret_key
 
+_SECRET_KEY_PATH = 'secret_key.txt'
+
+
+def get_or_create_secret_key():
+    try:
+        with open(_SECRET_KEY_PATH, 'r') as f:
+            key = f.read()
+    except FileNotFoundError:
+        key = get_random_secret_key()
+        with open(_SECRET_KEY_PATH, 'w') as f:
+            f.write(key)
+    return key
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -21,18 +35,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 
-# SECURITY WARNING: keep the secret key used in production secret!
-try:
-    from .application_secrets import SECRET_KEY
-except ImportError:
-    with open('application_secrets.py', 'w') as file:
-        file.write(f'SECRET_KEY = {get_random_secret_key()}\n')
-    try:
-        from .secrets import SECRET_KEY
-    except ImportError:
-        raise Exception('Create file \'secrets.py\' and store \'SECRET_KEY\' constant here.')
-
-assert SECRET_KEY, 'Could not import or create secret key file, investigate please.'
+SECRET_KEY = get_or_create_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
