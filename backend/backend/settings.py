@@ -38,7 +38,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = get_or_create_secret_key()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if 'DEBUG' in os.environ:
+if os.environ.get('AMI_BACKEND_DEBUG', '0') == '1':
     DEBUG = True
 else:
     DEBUG = False
