@@ -17,6 +17,10 @@
   "basePath": "/api",
   "tags": [
     {
+      "name": "auth",
+      "description": "about authentication"
+    },
+    {
       "name": "student",
       "description": "about students"
     },
@@ -29,6 +33,31 @@
     "https"
   ],
   "paths": {
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Logins user to the system\n",
+        "parameters": [
+          {
+            "name": "email",
+            "type": "string",
+            "in": "body",
+            "required": true,
+            "description": "Email of user that logins to the system\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/components/schemas/LoginResponse"
+            }
+          }
+        }
+      }
+    },
     "/student": {
       "get": {
         "tags": [
@@ -80,6 +109,8 @@
         "tags": [
           "student"
         ],
+        "summary": "Create user\n",
+        "description": "Creates new user in system\n",
         "responses": {
           "200": {
             "description": "OK"
@@ -180,6 +211,139 @@
             "schema": {
               "$ref": "#/components/schemas/ServerErrorResponse"
             }
+          }
+        }
+      }
+    },
+    "/student/{student_id}/deadlines": {
+      "get": {
+        "tags": [
+          "student",
+          "deadlines"
+        ],
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "description": "ID of student to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/HomeTask"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/student/{student_id}/groups": {
+      "get": {
+        "tags": [
+          "student",
+          "group"
+        ],
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "description": "ID of student to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Group"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/group": {
+      "post": {
+        "tags": [
+          "group"
+        ],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Data of group to create",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok"
+          },
+          "401": {
+            "description": "unauthorized"
+          }
+        }
+      }
+    },
+    "/group/{group_id}": {
+      "get": {
+        "tags": [
+          "group"
+        ],
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "description": "Group id to get information\n",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "group"
+        ],
+        "parameters": [
+          {
+            "name": "group_id",
+            "in": "path",
+            "description": "Group id to get information\n",
+            "required": true
+          },
+          {
+            "name": "group_data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok"
           }
         }
       }
@@ -328,6 +492,19 @@
   },
   "components": {
     "schemas": {
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": null
+          },
+          "valid_until": {
+            "type": "integer",
+            "format": "uint64"
+          }
+        }
+      },
       "Email": {
         "type": "string",
         "format": "email"
@@ -335,98 +512,13 @@
       "DateTime": {
         "type": "object",
         "properties": {
-          "day": {
-            "type": "integer",
-            "description": "1 <= day <= 31"
-          },
-          "month": {
-            "type": "integer",
-            "description": "1 <= month <= 12"
-          },
-          "year": {
-            "type": "integer",
-            "description": "0 <= year"
-          },
-          "hour": {
-            "type": "integer"
-          },
-          "minute": {
-            "type": "integer"
-          },
-          "second": {
-            "type": "integer"
-          },
           "timestamp": {
             "type": "integer"
-          },
-          "formatted": {
-            "type": "object",
-            "properties": {
-              "date": {
-                "type": "string",
-                "format": "date",
-                "description": "for example, \"2019-12-31\""
-              },
-              "time": {
-                "type": "string"
-              },
-              "datetime": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      },
-      "Time": {
-        "type": "object",
-        "properties": {
-          "hour": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 23
-          },
-          "minute": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 59
-          },
-          "second": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 59
-          },
-          "formatted": {
-            "type": "string",
-            "format": "time"
-          }
-        }
-      },
-      "Date": {
-        "type": "object",
-        "properties": {
-          "day": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 31
-          },
-          "month": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 12
-          },
-          "year": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "formatted": {
-            "type": "string",
-            "format": "date",
-            "description": "for example, \"2019-12-31\""
           }
         }
       },
       "StudentPost": {
-        "$ref": "#/definitions/StudentBase"
+        "$ref": "#/components/schemas/StudentBase"
       },
       "ServerErrorResponse": {
         "type": "object",
@@ -465,14 +557,6 @@
           "patronymic_name": {
             "type": "string",
             "example": "Иванович"
-          },
-          "full_name": {
-            "type": "string",
-            "example": "Иван Иванов"
-          },
-          "legal_name": {
-            "type": "string",
-            "example": "Иванов Иван Иванович"
           }
         }
       },
@@ -483,26 +567,19 @@
             "$ref": "#/components/schemas/Name"
           },
           "birth_date": {
-            "$ref": "#/components/schemas/Date"
+            "type": "integer",
+            "format": "timestamp",
+            "example": 905256000
           },
-          "emails": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Email"
-            }
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john_smith@example.com"
           },
           "telegram_account": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "role": {
             "type": "string",
-            "enum": [
-              "moderator",
-              "admin"
-            ]
+            "format": "telegram",
+            "example": "@example"
           }
         }
       },
