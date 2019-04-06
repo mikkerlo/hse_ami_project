@@ -26,6 +26,7 @@ class Student(Model):
     birth_date = models.DateField()
     email = models.EmailField(blank=True)
     telegram_account = models.CharField(max_length=255, blank=True)
+    done_homeworks = models.ManyToManyField("Homework")
 
 
 class Group(Model):
