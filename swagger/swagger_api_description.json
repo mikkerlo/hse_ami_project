@@ -13,11 +13,11 @@
       "description": "about authentication"
     },
     {
-      "name": "student",
+      "name": "students",
       "description": "about students"
     },
     {
-      "name": "group",
+      "name": "groups",
       "description": "about groups"
     }
   ],
@@ -25,34 +25,16 @@
     "https"
   ],
   "paths": {
-    "/student": {
+    "/students/all": {
       "get": {
         "tags": [
-          "student"
+          "students"
         ],
-        "summary": "Get students data",
+        "summary": "Get all students",
         "description": "Returns `count` students from offset `offset`.\n",
         "operationId": "addPet",
         "produces": [
           "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "offset",
-            "type": "integer",
-            "required": true,
-            "in": "query",
-            "description": "Offset to start with\n"
-          },
-          {
-            "name": "count",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 500,
-            "required": true,
-            "in": "query",
-            "description": "Number of returned records\n"
-          }
         ],
         "responses": {
           "200": {
@@ -71,36 +53,14 @@
             }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "student"
-        ],
-        "summary": "Create user\n",
-        "description": "Creates new user in system\n",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "description": "New student data. \n",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/StudentPost"
-            }
-          }
-        ]
       }
     },
-    "/student/{id}": {
+    "/students/{id}": {
       "get": {
         "tags": [
-          "student"
+          "students"
         ],
+        "summary": "Get one student",
         "parameters": [
           {
             "name": "id",
@@ -127,10 +87,10 @@
         }
       },
       "patch": {
-        "summary": "Update some info about student",
+        "summary": "Update student info",
         "description": "Gets dictionary with student's description, then updates these fields in  database.\n",
         "tags": [
-          "student"
+          "students"
         ],
         "parameters": [
           {
@@ -182,12 +142,37 @@
         }
       }
     },
-    "/student/{student_id}/deadlines": {
+    "/students/new": {
+      "post": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Create user\n",
+        "description": "Creates new user in system\n",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "New student data. \n",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/StudentPost"
+            }
+          }
+        ]
+      }
+    },
+    "/students/{student_id}/deadlines": {
       "get": {
         "tags": [
-          "student",
-          "deadlines"
+          "students"
         ],
+        "summary": "Get all student's deadlines",
         "parameters": [
           {
             "name": "student_id",
@@ -211,12 +196,12 @@
         }
       }
     },
-    "/student/{student_id}/groups": {
+    "/students/{student_id}/groups": {
       "get": {
         "tags": [
-          "student",
-          "group"
+          "students"
         ],
+        "summary": "Get all groups containing studnet",
         "parameters": [
           {
             "name": "student_id",
@@ -240,11 +225,12 @@
         }
       }
     },
-    "/groups": {
+    "/groups/all": {
       "get": {
         "tags": [
           "groups"
         ],
+        "summary": "Get all groups",
         "responses": {
           "200": {
             "description": "Returns list of all available groups. In MVP does not support\npagination, it returns all groups in once.\n",
@@ -256,11 +242,14 @@
             }
           }
         }
-      },
+      }
+    },
+    "/groups/new": {
       "post": {
         "tags": [
           "groups"
         ],
+        "summary": "Create new group",
         "parameters": [
           {
             "in": "body",
@@ -286,6 +275,7 @@
         "tags": [
           "groups"
         ],
+        "summary": "Get one group",
         "parameters": [
           {
             "in": "path",
@@ -314,6 +304,7 @@
         "tags": [
           "groups"
         ],
+        "summary": "Update group's info",
         "parameters": [
           {
             "in": "path",
@@ -344,6 +335,7 @@
           "groups",
           "students"
         ],
+        "summary": "Get all students that are part of group",
         "parameters": [
           {
             "in": "path",
@@ -372,11 +364,12 @@
         }
       }
     },
-    "/deadlines": {
+    "/deadlines/all": {
       "get": {
         "tags": [
           "deadlines"
         ],
+        "summary": "Get all deadlines",
         "responses": {
           "200": {
             "description": "Returns list of all available deadlines. In MVP does not support\npagination, it returns all deadlines in once.\n",
@@ -388,7 +381,9 @@
             }
           }
         }
-      },
+      }
+    },
+    "/deadlines/new": {
       "post": {
         "tags": [
           "deadlines"
@@ -416,6 +411,7 @@
         "tags": [
           "deadlines"
         ],
+        "summary": "Get deadline",
         "parameters": [
           {
             "name": "deadline_id",
