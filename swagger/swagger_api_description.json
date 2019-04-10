@@ -1,27 +1,23 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "fuck",
+    "description": "fuck the cs hse",
     "version": "1.0.0",
-    "title": "Swagger Petstore",
-    "termsOfService": "http://swagger.io/terms/",
-    "contact": {
-      "email": "apiteam@swagger.io"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    }
+    "title": "AMI"
   },
   "host": "bestdomainever.com",
   "basePath": "/api",
   "tags": [
     {
-      "name": "student",
+      "name": "auth",
+      "description": "about authentication"
+    },
+    {
+      "name": "students",
       "description": "about students"
     },
     {
-      "name": "group",
+      "name": "groups",
       "description": "about groups"
     }
   ],
@@ -29,34 +25,16 @@
     "https"
   ],
   "paths": {
-    "/student": {
+    "/students/all": {
       "get": {
         "tags": [
-          "student"
+          "students"
         ],
-        "summary": "Get students data",
+        "summary": "Get all students",
         "description": "Returns `count` students from offset `offset`.\n",
         "operationId": "addPet",
         "produces": [
           "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "offset",
-            "type": "integer",
-            "required": true,
-            "in": "query",
-            "description": "Offset to start with\n"
-          },
-          {
-            "name": "count",
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 500,
-            "required": true,
-            "in": "query",
-            "description": "Number of returned records\n"
-          }
         ],
         "responses": {
           "200": {
@@ -67,42 +45,16 @@
                 "$ref": "#/definitions/Student"
               }
             }
-          },
-          "403": {
-            "description": "Unauthorized request",
-            "schema": {
-              "$ref": "#/components/schemas/ServerErrorResponse"
-            }
           }
         }
-      },
-      "post": {
-        "tags": [
-          "student"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "parameters": [
-          {
-            "name": "data",
-            "in": "body",
-            "description": "New student data. \n",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/StudentPost"
-            }
-          }
-        ]
       }
     },
-    "/student/{id}": {
+    "/students/{id}": {
       "get": {
         "tags": [
-          "student"
+          "students"
         ],
+        "summary": "Get one student",
         "parameters": [
           {
             "name": "id",
@@ -121,18 +73,21 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           },
           "404": {
-            "description": "Pet not found"
+            "description": "Student not found"
           }
         }
       },
       "patch": {
-        "summary": "Update some info about student",
+        "summary": "Update student info",
         "description": "Gets dictionary with student's description, then updates these fields in  database.\n",
         "tags": [
-          "student"
+          "students"
         ],
         "parameters": [
           {
@@ -158,13 +113,7 @@
             "description": "ok"
           },
           "400": {
-            "description": "id is invalid, i.e, is not number.\n",
-            "schema": {
-              "$ref": "#/components/schemas/ServerErrorResponse"
-            }
-          },
-          "401": {
-            "description": "query is no authorized, login first",
+            "description": "Invalid query",
             "schema": {
               "$ref": "#/components/schemas/ServerErrorResponse"
             }
@@ -174,9 +123,435 @@
             "schema": {
               "$ref": "#/components/schemas/ServerErrorResponse"
             }
+          }
+        }
+      }
+    },
+    "/students/new": {
+      "post": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Create user\n",
+        "description": "Creates new user in system\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
           },
-          "422": {
-            "description": "query body is invalid, i.e, wrong field names",
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "New student data. \n",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/StudentPost"
+            }
+          }
+        ]
+      }
+    },
+    "/students/{student_id}/deadlines": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Get all student's deadlines",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "description": "ID of student to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Deadline"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/students/{student_id}/groups": {
+      "get": {
+        "tags": [
+          "students"
+        ],
+        "summary": "Get all groups containing studnet",
+        "parameters": [
+          {
+            "name": "student_id",
+            "in": "path",
+            "description": "ID of student to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Group"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/groups/all": {
+      "get": {
+        "tags": [
+          "groups"
+        ],
+        "summary": "Get all groups",
+        "responses": {
+          "200": {
+            "description": "Returns list of all available groups. In MVP does not support\npagination, it returns all groups in once.\n",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Group"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/groups/new": {
+      "post": {
+        "tags": [
+          "groups"
+        ],
+        "summary": "Create new group",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "$ref": "#/definitions/GroupBase"
+            },
+            "description": "Data of new group to store,m\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group successfully created",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/groups/{group_id}": {
+      "get": {
+        "tags": [
+          "groups"
+        ],
+        "summary": "Get one group",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "description": "Id of a group to retrieve information about\n",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns information about group with id `group_id`.\n",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Group not found",
+            "schema": {
+              "$ref": "#/components/responses/NotFound"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "groups"
+        ],
+        "summary": "Update group's info",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "description": "Id of a group to retrieve information about\n",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            },
+            "description": "JSON with new data to store in system.\n"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group is successfully updated\n"
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/groups/{group_id}/students": {
+      "get": {
+        "tags": [
+          "groups",
+          "students"
+        ],
+        "summary": "Get all students that are part of group",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "description": "Id of a group to retrieve information about\n",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns list of students that are attended to given group\n",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Student"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/groups/{group_id}/deadlines": {
+      "get": {
+        "tags": [
+          "groups"
+        ],
+        "summary": "Get all deadlines of group",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "description": "Id of a group to retrieve information about\n",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns list of deadlines that are attached to given group\n",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Deadline"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/groups/{group_id}/deadlines/new": {
+      "post": {
+        "tags": [
+          "deadlines",
+          "groups"
+        ],
+        "summary": "Create new deadline",
+        "description": "Create new deadline",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "description": "Id of a group to retrieve information about\n",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "$ref": "#/definitions/DeadlineBase"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Deadline"
+            }
+          }
+        }
+      }
+    },
+    "/deadlines/all": {
+      "get": {
+        "tags": [
+          "deadlines"
+        ],
+        "summary": "Get all deadlines",
+        "responses": {
+          "200": {
+            "description": "Returns list of all available deadlines. In MVP does not support\npagination, it returns all deadlines in once.\n",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Deadline"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/deadlines/{deadline_id}": {
+      "get": {
+        "tags": [
+          "deadlines"
+        ],
+        "summary": "Get deadline",
+        "parameters": [
+          {
+            "name": "deadline_id",
+            "in": "path",
+            "description": "ID of deadline to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns deadline with that id",
+            "schema": {
+              "$ref": "#/definitions/Deadline"
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "deadlines"
+        ],
+        "summary": "Update deadline",
+        "description": "Updates deadline",
+        "parameters": [
+          {
+            "name": "deadline_id",
+            "in": "path",
+            "description": "ID of deadline to update",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Data of deadline to be stored",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Deadline"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Invalid query",
             "schema": {
               "$ref": "#/components/schemas/ServerErrorResponse"
             }
@@ -189,26 +564,16 @@
     "Student": {
       "allOf": [
         {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "integer",
-              "format": "uint64"
-            }
-          }
+          "$ref": "#/components/schemas/Id"
         },
         {
           "$ref": "#/components/schemas/StudentBase"
         }
       ]
     },
-    "Group": {
+    "GroupBase": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "uint64"
-        },
         "full_name": {
           "type": "string"
         },
@@ -222,6 +587,23 @@
           "type": "boolean"
         }
       }
+    },
+    "Group": {
+      "type": "object",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "uint64"
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/GroupBase"
+        }
+      ]
     },
     "File": {
       "type": "object",
@@ -260,13 +642,9 @@
         }
       }
     },
-    "HomeTask": {
+    "DeadlineBase": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "integer",
-          "format": "uint64"
-        },
         "group_id": {
           "type": "integer",
           "format": "uint64"
@@ -284,6 +662,17 @@
           "$ref": "#/components/schemas/DateTime"
         }
       }
+    },
+    "Deadline": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/components/schemas/Id"
+        },
+        {
+          "$ref": "#/definitions/DeadlineBase"
+        }
+      ]
     },
     "Notify": {
       "type": "object",
@@ -327,7 +716,66 @@
     }
   },
   "components": {
+    "responses": {
+      "NotFound": {
+        "description": "The specified resource was not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "BadRequest": {
+        "description": "The specified URL is illegal. Check data types",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    },
     "schemas": {
+      "Id": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "uint64"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": null
+          },
+          "valid_until": {
+            "type": "integer",
+            "format": "uint64"
+          }
+        }
+      },
       "Email": {
         "type": "string",
         "format": "email"
@@ -335,98 +783,13 @@
       "DateTime": {
         "type": "object",
         "properties": {
-          "day": {
-            "type": "integer",
-            "description": "1 <= day <= 31"
-          },
-          "month": {
-            "type": "integer",
-            "description": "1 <= month <= 12"
-          },
-          "year": {
-            "type": "integer",
-            "description": "0 <= year"
-          },
-          "hour": {
-            "type": "integer"
-          },
-          "minute": {
-            "type": "integer"
-          },
-          "second": {
-            "type": "integer"
-          },
           "timestamp": {
             "type": "integer"
-          },
-          "formatted": {
-            "type": "object",
-            "properties": {
-              "date": {
-                "type": "string",
-                "format": "date",
-                "description": "for example, \"2019-12-31\""
-              },
-              "time": {
-                "type": "string"
-              },
-              "datetime": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      },
-      "Time": {
-        "type": "object",
-        "properties": {
-          "hour": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 23
-          },
-          "minute": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 59
-          },
-          "second": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 59
-          },
-          "formatted": {
-            "type": "string",
-            "format": "time"
-          }
-        }
-      },
-      "Date": {
-        "type": "object",
-        "properties": {
-          "day": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 31
-          },
-          "month": {
-            "type": "integer",
-            "minimum": 1,
-            "maximum": 12
-          },
-          "year": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "formatted": {
-            "type": "string",
-            "format": "date",
-            "description": "for example, \"2019-12-31\""
           }
         }
       },
       "StudentPost": {
-        "$ref": "#/definitions/StudentBase"
+        "$ref": "#/components/schemas/StudentBase"
       },
       "ServerErrorResponse": {
         "type": "object",
@@ -465,14 +828,6 @@
           "patronymic_name": {
             "type": "string",
             "example": "Иванович"
-          },
-          "full_name": {
-            "type": "string",
-            "example": "Иван Иванов"
-          },
-          "legal_name": {
-            "type": "string",
-            "example": "Иванов Иван Иванович"
           }
         }
       },
@@ -483,26 +838,19 @@
             "$ref": "#/components/schemas/Name"
           },
           "birth_date": {
-            "$ref": "#/components/schemas/Date"
+            "type": "integer",
+            "format": "timestamp",
+            "example": 905256000
           },
-          "emails": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Email"
-            }
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "john_smith@example.com"
           },
           "telegram_account": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "role": {
             "type": "string",
-            "enum": [
-              "moderator",
-              "admin"
-            ]
+            "format": "telegram",
+            "example": "@example"
           }
         }
       },
@@ -522,9 +870,5 @@
         }
       }
     }
-  },
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
   }
 }
