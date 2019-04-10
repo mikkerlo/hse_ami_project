@@ -45,12 +45,6 @@
                 "$ref": "#/definitions/Student"
               }
             }
-          },
-          "403": {
-            "description": "Unauthorized request",
-            "schema": {
-              "$ref": "#/components/schemas/ServerErrorResponse"
-            }
           }
         }
       }
@@ -79,7 +73,10 @@
             }
           },
           "400": {
-            "description": "Invalid ID supplied"
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           },
           "404": {
             "description": "Student not found"
@@ -116,25 +113,13 @@
             "description": "ok"
           },
           "400": {
-            "description": "id is invalid, i.e, is not number.\n",
-            "schema": {
-              "$ref": "#/components/schemas/ServerErrorResponse"
-            }
-          },
-          "401": {
-            "description": "query is no authorized, login first",
+            "description": "Invalid query",
             "schema": {
               "$ref": "#/components/schemas/ServerErrorResponse"
             }
           },
           "404": {
             "description": "student with such id not found",
-            "schema": {
-              "$ref": "#/components/schemas/ServerErrorResponse"
-            }
-          },
-          "422": {
-            "description": "query body is invalid, i.e, wrong field names",
             "schema": {
               "$ref": "#/components/schemas/ServerErrorResponse"
             }
@@ -151,7 +136,16 @@
         "description": "Creates new user in system\n",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           }
         },
         "parameters": [
@@ -192,6 +186,12 @@
                 "$ref": "#/definitions/Deadline"
               }
             }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           }
         }
       }
@@ -220,6 +220,12 @@
               "items": {
                 "$ref": "#/definitions/Group"
               }
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
             }
           }
         }
@@ -264,7 +270,13 @@
           "200": {
             "description": "Group successfully created",
             "schema": {
-              "$ref": "#/components/schemas/Id"
+              "$ref": "#/definitions/Group"
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
             }
           }
         }
@@ -293,10 +305,16 @@
             }
           },
           "400": {
-            "$ref": "#/components/responses/BadRequest"
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "Group not found",
+            "schema": {
+              "$ref": "#/components/responses/NotFound"
+            }
           }
         }
       },
@@ -325,6 +343,12 @@
         "responses": {
           "200": {
             "description": "Group is successfully updated\n"
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           }
         }
       }
@@ -356,10 +380,81 @@
             }
           },
           "400": {
-            "$ref": "#/components/responses/BadRequest"
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          }
+        }
+      }
+    },
+    "/groups/{group_id}/deadlines": {
+      "get": {
+        "tags": [
+          "groups"
+        ],
+        "summary": "Get all deadlines of group",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "description": "Id of a group to retrieve information about\n",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns list of deadlines that are attached to given group\n",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Deadline"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/groups/{group_id}/deadlines/new": {
+      "post": {
+        "tags": [
+          "deadlines",
+          "groups"
+        ],
+        "summary": "Create new deadline",
+        "description": "Create new deadline",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "description": "Id of a group to retrieve information about\n",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "data",
+            "schema": {
+              "$ref": "#/definitions/DeadlineBase"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Deadline"
+            }
           }
         }
       }
@@ -379,29 +474,12 @@
                 "$ref": "#/definitions/Deadline"
               }
             }
-          }
-        }
-      }
-    },
-    "/deadlines/new": {
-      "post": {
-        "tags": [
-          "deadlines"
-        ],
-        "summary": "Create new deadline",
-        "description": "Create new deadline",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "data",
+          },
+          "400": {
+            "description": "Invalid query",
             "schema": {
-              "$ref": "#/definitions/DeadlineBase"
+              "$ref": "#/components/schemas/ServerErrorResponse"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           }
         }
       }
@@ -430,10 +508,16 @@
             }
           },
           "400": {
-            "$ref": "#/components/responses/BadRequest"
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           },
           "404": {
-            "$ref": "#/components/responses/NotFound"
+            "description": "Not found",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           }
         }
       },
@@ -465,6 +549,12 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Invalid query",
+            "schema": {
+              "$ref": "#/components/schemas/ServerErrorResponse"
+            }
           }
         }
       }
