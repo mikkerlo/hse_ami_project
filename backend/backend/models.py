@@ -128,5 +128,5 @@ class StudentJar(Model):
         students (student id): Id of students that are linked to this jar.
     """
     name = models.CharField(max_length=255, unique=True)
-    created_by = models.ForeignKey(Student, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student_jars_created')
     students = models.ManyToManyField(Student)
