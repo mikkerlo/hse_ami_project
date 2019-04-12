@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c81c3aad_0e4826e2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-12T16:19:01Z",
+      "side": 1,
+      "message": "лул",
+      "revId": "26ea2c3df14f7447794fb26da156cfaf9a72e264",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    }
+  ]
+}
