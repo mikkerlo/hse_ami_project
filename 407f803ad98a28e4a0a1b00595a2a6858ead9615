@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9e60f413_842c00c3",
+        "filename": "kek",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-13T09:48:22Z",
+      "side": 1,
+      "message": "Are u sure?",
+      "revId": "407f803ad98a28e4a0a1b00595a2a6858ead9615",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
