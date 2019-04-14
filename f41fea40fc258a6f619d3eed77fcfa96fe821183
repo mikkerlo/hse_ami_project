@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "535a6037_40517ea7",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-14T18:00:13Z",
+      "side": 1,
+      "message": "Либо json_response \u003d { \u0027ok\u0027: ..., \u0027error\u0027: ...,} либо json_response[\u0027ok\u0027] \u003d ...\nЯ за первый вариант везде ибо читаемость",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "65570d66_afb6742b",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-14T18:00:13Z",
+      "side": 1,
+      "message": "возможно json_response \u003d { \u0027ok\u0027: True, \u0027response\u0027: list(map(lambda x: x.to_json(), result)))}, так должно быть быстрее",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3793988c_bcd5bcbd",
         "filename": "backend/api/views.py",
         "patchSetId": 2
@@ -47,6 +81,24 @@
       "writtenOn": "2019-04-14T17:57:14Z",
       "side": 1,
       "message": "Вообще плюсую",
+      "parentUuid": "e1361370_3c5aa51f",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "40ba91b2_8421388e",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-14T18:00:13Z",
+      "side": 1,
+      "message": "+, так будет лучше",
       "parentUuid": "e1361370_3c5aa51f",
       "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
