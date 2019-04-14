@@ -158,6 +158,24 @@
     },
     {
       "key": {
+        "uuid": "58ac3096_f788b299",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-14T18:06:35Z",
+      "side": 1,
+      "message": "from django.utils.dateformat import format\nprint format(mymodel.mydatefield, \u0027U\u0027)",
+      "parentUuid": "bd988c62_46c140d5",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5fd8cc78_8e20dcdb",
         "filename": "backend/backend/urls.py",
         "patchSetId": 2
