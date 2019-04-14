@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "24e99e06_d9736ba7",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-14T18:03:06Z",
+      "side": 1,
+      "message": "Может это не 400, а 500 все-таки? Или считается что сервер крут настолько, что любая ошибка -- неверный запрос?",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "535a6037_40517ea7",
         "filename": "backend/api/views.py",
         "patchSetId": 2
@@ -117,6 +134,24 @@
       "writtenOn": "2019-04-14T17:57:14Z",
       "side": 1,
       "message": "Вы уверены что с таймстампом на дату рождения не рофл был?",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bd988c62_46c140d5",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-14T18:03:06Z",
+      "side": 1,
+      "message": "Ну довольно унифицированный способ передавать дату, не вижу особых проблем",
+      "parentUuid": "141586df_21062830",
       "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
