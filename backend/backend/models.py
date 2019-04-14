@@ -7,6 +7,13 @@ See each class docstring to more details
 from django.db import models
 from django.db.models import Model
 
+import time
+from datetime import date, datetime
+
+
+def _date_to_timestamp(date):
+    return int(time.mktime(date.timetuple()) * 1000)
+
 
 class Student(Model):
     """
@@ -23,10 +30,35 @@ class Student(Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     patronymic_name = models.CharField(max_length=255, blank=True)
-    birth_date = models.DateField()
     email = models.EmailField(blank=True)
     telegram_account = models.CharField(max_length=255, blank=True)
     completed_homeworks = models.ManyToManyField('Homework')
+
+    def to_json(self):
+        """Transform the object to json dict for api usage"""
+        return {
+            'id': self.id,
+            'name': {
+                'first_name': self.first_name,
+                'last_name': self.last_name,
+                'patronymic_name': self.patronymic_name,
+            },
+            'email': self.email,
+            'telegram_account': self.telegram_account
+        }
+
+    def apply_json(self, data):
+        self.first_name = data.get('name', dict()).get('first_name', self.first_name)
+        self.last_name = data.get('name', dict()).get('last_name', self.last_name)
+        self.patronymic_name = data.get('name', dict()).get('patronymic_name', self.patronymic_name)
+        self.email = data.get('email', self.email)
+        self.telegram_account = data.get('telegram_account', self.telegram_account)
+
+    @classmethod
+    def from_json(cls, data):
+        obj = cls()
+        obj.apply_json(data)
+        return obj
 
 
 class Group(Model):
