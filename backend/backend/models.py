@@ -7,6 +7,8 @@ See each class docstring to more details
 from django.db import models
 from django.db.models import Model
 
+import time
+
 
 class Student(Model):
     """
@@ -27,6 +29,21 @@ class Student(Model):
     email = models.EmailField(blank=True)
     telegram_account = models.CharField(max_length=255, blank=True)
     completed_homeworks = models.ManyToManyField('Homework')
+
+    def to_json(self):
+        """Transform the object to json dict for api usage"""
+        result = dict()
+        result['id'] = self.id
+        # Populating name.
+        result['name'] = dict()
+        result['name']['first_name'] = self.first_name
+        result['name']['last_name'] = self.last_name
+        result['name']['patronymic_name'] = self.patronymic_name
+        # Sadly, there is no better way to get a timestamp.
+        result['birth_date'] = int(time.mktime(self.birth_date.timetuple()) * 1000)
+        result['email'] = self.email
+        result['telegram_account'] = self.telegram_account
+        return result
 
 
 class Group(Model):
