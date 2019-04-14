@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3793988c_bcd5bcbd",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-14T17:57:14Z",
+      "side": 1,
+      "message": "А нельзя это для всех ручек апи в джанге просто выключить?",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e1361370_3c5aa51f",
         "filename": "backend/backend/models.py",
         "patchSetId": 2
@@ -13,6 +30,58 @@
       "writtenOn": "2019-04-14T17:45:43Z",
       "side": 1,
       "message": "А есть повод не писать что-то вида?\n\nresult \u003d {\n  \u0027id\u0027: self.id,\n  \u0027name\u0027: {\n    \u0027first_name\u0027: self....\n  }\n}\n\nИмхо удобнее и нагляднее",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c4a585e_578df545",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-14T17:57:14Z",
+      "side": 1,
+      "message": "Вообще плюсую",
+      "parentUuid": "e1361370_3c5aa51f",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "141586df_21062830",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-14T17:57:14Z",
+      "side": 1,
+      "message": "Вы уверены что с таймстампом на дату рождения не рофл был?",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5fd8cc78_8e20dcdb",
+        "filename": "backend/backend/urls.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-14T17:57:14Z",
+      "side": 1,
+      "message": "Давайте каждый импорт с новой строки, а не вот это вот",
       "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
