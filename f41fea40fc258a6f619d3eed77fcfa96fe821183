@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e1361370_3c5aa51f",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-14T17:45:43Z",
+      "side": 1,
+      "message": "А есть повод не писать что-то вида?\n\nresult \u003d {\n  \u0027id\u0027: self.id,\n  \u0027name\u0027: {\n    \u0027first_name\u0027: self....\n  }\n}\n\nИмхо удобнее и нагляднее",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
