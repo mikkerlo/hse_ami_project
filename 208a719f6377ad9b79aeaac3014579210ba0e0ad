@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26bf4b83_46e30b27",
+        "filename": "new_kek",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-14T12:37:07Z",
+      "side": 1,
+      "message": "I would add 2 empty lines here",
+      "revId": "208a719f6377ad9b79aeaac3014579210ba0e0ad",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
