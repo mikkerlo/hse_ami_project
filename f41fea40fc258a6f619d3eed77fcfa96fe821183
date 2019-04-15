@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "acba6a5f_1b9a2b8c",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-15T11:29:00Z",
+      "side": 1,
+      "message": "Апи не должно возвращать странные вещи. Любая ошибка не предусмотренная нами будет 400 и логгироваться на уровне сервера. Ну и удобно, ибо тогда можно не обмазываться умными парсерами данных, все равно 400 вернет если что",
+      "parentUuid": "24e99e06_d9736ba7",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "535a6037_40517ea7",
         "filename": "backend/api/views.py",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2019-04-14T18:00:13Z",
       "side": 1,
       "message": "Либо json_response \u003d { \u0027ok\u0027: ..., \u0027error\u0027: ...,} либо json_response[\u0027ok\u0027] \u003d ...\nЯ за первый вариант везде ибо читаемость",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "41416ea9_0042d3cf",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-15T11:29:00Z",
+      "side": 1,
+      "message": "Да, сделаю в следующей версии",
+      "parentUuid": "535a6037_40517ea7",
       "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "5bf814ac_fcfcff21",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-15T11:29:00Z",
+      "side": 1,
+      "message": "Никаких lambda, они рушат читаемость крайне сильно.",
+      "parentUuid": "65570d66_afb6742b",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3793988c_bcd5bcbd",
         "filename": "backend/api/views.py",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2019-04-14T17:57:14Z",
       "side": 1,
       "message": "А нельзя это для всех ручек апи в джанге просто выключить?",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ce15e40b_5cafd430",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-15T11:29:00Z",
+      "side": 1,
+      "message": "Я умею либо вырубать это прямо совсем совсем, либо вот так. Вырубать совсем совсем это просто стелить грабли для дальнейшего развития.",
+      "parentUuid": "3793988c_bcd5bcbd",
       "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
@@ -123,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "01352ff7_001b9d98",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-15T11:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40ba91b2_8421388e",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "141586df_21062830",
         "filename": "backend/backend/models.py",
         "patchSetId": 2
@@ -176,6 +266,24 @@
     },
     {
       "key": {
+        "uuid": "85444b15_40b7d352",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-15T11:29:00Z",
+      "side": 1,
+      "message": "Выпилено нахер",
+      "parentUuid": "58ac3096_f788b299",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fd8cc78_8e20dcdb",
         "filename": "backend/backend/urls.py",
         "patchSetId": 2
@@ -187,6 +295,24 @@
       "writtenOn": "2019-04-14T17:57:14Z",
       "side": 1,
       "message": "Давайте каждый импорт с новой строки, а не вот это вот",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6299f95d_90877199",
+        "filename": "backend/backend/urls.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-15T11:29:00Z",
+      "side": 1,
+      "message": "Да, впилю в новой версии",
+      "parentUuid": "5fd8cc78_8e20dcdb",
       "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
