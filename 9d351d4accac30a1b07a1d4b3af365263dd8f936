@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "692ad1ba_56ca56f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-15T11:38:45Z",
+      "side": 1,
+      "message": "Напиши что-то чтобы норм находить в списке",
+      "revId": "9d351d4accac30a1b07a1d4b3af365263dd8f936",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1e1011cc_5371bb81",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-15T11:38:45Z",
+      "side": 1,
+      "message": "Ты же знаешь что перехватываешь здесь",
+      "revId": "9d351d4accac30a1b07a1d4b3af365263dd8f936",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "71b8bd6d_9c80f063",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-15T11:38:45Z",
+      "side": 1,
+      "message": "Во первых кажется что ошибки нужно логировать а не принтить\nВо вторых мы на каждую 400 не хотим отдавать деталей?",
+      "revId": "9d351d4accac30a1b07a1d4b3af365263dd8f936",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}

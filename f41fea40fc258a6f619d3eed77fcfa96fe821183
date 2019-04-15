@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "0f1e1f03_4a580ebd",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-15T11:38:45Z",
+      "side": 1,
+      "message": "Так это же приложение чисто апи предоставляет, думаешь дефолт это включено должен быть? Если да то почему?",
+      "parentUuid": "ce15e40b_5cafd430",
+      "revId": "f41fea40fc258a6f619d3eed77fcfa96fe821183",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e1361370_3c5aa51f",
         "filename": "backend/backend/models.py",
         "patchSetId": 2
