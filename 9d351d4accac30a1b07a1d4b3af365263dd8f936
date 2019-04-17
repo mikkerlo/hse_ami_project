@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "0e9732cf_7ee4edaf",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-17T16:51:32Z",
+      "side": 1,
+      "message": "Оставшийся от дебага кусок. Убрано.",
+      "parentUuid": "1e1011cc_5371bb81",
+      "revId": "9d351d4accac30a1b07a1d4b3af365263dd8f936",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "71b8bd6d_9c80f063",
         "filename": "backend/api/views.py",
         "patchSetId": 3
@@ -50,6 +68,24 @@
       "revId": "9d351d4accac30a1b07a1d4b3af365263dd8f936",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3d2cee3a_ab90c27f",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-17T16:51:32Z",
+      "side": 1,
+      "message": "Принт остался от дебага, в дальнейшем логировать действительно разумная идея(когда я разберусь как это правилиьно делать)\n\nДа, этот внешний except тупо на случай каких-то неперехваченных ошибок, чтобы апи всегда работало консистентно и не отдавало информации об ошибках наружу, иначе может быть утечка информации",
+      "parentUuid": "71b8bd6d_9c80f063",
+      "revId": "9d351d4accac30a1b07a1d4b3af365263dd8f936",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     }
   ]
 }
