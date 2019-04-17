@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "433a193c_5b68a0b5",
+        "filename": "backend/api/views.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-17T17:10:47Z",
+      "side": 1,
+      "message": "Мне не нравятся не константные коды ответа",
+      "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1bb49422_335a9476",
+        "filename": "backend/api/views.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-17T17:10:47Z",
+      "side": 1,
+      "message": "А у кого так много прав чтобы сохранять студента?",
+      "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dcb20344_e977d147",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-17T17:10:47Z",
+      "side": 1,
+      "message": "1) Очень много однотипного кода, мех\n2) Сделай дефолт дикт и выпили эту вакханалию пожалуйста",
+      "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "93d91c14_b3fa5ada",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-17T17:10:47Z",
+      "side": 1,
+      "message": "Кажется это тоже можно заменить на цикл",
+      "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d8720a34_6f2389ef",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-17T17:10:47Z",
+      "side": 1,
+      "message": "BigInteger?",
+      "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}

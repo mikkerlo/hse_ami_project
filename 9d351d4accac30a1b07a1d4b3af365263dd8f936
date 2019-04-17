@@ -86,6 +86,24 @@
       "revId": "9d351d4accac30a1b07a1d4b3af365263dd8f936",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "08803f93_734a70e9",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-17T17:10:47Z",
+      "side": 1,
+      "message": "А почему это тогда не 5xx?",
+      "parentUuid": "3d2cee3a_ab90c27f",
+      "revId": "9d351d4accac30a1b07a1d4b3af365263dd8f936",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     }
   ]
 }
