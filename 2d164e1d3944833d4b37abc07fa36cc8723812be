@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "77f79a3c_c3de3792",
+        "filename": "backend/api/views.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-19T14:45:01Z",
+      "side": 1,
+      "message": "Ну допустим DONE",
+      "parentUuid": "433a193c_5b68a0b5",
+      "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1bb49422_335a9476",
         "filename": "backend/api/views.py",
         "patchSetId": 5
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "3ac2e1d4_553e22e0",
+        "filename": "backend/api/views.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-19T14:45:01Z",
+      "side": 1,
+      "message": "Следую спецификации апи",
+      "parentUuid": "1bb49422_335a9476",
+      "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dcb20344_e977d147",
         "filename": "backend/backend/models.py",
         "patchSetId": 5
@@ -50,6 +86,24 @@
       "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "baf379c6_143764c8",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-19T14:45:01Z",
+      "side": 1,
+      "message": "1) Чуточку изменил согласно нашему обсуждению\n2) Сделал несколько другой подход, вроде бы стало читаемо.",
+      "parentUuid": "dcb20344_e977d147",
+      "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     },
     {
       "key": {
@@ -84,6 +138,24 @@
       "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0529c70a_58d500a1",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-04-19T14:45:01Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "d8720a34_6f2389ef",
+      "revId": "2d164e1d3944833d4b37abc07fa36cc8723812be",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     }
   ]
 }
