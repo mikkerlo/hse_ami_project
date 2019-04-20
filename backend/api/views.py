@@ -51,25 +51,21 @@ def json_response(func):
 @csrf_exempt
 @json_response
 def students_all(request):
-    return _STATUS_OK, models.Student.objects.all().order_by('pk')
+    return _STATUS_OK, models.Student.objects.all()
 
 
 @require_http_methods(['GET', 'PATCH'])
 @csrf_exempt
 @json_response
 def student_view(request, id):
+    try:
+        student = models.Student.objects.get(pk=id)
+    except models.Student.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Student not found'
     if request.method == 'GET':
-        try:
-            student = models.Student.objects.get(pk=id)
-            return _STATUS_OK, student
-        except models.Student.DoesNotExist:
-            return _STATUS_NOT_FOUND, 'Student not found'
+        return _STATUS_OK, student
     else:
         data = json.loads(request.body)
-        try:
-            student = models.Student.objects.get(pk=id)
-        except models.Student.DoesNotExist:
-            return _STATUS_NOT_FOUND, 'Student not found'
         student.apply_json(data)
         student.save()
         return _STATUS_OK, student
@@ -103,6 +99,13 @@ def student_deadlines(request, id):
 @require_GET
 @csrf_exempt
 @json_response
+def groups_all(request):
+    return _STATUS_OK, models.Group.objects.all()
+
+
+@require_GET
+@csrf_exempt
+@json_response
 def student_groups(request, id):
     try:
         student = models.Student.objects.get(pk=id)
@@ -110,3 +113,52 @@ def student_groups(request, id):
         return _STATUS_NOT_FOUND, 'Student not found'
     student_groups = student.group_set.all()
     return _STATUS_OK, student_groups
+
+
+@require_http_methods(['GET', 'PATCH'])
+@csrf_exempt
+@json_response
+def group_view(request, id):
+    try:
+        group = models.Group.objects.get(pk=id)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Group not found'
+    if request.method == 'GET':
+        return _STATUS_OK, group
+    else:
+        data = json.loads(request.body)
+        group.apply_json(data)
+        group.save()
+        return _STATUS_OK, group
+
+
+@require_GET
+@csrf_exempt
+@json_response
+def group_deadlines(request, id):
+    try:
+        group = models.Group.objects.get(pk=id)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Group not found'
+    return _STATUS_OK, group.homework_set.all()
+
+
+@require_GET
+@csrf_exempt
+@json_response
+def group_students(request, id):
+    try:
+        group = models.Group.objects.get(pk=id)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Group not found'
+    return _STATUS_OK, group.students.all()
+
+
+@require_POST
+@csrf_exempt
+@json_response
+def group_new(request):
+    data = json.loads(request.body)
+    group = models.Group.from_json(data)
+    group.save()
+    return _STATUS_OK, group
