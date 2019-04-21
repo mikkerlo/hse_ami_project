@@ -36,6 +36,86 @@
     },
     {
       "key": {
+        "uuid": "718101b6_1df2d613",
+        "filename": "backend/api/api_providers/deadlines/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T16:18:41Z",
+      "side": 1,
+      "message": "Не нужно в проекте",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a2e7664d_b44aec84",
+        "filename": "backend/api/api_providers/deadlines/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T16:18:41Z",
+      "side": 1,
+      "message": "Мы не используем не константные коды ответа",
+      "range": {
+        "startLine": 28,
+        "startChar": 39,
+        "endLine": 28,
+        "endChar": 42
+      },
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d35effd_8c9b11c9",
+        "filename": "backend/api/api_providers/deadlines/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T16:18:41Z",
+      "side": 1,
+      "message": "Был же декоратор который это делает",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c4d15948_df8b7a47",
+        "filename": "backend/api/api_providers/deadlines/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T16:18:41Z",
+      "side": 1,
+      "message": "Аналогично",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 11
+      },
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "abd028a3_c751e6d8",
         "filename": "backend/api/api_providers/deadlines/urls.py",
         "patchSetId": 1
