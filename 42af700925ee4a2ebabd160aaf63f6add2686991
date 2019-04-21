@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "42d710f4_393f22f0",
+        "filename": "frontend/src/App.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-21T18:58:30Z",
+      "side": 1,
+      "message": "Го писать React.Component, вроде так принято (и livace так делает)",
+      "revId": "42af700925ee4a2ebabd160aaf63f6add2686991",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa1318c4_f48dd41b",
+        "filename": "frontend/src/App.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-21T18:58:30Z",
+      "side": 1,
+      "message": "кек интересный факт: без этого компоненты на одной страницы будут в пределах строла, можно будет поюзать",
+      "revId": "42af700925ee4a2ebabd160aaf63f6add2686991",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
