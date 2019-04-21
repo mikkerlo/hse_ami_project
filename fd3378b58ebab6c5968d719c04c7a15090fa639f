@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d331aa43_b5f1a84c",
+        "filename": "frontend/src/components/NavBar.jsx",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-21T16:21:02Z",
+      "side": 1,
+      "message": "А мы хотим с темами фигачить?",
+      "revId": "fd3378b58ebab6c5968d719c04c7a15090fa639f",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
