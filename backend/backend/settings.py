@@ -43,7 +43,7 @@ if os.environ.get('AMI_BACKEND_DEBUG', '0') == '1':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'api.ExceptionHandlerMiddleware'
 ]
 
 ROOT_URLCONF = 'backend.urls'

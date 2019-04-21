@@ -131,6 +131,7 @@ class ContentElement(Model):
         content_file (file):     Attached files if any are provided
 
     """
+
     class Meta:
         abstract = True
 
@@ -141,9 +142,9 @@ class ContentElement(Model):
     content_file = models.ManyToManyField(File, blank=True)
 
     def apply_json(self, data):
-        self.created_at = data['created_at']
-        self.header = data['header']
-        self.content = data['content']
+        self.created_at = data.get('created_at', self.created_at)
+        self.header = data.get('header', self.header)
+        self.content = data.get('content', self.content)
 
     def to_json(self):
         return {
@@ -174,7 +175,7 @@ class Homework(ContentElement):
 
     def apply_json(self, data):
         super().apply_json(data)
-        self.valid_until = data['valid_until']
+        self.valid_until = data.get('valid_until', self.valid_until)
 
     def to_json(self):
         result = super().to_json()
@@ -206,5 +207,6 @@ class StudentJar(Model):
         students (student id): Id of students that are linked to this jar.
     """
     name = models.CharField(max_length=255, unique=True)
-    created_by = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student_jars_created')
+    created_by = models.ForeignKey(Student, on_delete=models.CASCADE,
+                                   related_name='student_jars_created')
     students = models.ManyToManyField(Student)
