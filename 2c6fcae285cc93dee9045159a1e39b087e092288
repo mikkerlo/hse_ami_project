@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7413ee5c_4db2c98f",
+        "filename": "backend/api/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-21T16:15:06Z",
+      "side": 1,
+      "message": "No newline at end of revision file.",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f68e9571_7da7e1fc",
+        "filename": "backend/api/api_providers/deadlines/__init__.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-21T16:15:06Z",
+      "side": 1,
+      "message": "No newline at end of revision file.",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abd028a3_c751e6d8",
+        "filename": "backend/api/api_providers/deadlines/urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-21T16:15:06Z",
+      "side": 1,
+      "message": "No newline at end of revision file.",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b748e2a_32ed6483",
+        "filename": "backend/api/exceptions.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-21T16:15:06Z",
+      "side": 1,
+      "message": "No newline at end of revision file.",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
