@@ -133,6 +133,108 @@
     },
     {
       "key": {
+        "uuid": "f0131b70_98e2c7a1",
+        "filename": "backend/api/data_manager/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Почему это не функции в модельке DeadLine?",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2a7b7ac4_e33cb795",
+        "filename": "backend/api/data_manager/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Два разных импорта",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "08f742b3_acf6fe17",
+        "filename": "backend/api/data_manager/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Аналогично выше",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0b92f22b_422165da",
+        "filename": "backend/api/data_manager/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Так ты не настроил MIDDLEWARE_CLASSES, что ты ожидал?",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ebeb99dc_eaf4279a",
+        "filename": "backend/api/data_manager/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Давай save вне модели",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "bb5c27c2_1cb25a5f",
+        "filename": "backend/api/data_manager/deadlines.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Бывают другие возвращаемые значения? Не понятна семантика",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "0b748e2a_32ed6483",
         "filename": "backend/api/exceptions.py",
         "patchSetId": 1
@@ -144,6 +246,160 @@
       "writtenOn": "2019-04-21T16:15:06Z",
       "side": 1,
       "message": "No newline at end of revision file.",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "247ada3e_3e965035",
+        "filename": "backend/api/middleware.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Наследник object хотя бы",
+      "range": {
+        "startLine": 7,
+        "startChar": 32,
+        "endLine": 7,
+        "endChar": 34
+      },
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8a3271b1_b0287107",
+        "filename": "backend/api/middleware.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Я уважаю концепцию что краткость сестра таланта, но кажется что это или лишняя докстринга в таком случае",
+      "range": {
+        "startLine": 9,
+        "startChar": 4,
+        "endLine": 9,
+        "endChar": 68
+      },
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4cb3c504_0eec69b6",
+        "filename": "backend/api/middleware.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Повторение кода",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2d00978b_274615ac",
+        "filename": "backend/api/middleware.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "exception точно не содержит что-то внутреннее?",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "46c1e9ff_5841f5dd",
+        "filename": "backend/api/middleware.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Константы для кодов ответа ветер северный",
+      "range": {
+        "startLine": 36,
+        "startChar": 47,
+        "endLine": 36,
+        "endChar": 50
+      },
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07bba503_0d33999a",
+        "filename": "backend/api/urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Интересное решение, есть ли какие-то причины не держать все урлы в одном файле?",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abf6b879_9311ef2a",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "PEP257 говорит что ты не прав",
+      "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "770dc19e_4f0e653c",
+        "filename": "backend/backend/settings.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-21T17:26:58Z",
+      "side": 1,
+      "message": "Нет",
       "revId": "2c6fcae285cc93dee9045159a1e39b087e092288",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
