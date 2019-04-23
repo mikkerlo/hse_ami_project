@@ -83,8 +83,8 @@ class APITestCase(TestCase):
 
     def test_get_student_ok(self):
         c = Client()
-        id = self.students[0]['id']
-        response = c.get(reverse('api_students_id', kwargs={'id': id}))
+        student_id = self.students[0]['id']
+        response = c.get(reverse('api_students_id', kwargs={'id': student_id}))
         self.assertEqual(response.status_code, 200)
         json_response = json.loads(response.content)['result']
         self.assertEqual(self.students[0], json_response)
@@ -97,15 +97,15 @@ class APITestCase(TestCase):
     def test_patch_student_ok(self):
         c = Client()
         # Getting existing user
-        id = self.students[0]['id']
-        response = c.get(reverse('api_students_id', kwargs={'id': id}))
+        student_id = self.students[0]['id']
+        response = c.get(reverse('api_students_id', kwargs={'id': student_id}))
         self.assertEqual(response.status_code, 200)
         json_response = json.loads(response.content)['result']
         user_data = json_response
         user_data['name']['first_name'] = 'New name'
 
         # Updating user name
-        response = c.patch(reverse('api_students_id', kwargs={'id': id}),
+        response = c.patch(reverse('api_students_id', kwargs={'id': student_id}),
                            content_type='application/json',
                            data=user_data)
         self.assertEqual(response.status_code, 200)
@@ -113,7 +113,7 @@ class APITestCase(TestCase):
         self.assertEqual(user_data, json_response)
 
         # Getting user again to ensure that the changes were applied
-        response = c.get(reverse('api_students_id', kwargs={'id': id}))
+        response = c.get(reverse('api_students_id', kwargs={'id': student_id}))
         self.assertEqual(response.status_code, 200)
         json_response = json.loads(response.content)['result']
         self.assertEqual(user_data, json_response)
@@ -134,30 +134,30 @@ class APITestCase(TestCase):
 
     def test_get_deadlines(self):
         c = Client()
-        id = self.students[0]['id']
-        response = c.get(reverse('api_students_deadlines', kwargs={'id': id}))
+        student_id = self.students[0]['id']
+        response = c.get(reverse('api_students_deadlines', kwargs={'id': student_id}))
         self.assertEqual(response.status_code, 200)
         json_response = json.loads(response.content)['result']
         self.assertCountEqual(json_response, self.homeworks[0:1])
 
-        id = self.students[1]['id']
-        response = c.get(reverse('api_students_deadlines', kwargs={'id': id}))
+        student_id = self.students[1]['id']
+        response = c.get(reverse('api_students_deadlines', kwargs={'id': student_id}))
         self.assertEqual(response.status_code, 200)
         json_response = json.loads(response.content)['result']
         self.assertCountEqual(json_response, self.homeworks)
 
     def test_get_groups_one_groups(self):
         c = Client()
-        id = self.students[0]['id']
-        response = c.get(reverse('api_students_groups', kwargs={'id': id}))
+        student_id = self.students[0]['id']
+        response = c.get(reverse('api_students_groups', kwargs={'id': student_id}))
         self.assertEqual(response.status_code, 200)
         json_response = json.loads(response.content)['result']
         self.assertCountEqual(json_response, self.groups[0:1])
 
     def test_get_groups_two_groups(self):
         c = Client()
-        id = self.students[1]['id']
-        response = c.get(reverse('api_students_groups', kwargs={'id': id}))
+        student_id = self.students[1]['id']
+        response = c.get(reverse('api_students_groups', kwargs={'id': student_id}))
         self.assertEqual(response.status_code, 200)
         json_response = json.loads(response.content)['result']
         self.assertCountEqual(json_response, self.groups)
