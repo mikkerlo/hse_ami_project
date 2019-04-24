@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4f847ca0_570a7c36",
+        "filename": "backend/api/urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-24T10:18:14Z",
+      "side": 1,
+      "message": "почему бы не использовать путь /deadlines для all? Возможно дело в моей привычке)",
+      "revId": "0f08e7537b31940a81fdf10d6ebe2961da4265f7",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
