@@ -8,6 +8,52 @@ import Button from '@material-ui/core/Button';
 import DeadlineCard from './components/DeadlineCard';
 import NavBar from './components/NavBar.jsx'
 
+class DeadlineCardList extends React.Component {
+    constructor(props) {
+        super(props);
+        let deadlines = [];
+        const self = this;
+        this.state = {};
+        this.state.deadlines = deadlines;
+        const xhr = new XMLHttpRequest();
+        console.log('xhr launch');
+
+        xhr.open("GET", "/api/deadlines");
+        // xhr.setRequestHeader("Access-Control-Allow-Origin", "https://nicklavr.ru");
+        const deadlineSetter = function (dl) {
+            this.state.deadlines = dl;
+        };
+        xhr.onload = function () {
+            console.log(xhr);
+            if (xhr.status === 200) {
+                try {
+                    let result = JSON.parse(xhr.response);
+                    self.setState({deadlines: result.response});
+                    console.log(result.response);
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    render() {
+        let deadlines = <div>
+            {this.state.deadlines.map(deadline => (
+                <DeadlineCard
+                    text={deadline.content}
+                    caption={deadline.header}
+                    files={[]}
+                    date={deadline.valid_until}
+                />
+            ))}
+        </div>;
+        return deadlines;
+    }
+}
+
+
 function Elements() {
     return (
         <div>
@@ -59,6 +105,7 @@ function Elements() {
                 caption={"Caption"}
                 files={["file1.txt", "kek.pdf", "lections.pdf", "cheatsheet.pdf", "yet_another_file.pdf"]}
                 date={1554}/>
+            <DeadlineCardList/>
         </div>
     )
 }
