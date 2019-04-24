@@ -13,4 +13,8 @@ urlpatterns = [
     path('groups/<int:id>/deadlines/', views.group_deadlines, name='api_groups_deadlines'),
     path('groups/<int:id>/students/', views.group_students, name='api_groups_students'),
     path('groups/new/', views.group_new, name='api_groups_new'),
+
+    path('deadlines/all/', views.deadlines_all, name='api_deadlines_all'),
+    path('deadlines/<int:id>/', views.deadline_view, name='api_deadlines_id'),
+    path('deadlines/new/', views.deadline_new, name='api_deadlines_new'),
 ]

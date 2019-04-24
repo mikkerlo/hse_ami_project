@@ -174,7 +174,7 @@ class Homework(ContentElement):
 
     def apply_json(self, data):
         super().apply_json(data)
-        self.valid_until = data['valid_until']
+        self.valid_until = data.get('valid_until', self.valid_until)
 
     def to_json(self):
         result = super().to_json()
