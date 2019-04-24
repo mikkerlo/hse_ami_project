@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a67d0cb5_bbc6a0ea",
+        "filename": "frontend/src/components/DeadlineCardList.jsx",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-24T21:52:19Z",
+      "side": 1,
+      "message": "Гав",
+      "revId": "e4a578be750d957420d8f65f42deb610b32dfbe3",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "362b3a0b_c6bd2951",
+        "filename": "frontend/src/components/DeadlineCardList.jsx",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-24T21:52:19Z",
+      "side": 1,
+      "message": "Гав",
+      "revId": "e4a578be750d957420d8f65f42deb610b32dfbe3",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8fed0b1e_bbb7d804",
+        "filename": "frontend/src/components/DeadlineCardList.jsx",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-24T21:52:19Z",
+      "side": 1,
+      "message": "Гав",
+      "revId": "e4a578be750d957420d8f65f42deb610b32dfbe3",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
