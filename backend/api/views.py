@@ -48,14 +48,12 @@ def json_response(func):
 
 
 @require_GET
-@csrf_exempt
 @json_response
 def students_all(request):
     return _STATUS_OK, models.Student.objects.all()
 
 
 @require_http_methods(['GET', 'PATCH'])
-@csrf_exempt
 @json_response
 def student_view(request, id):
     try:
@@ -72,7 +70,6 @@ def student_view(request, id):
 
 
 @require_POST
-@csrf_exempt
 @json_response
 def student_new(request):
     data = json.loads(request.body)
@@ -82,7 +79,6 @@ def student_new(request):
 
 
 @require_GET
-@csrf_exempt
 @json_response
 def student_deadlines(request, id):
     try:
@@ -97,14 +93,12 @@ def student_deadlines(request, id):
 
 
 @require_GET
-@csrf_exempt
 @json_response
 def groups_all(request):
     return _STATUS_OK, models.Group.objects.all()
 
 
 @require_GET
-@csrf_exempt
 @json_response
 def student_groups(request, id):
     try:
@@ -116,7 +110,6 @@ def student_groups(request, id):
 
 
 @require_http_methods(['GET', 'PATCH'])
-@csrf_exempt
 @json_response
 def group_view(request, id):
     try:
@@ -133,7 +126,6 @@ def group_view(request, id):
 
 
 @require_GET
-@csrf_exempt
 @json_response
 def group_deadlines(request, id):
     try:
@@ -144,7 +136,6 @@ def group_deadlines(request, id):
 
 
 @require_GET
-@csrf_exempt
 @json_response
 def group_students(request, id):
     try:
@@ -155,10 +146,41 @@ def group_students(request, id):
 
 
 @require_POST
-@csrf_exempt
 @json_response
 def group_new(request):
     data = json.loads(request.body)
     group = models.Group.from_json(data)
     group.save()
     return _STATUS_OK, group
+
+
+@require_GET
+@json_response
+def deadlines_all(request):
+    return _STATUS_OK, models.Homework.objects.all()
+
+
+@require_http_methods(['GET', 'PATCH'])
+@json_response
+def deadline_view(request, id):
+    try:
+        deadline = models.Homework.objects.get(pk=id)
+    except models.Homework.DoesNotExist:
+        return 404, 'Deadline not found'
+    if request.method == 'GET':
+        return _STATUS_OK, deadline
+    else:
+        data = json.loads(request.body)
+        deadline.apply_json(data)
+        data.save()
+        return _STATUS_OK, deadline
+
+
+@require_POST
+@json_response
+def deadline_new(request):
+    data = json.loads(request.body)
+    deadline = models.Homework.from_json(data)
+    deadline.group_id = models.Group.objects.get(pk=data['group_id'])
+    deadline.save()
+    return _STATUS_OK, deadline
