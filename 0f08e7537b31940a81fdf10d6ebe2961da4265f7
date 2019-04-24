@@ -16,6 +16,23 @@
       "revId": "0f08e7537b31940a81fdf10d6ebe2961da4265f7",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c94a3b21_f2ff4940",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-24T10:58:24Z",
+      "side": 1,
+      "message": "Еще нужно возвращать имя предмета. Оно не помешает везде, так что можно и в to_json добавить",
+      "revId": "0f08e7537b31940a81fdf10d6ebe2961da4265f7",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
     }
   ]
 }
