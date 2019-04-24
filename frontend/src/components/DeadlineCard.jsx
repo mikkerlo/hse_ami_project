@@ -15,6 +15,7 @@ const styles = {
         maxWidth: 600,
         boxSizing: 'inherit',
         borderRadius: 30,
+        margin: '10px',
     },
     date: {
         maxWidth: 300,
@@ -30,7 +31,6 @@ const styles = {
 };
 
 
-
 class DeadlineCard extends React.Component {
     render() {
         const {classes, text, caption, files, date, is_done} = this.props;
@@ -41,6 +41,12 @@ class DeadlineCard extends React.Component {
                     {tile}
                 </Button>))}
         </div>;
+        if (files.length > 0) {
+            files_buttons = <div>
+                <hr/>
+                {files_buttons}
+            </div>;
+        }
         return (
             <Card className={classes.card}>
                 <CardContent>
@@ -61,7 +67,6 @@ class DeadlineCard extends React.Component {
                         {text}
                         <br/>
                     </Typography>
-                    <hr/>
                     {files_buttons}
                 </CardContent>
             </Card>
