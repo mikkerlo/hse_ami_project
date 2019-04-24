@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "acf0b2cf_138a3a3b",
+        "filename": "frontend/public/api/deadlines",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-24T19:59:45Z",
+      "side": 1,
+      "message": "русские названия",
+      "revId": "e9b0e1ce916f7d54210cc2431c7ce1c33cdc4904",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "42a5e613_733aeb99",
+        "filename": "frontend/src/exp.jsx",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-24T19:59:45Z",
+      "side": 1,
+      "message": "гав",
+      "revId": "e9b0e1ce916f7d54210cc2431c7ce1c33cdc4904",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "abd2e7c4_1752f2d1",
+        "filename": "frontend/src/exp.jsx",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-24T19:59:45Z",
+      "side": 1,
+      "message": "гав",
+      "revId": "e9b0e1ce916f7d54210cc2431c7ce1c33cdc4904",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
