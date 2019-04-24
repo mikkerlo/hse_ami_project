@@ -149,6 +149,7 @@ class ContentElement(Model):
         return {
             'id': self.id,
             'group_id': self.group_id.id,
+            'group_name': self.group_id.full_name,
             'created_at': self.created_at,
             'header': self.header,
             'content': self.content,
@@ -174,7 +175,7 @@ class Homework(ContentElement):
 
     def apply_json(self, data):
         super().apply_json(data)
-        self.valid_until = data['valid_until']
+        self.valid_until = data.get('valid_until', self.valid_until)
 
     def to_json(self):
         result = super().to_json()
