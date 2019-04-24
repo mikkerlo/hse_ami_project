@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4543dacf_dad0208a",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-24T19:46:01Z",
+      "side": 1,
+      "message": "Давай заодно все id отсюда вычистим",
+      "revId": "1b308b31e9e06a4862cee30e05fa0d0da72330e6",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
