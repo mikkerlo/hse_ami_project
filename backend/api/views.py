@@ -1,8 +1,6 @@
 from django.http import JsonResponse
 from backend import models
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
-from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
 from collections.abc import Iterable
 import json
 
@@ -18,7 +16,7 @@ def json_response(func):
     def decorator(*args, **kwargs):
         try:
             status_code, result = func(*args, **kwargs)
-        except Exception as e:
+        except Exception:
             # Unhandled exception caught. Returning 400 without any details.
             # TODO(solonkovda): log exception
             json_response = {
@@ -48,18 +46,16 @@ def json_response(func):
 
 
 @require_GET
-@csrf_exempt
 @json_response
 def students_all(request):
     return _STATUS_OK, models.Student.objects.all()
 
 
 @require_http_methods(['GET', 'PATCH'])
-@csrf_exempt
 @json_response
-def student_view(request, id):
+def student_view(request, student_id):
     try:
-        student = models.Student.objects.get(pk=id)
+        student = models.Student.objects.get(pk=student_id)
     except models.Student.DoesNotExist:
         return _STATUS_NOT_FOUND, 'Student not found'
     if request.method == 'GET':
@@ -72,7 +68,6 @@ def student_view(request, id):
 
 
 @require_POST
-@csrf_exempt
 @json_response
 def student_new(request):
     data = json.loads(request.body)
@@ -82,11 +77,10 @@ def student_new(request):
 
 
 @require_GET
-@csrf_exempt
 @json_response
-def student_deadlines(request, id):
+def student_deadlines(request, student_id):
     try:
-        student = models.Student.objects.get(pk=id)
+        student = models.Student.objects.get(pk=student_id)
     except models.Student.DoesNotExist:
         return _STATUS_NOT_FOUND, 'Student not found'
     student_groups = student.group_set.prefetch_related('homework_set')
@@ -97,18 +91,16 @@ def student_deadlines(request, id):
 
 
 @require_GET
-@csrf_exempt
 @json_response
 def groups_all(request):
     return _STATUS_OK, models.Group.objects.all()
 
 
 @require_GET
-@csrf_exempt
 @json_response
-def student_groups(request, id):
+def student_groups(request, student_id):
     try:
-        student = models.Student.objects.get(pk=id)
+        student = models.Student.objects.get(pk=student_id)
     except models.Student.DoesNotExist:
         return _STATUS_NOT_FOUND, 'Student not found'
     student_groups = student.group_set.all()
@@ -116,11 +108,10 @@ def student_groups(request, id):
 
 
 @require_http_methods(['GET', 'PATCH'])
-@csrf_exempt
 @json_response
-def group_view(request, id):
+def group_view(request, group_id):
     try:
-        group = models.Group.objects.get(pk=id)
+        group = models.Group.objects.get(pk=group_id)
     except models.Group.DoesNotExist:
         return _STATUS_NOT_FOUND, 'Group not found'
     if request.method == 'GET':
@@ -133,32 +124,61 @@ def group_view(request, id):
 
 
 @require_GET
-@csrf_exempt
 @json_response
-def group_deadlines(request, id):
+def group_deadlines(request, group_id):
     try:
-        group = models.Group.objects.get(pk=id)
+        group = models.Group.objects.get(pk=group_id)
     except models.Group.DoesNotExist:
         return _STATUS_NOT_FOUND, 'Group not found'
     return _STATUS_OK, group.homework_set.all()
 
 
 @require_GET
-@csrf_exempt
 @json_response
-def group_students(request, id):
+def group_students(request, group_id):
     try:
-        group = models.Group.objects.get(pk=id)
+        group = models.Group.objects.get(pk=group_id)
     except models.Group.DoesNotExist:
         return _STATUS_NOT_FOUND, 'Group not found'
     return _STATUS_OK, group.students.all()
 
 
 @require_POST
-@csrf_exempt
 @json_response
 def group_new(request):
     data = json.loads(request.body)
     group = models.Group.from_json(data)
     group.save()
     return _STATUS_OK, group
+
+
+@require_GET
+@json_response
+def deadlines_all(request):
+    return _STATUS_OK, models.Homework.objects.all()
+
+
+@require_http_methods(['GET', 'PATCH'])
+@json_response
+def deadline_view(request, deadline_id):
+    try:
+        deadline = models.Homework.objects.get(pk=deadline_id)
+    except models.Homework.DoesNotExist:
+        return 404, 'Deadline not found'
+    if request.method == 'GET':
+        return _STATUS_OK, deadline
+    else:
+        data = json.loads(request.body)
+        deadline.apply_json(data)
+        data.save()
+        return _STATUS_OK, deadline
+
+
+@require_POST
+@json_response
+def deadline_new(request):
+    data = json.loads(request.body)
+    deadline = models.Homework.from_json(data)
+    deadline.group_id = models.Group.objects.get(pk=data['group_id'])
+    deadline.save()
+    return _STATUS_OK, deadline
