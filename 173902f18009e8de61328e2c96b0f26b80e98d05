@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4ca18f63_f5a677cb",
+        "filename": "backend/api/views.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-24T19:20:34Z",
+      "side": 1,
+      "message": "pip3 install flake8 \u0026\u0026 flake8\n\u003e W292 no newline at end of file",
+      "revId": "173902f18009e8de61328e2c96b0f26b80e98d05",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
