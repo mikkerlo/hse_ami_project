@@ -67,6 +67,24 @@
       "revId": "e4a578be750d957420d8f65f42deb610b32dfbe3",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "794f3139_6dd48749",
+        "filename": "frontend/src/components/DeadlineCardList.jsx",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-04-25T16:09:53Z",
+      "side": 1,
+      "message": "записать в лог ошибку звучит логично",
+      "parentUuid": "8fed0b1e_bbb7d804",
+      "revId": "e4a578be750d957420d8f65f42deb610b32dfbe3",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
     }
   ]
 }
