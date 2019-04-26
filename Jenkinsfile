@@ -15,6 +15,11 @@ pipeline {
                             def path_and_line = args[0].split(':')
                             def path = path_and_line[0]
                             def line = path_and_line[1]
+
+                            if (path.startsWith('./')) {
+                                path = path[2..-1]
+                            }
+
                             gerritComment path: path, line: line, message: message
                             echo path
                             echo line
