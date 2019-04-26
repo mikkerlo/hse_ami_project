@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 from backend import models
-from django.views.decorators.http import require_GET, require_POST, require_http_methods
+from django.views.decorators.http import require_GET
+from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_http_methods
 from collections.abc import Iterable
 import json
 
@@ -24,7 +26,6 @@ def json_response(func):
                 'error': 'Internal error has occurred',
             }
             return JsonResponse(json_response, status=_STATUS_BAD_REQUEST)
-        json_response = dict()
         if status_code != _STATUS_OK:
             json_response = {
                 'ok': False,
