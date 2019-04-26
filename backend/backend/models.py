@@ -7,8 +7,6 @@ See each class docstring to more details
 from django.db import models
 from django.db.models import Model
 
-import time
-
 
 class Student(Model):
     """
@@ -19,7 +17,7 @@ class Student(Model):
         last_name        (string):   Last name of person
         patronymic_name  (string):   Partonymic name of person
         email            (string):   Email of person at edu.hse.ru domain
-        telegram_account (string):   Telegram login, with @ sign, for example: "@john_smith"
+        telegram_account (string):   Telegram login, with @ sign: "@john_smith"
     """
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -46,9 +44,11 @@ class Student(Model):
             name_data = data['name']
             self.first_name = name_data.get('first_name', self.first_name)
             self.last_name = name_data.get('last_name', self.last_name)
-            self.patronymic_name = name_data.get('patronymic_name', self.patronymic_name)
+            self.patronymic_name = name_data.get('patronymic_name',
+                                                 self.patronymic_name)
         self.email = data.get('email', self.email)
-        self.telegram_account = data.get('telegram_account', self.telegram_account)
+        self.telegram_account = data.get('telegram_account',
+                                         self.telegram_account)
 
     @classmethod
     def from_json(cls, data):
@@ -69,9 +69,9 @@ class Group(Model):
     
     Fields:
         full_name   (string):  Group full name, shown in group description page
-        short_name  (string):  Group short name, гsed to search group in database
-        description (string):  Group description, arbitrary text provided by group creator
-        is_hidden   (bool):    Flag, if is true group is not shown on search result page
+        short_name  (string):  Group short name, used to search in database
+        description (string):  Group description, provided by group creator
+        is_hidden   (bool):    If is true group is not shown on result page
         students      (Student): Ids of students that are linked to this group
     
     """
@@ -118,7 +118,8 @@ class File(Model):
 
 class ContentElement(Model):
     """
-    Base class for three main content elements of system: Notifications, Materials and Homeworks.
+    Base class for three main content elements of system: Notifications,
+    Materials and Homeworks.
 
     This class represents an information entry that may be created in a group
     to be displayed to its students.
@@ -207,5 +208,6 @@ class StudentJar(Model):
         students (student id): Id of students that are linked to this jar.
     """
     name = models.CharField(max_length=255, unique=True)
-    created_by = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student_jars_created')
+    created_by = models.ForeignKey(Student, on_delete=models.CASCADE,
+                                   related_name='student_jars_created')
     students = models.ManyToManyField(Student)
