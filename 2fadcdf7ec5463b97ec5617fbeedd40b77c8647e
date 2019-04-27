@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "50930bf6_846e0bc6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-27T09:33:43Z",
+      "side": 1,
+      "message": "А еще fix flakes",
+      "revId": "2fadcdf7ec5463b97ec5617fbeedd40b77c8647e",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b31137b9_3291ebe2",
+        "filename": "backend/backend/urls.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-27T09:33:43Z",
+      "side": 1,
+      "message": "го два импорта",
+      "revId": "2fadcdf7ec5463b97ec5617fbeedd40b77c8647e",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
