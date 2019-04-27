@@ -85,6 +85,24 @@
       "revId": "e4a578be750d957420d8f65f42deb610b32dfbe3",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d4b3de47_1cfdb8b7",
+        "filename": "frontend/src/components/DeadlineCardList.jsx",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-04-27T14:23:34Z",
+      "side": 1,
+      "message": "Пользователю? А если там секреты какие-то?",
+      "parentUuid": "794f3139_6dd48749",
+      "revId": "e4a578be750d957420d8f65f42deb610b32dfbe3",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
     }
   ]
 }
