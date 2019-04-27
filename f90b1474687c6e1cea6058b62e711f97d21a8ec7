@@ -20,6 +20,40 @@
     },
     {
       "key": {
+        "uuid": "7905fe7d_9263defe",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-27T15:04:31Z",
+      "side": 1,
+      "message": "Group or Course?",
+      "revId": "f90b1474687c6e1cea6058b62e711f97d21a8ec7",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "ec612d77_4c7488fd",
+        "filename": "backend/backend/models.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-04-27T15:04:31Z",
+      "side": 1,
+      "message": "Class or struct?",
+      "revId": "f90b1474687c6e1cea6058b62e711f97d21a8ec7",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "37b359e8_b249b58b",
         "filename": "backend/backend/models.py",
         "patchSetId": 3
