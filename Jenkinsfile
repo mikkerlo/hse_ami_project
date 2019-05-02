@@ -3,7 +3,12 @@ pipeline {
         docker { image 'mikkerlo/ci' }
     }
     stages {
-        stage('Flake8') {
+        stage("Clonning Git") {
+            steps {
+                checkout scm
+            }
+        }
+        stage("Flake8") {
             steps {
                 script {
                     def flake_output = sh(returnStdout: true, script: 'flake8 --config flake8.config || true')
@@ -27,6 +32,16 @@ pipeline {
                         }
                         error 'Flake8 failed'
                     }
+                }
+            }
+        }
+        stage("Backend tests") {
+            steps {
+                sh "pip3 install --user -r backend/requirements.txt"
+                sh "cd backend"
+                script {
+                    def test_output = sh(returnStdout: true, script: 'manage.py test || true')
+                    gerritComment test_output
                 }
             }
         }
