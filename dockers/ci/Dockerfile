@@ -1,15 +1,13 @@
-FROM ubuntu:bionic
+FROM python:3.6-alpine
+ENV PYTHONUNBUFFERED 1
 
-RUN apt-get update && apt-get install -y locales && rm -rf /var/lib/apt/lists/* \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-ENV LANG en_US.utf8
+RUN apk add --no-cache --virtual .build-deps \
+    ca-certificates gcc postgresql-dev linux-headers musl-dev \
+        libffi-dev jpeg-dev zlib-dev git
 
-RUN apt-get update && \
-    apt-get install -y \
-        python3 \
-        python3-pip \
-        git && \
-    pip3 install flake8 \
+RUN apk add --update py-pip
+
+RUN pip3 install flake8 \
     pep8-naming \
     flake8-comprehensions \
     flake8-pep3101 \
