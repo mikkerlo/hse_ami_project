@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "e2b5cd30_099e3843",
+        "filename": "backend/api/tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-05-02T18:55:44Z",
+      "side": 1,
+      "message": "e-mail должен быть уникален",
+      "revId": "e6099d2fae551514963345d650cb9d9be120257c",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61a9ab38_24a3a027",
         "filename": "backend/api/tests.py",
         "patchSetId": 1
