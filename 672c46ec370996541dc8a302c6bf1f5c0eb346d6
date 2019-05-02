@@ -51,6 +51,24 @@
       "revId": "672c46ec370996541dc8a302c6bf1f5c0eb346d6",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "863b414a_3c3a08e0",
+        "filename": "documentation/gerrit.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-05-02T19:07:54Z",
+      "side": 1,
+      "message": "Распиши, как и когда это надо делать (пусть из браузера).\nЯ не уверен, что понимаю до конца как это работает",
+      "parentUuid": "a9d59a62_41e49558",
+      "revId": "672c46ec370996541dc8a302c6bf1f5c0eb346d6",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
     }
   ]
 }
