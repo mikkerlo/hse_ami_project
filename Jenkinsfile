@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'mikkerlo/ci' }
+        docker { image 'mikkerlo/ci:test' }
     }
     stages {
         stage('Flake8') {
