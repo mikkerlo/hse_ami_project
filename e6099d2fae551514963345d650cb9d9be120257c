@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "f076db49_b9e77d4a",
+        "filename": "backend/api/tests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-02T18:54:58Z",
+      "side": 1,
+      "message": "Эти константы уже определялись в других файлах, переиспользуй",
+      "revId": "e6099d2fae551514963345d650cb9d9be120257c",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "61a9ab38_24a3a027",
         "filename": "backend/api/tests.py",
         "patchSetId": 1
