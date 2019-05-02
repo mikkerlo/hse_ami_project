@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4e00d4d_9d380c35",
+        "filename": "dockers/ci/Dockerfile",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-02T18:35:55Z",
+      "side": 1,
+      "message": "Чекнуть что это работает в Jenkins",
+      "revId": "42c668edf57b3fde93edcfec5063e2494c19ec6f",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
