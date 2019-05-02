@@ -1,6 +1,6 @@
 import React from 'react';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
-import Route from 'react-router-dom/Route';
+import {BrowserRouter} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Exp from './exp';
 
 import logo from './logo.svg';

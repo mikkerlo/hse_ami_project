@@ -35,10 +35,10 @@ class DeadlineCard extends React.Component {
     render() {
         const {classes, text, caption, files, date, is_done} = this.props;
         let files_buttons = <div>
-            {files.map(tile => (
-                <Button variant="contained" style={{margin: '10px'}}>
+            {files.map(file => (
+                <Button variant="contained" style={{margin: '10px'}} key={file}>
                     <AttachmentIcon/>
-                    {tile}
+                    {file}
                 </Button>))}
         </div>;
         if (files.length > 0) {
@@ -58,7 +58,7 @@ class DeadlineCard extends React.Component {
                             {Date(date)}
                         </Typography>
                         <Typography className={classes.done}>
-                            <Checkbox checked={is_done} enabled={false}/>
+                            <Checkbox checked={is_done} enabled={"false"}/>
                             Done
                         </Typography>
                     </div>

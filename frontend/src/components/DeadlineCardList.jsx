@@ -1,6 +1,7 @@
 import React from "react";
 import DeadlineCard from "./DeadlineCard";
 
+
 class DeadlineCardList extends React.Component {
     constructor(props) {
         super(props);
@@ -32,6 +33,7 @@ class DeadlineCardList extends React.Component {
                     caption={deadline.header}
                     files={[]}
                     date={deadline.valid_until}
+                    key={deadline.id}
                 />
             ))}
         </div>;
