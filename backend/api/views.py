@@ -6,15 +6,16 @@ from django.views.decorators.http import require_http_methods
 from collections.abc import Iterable
 import json
 
-_STATUS_OK = 200
-_STATUS_NOT_FOUND = 404
-_STATUS_BAD_REQUEST = 400
+from .constants import _STATUS_OK
+from .constants import _STATUS_NOT_FOUND
+from .constants import _STATUS_BAD_REQUEST
 
 
 def json_response(func):
     """Decorator, returning api specified json from view result.
 
     The view is expected to return a tuple of (status_code, result)"""
+
     def decorator(*args, **kwargs):
         try:
             status_code, result = func(*args, **kwargs)
@@ -43,6 +44,7 @@ def json_response(func):
                 'result': json_result,
             }
         return JsonResponse(json_response, status=status_code)
+
     return decorator
 
 
@@ -62,7 +64,9 @@ def student_view(request, student_id):
     if request.method == 'GET':
         return _STATUS_OK, student
     else:
-        data = json.loads(request.body)
+        data = {}
+        data.update(student.to_json())
+        data.update(json.loads(request.body))
         student.apply_json(data)
         student.save()
         return _STATUS_OK, student
@@ -118,7 +122,10 @@ def group_view(request, group_id):
     if request.method == 'GET':
         return _STATUS_OK, group
     else:
-        data = json.loads(request.body)
+        # Building updated json data
+        data = {}
+        data.update(group.to_json())
+        data.update(json.loads(request.body))
         group.apply_json(data)
         group.save()
         return _STATUS_OK, group
@@ -169,9 +176,11 @@ def deadline_view(request, deadline_id):
     if request.method == 'GET':
         return _STATUS_OK, deadline
     else:
-        data = json.loads(request.body)
+        data = {}
+        data.update(deadline.to_json())
+        data.update(json.loads(request.body))
         deadline.apply_json(data)
-        data.save()
+        deadline.save()
         return _STATUS_OK, deadline
 
 
