@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b3958d6_164f6440",
+        "filename": "documentation/gerrit.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-05-02T18:20:08Z",
+      "side": 1,
+      "message": "Расписал бы еще про Cherry Pick",
+      "revId": "672c46ec370996541dc8a302c6bf1f5c0eb346d6",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
