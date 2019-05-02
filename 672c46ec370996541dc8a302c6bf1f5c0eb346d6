@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "f30550ef_f58f978d",
+        "filename": "documentation/gerrit.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-02T18:49:59Z",
+      "side": 1,
+      "message": "Не работает в новом геррите",
+      "revId": "672c46ec370996541dc8a302c6bf1f5c0eb346d6",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "7b3958d6_164f6440",
         "filename": "documentation/gerrit.md",
         "patchSetId": 1
@@ -13,6 +30,24 @@
       "writtenOn": "2019-05-02T18:20:08Z",
       "side": 1,
       "message": "Расписал бы еще про Cherry Pick",
+      "revId": "672c46ec370996541dc8a302c6bf1f5c0eb346d6",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a9d59a62_41e49558",
+        "filename": "documentation/gerrit.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-02T18:49:59Z",
+      "side": 1,
+      "message": "Давай ты распишешь этот момент, я делаю это из браузера",
+      "parentUuid": "7b3958d6_164f6440",
       "revId": "672c46ec370996541dc8a302c6bf1f5c0eb346d6",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
