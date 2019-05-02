@@ -6,6 +6,7 @@ See each class docstring to more details
 
 from django.db import models
 from django.db.models import Model
+from django.core.validators import validate_email
 
 
 class Student(Model):
@@ -19,10 +20,10 @@ class Student(Model):
         email            (string):   Email of person at edu.hse.ru domain
         telegram_account (string):   Telegram login, with @ sign: "@john_smith"
     """
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    first_name = models.CharField(max_length=255, blank=False)
+    last_name = models.CharField(max_length=255, blank=False)
     patronymic_name = models.CharField(max_length=255, blank=True)
-    email = models.EmailField(blank=True)
+    email = models.EmailField(blank=False)
     telegram_account = models.CharField(max_length=255, blank=True)
     completed_homeworks = models.ManyToManyField('Homework')
 
@@ -40,12 +41,27 @@ class Student(Model):
         }
 
     def apply_json(self, data):
-        if 'name' in data:
-            name_data = data['name']
-            self.first_name = name_data.get('first_name', self.first_name)
-            self.last_name = name_data.get('last_name', self.last_name)
-            self.patronymic_name = name_data.get('patronymic_name',
-                                                 self.patronymic_name)
+        if 'name' not in data or \
+            'email' not in data:
+            raise ValueError('"name" and "email" fields are required')
+
+        if not (data['name'] and data['email']):
+            raise ValueError('"name" and "email" fields need to be non-empty')
+
+        name_data = data['name']
+
+        if 'first_name' not in name_data or 'last_name' not in name_data:
+            raise ValueError('"first_name" and "last_name" are required')
+
+        if not (name_data['first_name'] and name_data['last_name']):
+            raise ValueError('"first_name" and "last_name" fields need to be non-empty')
+
+        validate_email(data['email'])
+
+        self.first_name = name_data.get('first_name', self.first_name)
+        self.last_name = name_data.get('last_name', self.last_name)
+        self.patronymic_name = name_data.get('patronymic_name',
+                                             self.patronymic_name)
         self.email = data.get('email', self.email)
         self.telegram_account = data.get('telegram_account',
                                          self.telegram_account)
