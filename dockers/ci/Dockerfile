@@ -15,3 +15,7 @@ RUN pip3 install flake8 \
     flake8-quotes \
     flake8-mutable
 
+COPY ./ ./
+
+RUN pip3 install -r backend/requirements.txt
+
