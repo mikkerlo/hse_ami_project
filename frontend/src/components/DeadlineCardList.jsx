@@ -44,7 +44,7 @@ class DeadlineCardList extends React.Component {
 
 
 DeadlineCardList.propTypes = {
-    link: PropTypes.object.isRequired,
+    link: PropTypes.string.isRequired,
 };
 
 export default DeadlineCardList;

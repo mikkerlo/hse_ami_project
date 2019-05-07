@@ -13,6 +13,7 @@ const styles = {
     card: {
         minWidth: 275,
         maxWidth: 600,
+        width: '100%',
         boxSizing: 'inherit',
         borderRadius: 30,
         margin: '10px',

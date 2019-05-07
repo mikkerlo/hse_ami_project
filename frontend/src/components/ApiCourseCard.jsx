@@ -1,0 +1,41 @@
+import React from "react";
+import {getFromApi} from "../utils";
+import CourseCard from './CourseCard';
+
+class ApiCourseCard extends React.Component {
+    constructor(props) {
+        super(props);
+        this.apiID = props.apiID;
+        this.state = {}
+    }
+
+    fetchData() {
+        getFromApi('/api/groups/' + this.apiID, function (err, res) {
+            if (err) {
+                console.log('error occurred');
+            } else {
+                this.setState(res);
+            }
+        }.bind(this));
+    }
+
+    componentDidMount() {
+        this.fetchData();
+    }
+
+    render() {
+        const {id, full_name, description} = this.state;
+        if (id && full_name && description) {
+            return <CourseCard
+                text={description}
+                caption={full_name}
+                courseID={id}
+            />
+        } else {
+            return <div/>
+        }
+
+    }
+}
+
+export default ApiCourseCard;
