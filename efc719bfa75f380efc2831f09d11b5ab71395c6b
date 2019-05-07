@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a03984cd_026f00e4",
+        "filename": "frontend/src/config.js.example",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-07T12:44:35Z",
+      "side": 1,
+      "message": "Конфиг должен быть не .js файлом, все поля которые могут быть в конфиге должны быть регламентировны",
+      "revId": "efc719bfa75f380efc2831f09d11b5ab71395c6b",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "f6e67cee_656b409b",
+        "filename": "frontend/src/utils.js",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-07T12:44:35Z",
+      "side": 1,
+      "message": "путь до конфига не должен быть константой",
+      "revId": "efc719bfa75f380efc2831f09d11b5ab71395c6b",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
