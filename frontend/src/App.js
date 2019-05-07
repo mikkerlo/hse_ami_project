@@ -8,6 +8,7 @@ import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar.jsx'
 import {Switch} from "react-router";
+import CoursePage from "./components/CoursePage";
 
 
 class SimplePage extends React.Component {
@@ -34,6 +35,7 @@ class App extends React.Component {
                             path='/deadlines' component={DeadlinesPage}/>
                         <Route
                             path='/exp' component={Exp}/>
+                        <Route path='/courses/:number' component={CoursePage}/>
                         <Route
                             path='/'
                             component={SimplePage}/>
