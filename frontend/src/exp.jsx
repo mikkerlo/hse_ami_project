@@ -5,16 +5,23 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 import Card from '@material-ui/core/Card';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import DeadlineCard from './components/DeadlineCard';
+
 import NavBar from './components/NavBar.jsx'
 import DeadlineCardList from "./components/DeadlineCardList";
 import TinyCourseList from "./components/TinyCourseList";
+import DeadlineCard from './components/DeadlineCard';
+import CourseCard from './components/CourseCard';
 
 
 function Elements() {
     return (
         <div>
             <NavBar/>
+            <CourseCard
+                caption="Матан"
+                text="Шаповал крут, будь как Шаповал!"
+            >
+            </CourseCard>
             <h1>Simple text inside h1</h1>
             <Typography variant="h4" gutterBottom>
                 Typography text
@@ -64,7 +71,6 @@ function Elements() {
                 date={1554}/>
             <DeadlineCardList/>
             <TinyCourseList/>
-
         </div>
     )
 }
