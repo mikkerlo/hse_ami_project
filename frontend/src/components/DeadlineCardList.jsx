@@ -1,18 +1,20 @@
 import React from "react";
 import DeadlineCard from "./DeadlineCard";
 import {getFromApi} from "../utils";
+import PropTypes from "prop-types";
 
 
 class DeadlineCardList extends React.Component {
     constructor(props) {
         super(props);
         let deadlines = [];
+        this.apiLink = props.link;
         this.state = {};
         this.state.deadlines = deadlines;
     }
 
     fetchData() {
-        getFromApi('/api/deadlines/all', function (err, res) {
+        getFromApi(this.apiLink, function (err, res) {
             if (err) {
                 console.log('error occurred');
             } else {
@@ -40,4 +42,9 @@ class DeadlineCardList extends React.Component {
     }
 }
 
-export default (DeadlineCardList);
+
+DeadlineCardList.propTypes = {
+    link: PropTypes.object.isRequired,
+};
+
+export default DeadlineCardList;

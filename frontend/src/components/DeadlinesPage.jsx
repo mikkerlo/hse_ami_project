@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar.jsx'
-import DeadlineCardList from "./DeadlineCardList";
+import {AllDeadlineCardList} from "./ApiDeadlineCardList";
 import TinyCourseList from "./TinyCourseList";
 import {withStyles} from '@material-ui/core/styles';
 
@@ -34,7 +34,7 @@ class DeadlinesPage extends React.Component {
                 <NavBar/>
                 <div className={classes.main}>
                     <div className={classes.deadlineList}>
-                        <DeadlineCardList/>
+                        <AllDeadlineCardList/>
                     </div>
                     <div className={classes.sidebar}>
                         <TinyCourseList/>
