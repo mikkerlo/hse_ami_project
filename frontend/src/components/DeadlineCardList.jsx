@@ -1,28 +1,21 @@
 import React from "react";
 import DeadlineCard from "./DeadlineCard";
+import {getFromApi} from "../utils";
 
 
 class DeadlineCardList extends React.Component {
     constructor(props) {
         super(props);
         let deadlines = [];
-        const self = this;
         this.state = {};
         this.state.deadlines = deadlines;
-        const xhr = new XMLHttpRequest();
-
-        xhr.open("GET", "/api/deadlines");
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                try {
-                    let result = JSON.parse(xhr.response);
-                    self.setState({deadlines: result.response});
-                } catch (e) {
-                    console.log('error occured')
-                }
+        getFromApi('/api/deadlines/all', function (err, res) {
+            if (err) {
+                console.log('error occured');
+            } else {
+                this.setState({deadlines: res});
             }
-        };
-        xhr.send();
+        }.bind(this));
     }
 
     render() {

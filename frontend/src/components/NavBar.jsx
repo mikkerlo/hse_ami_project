@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { withStyles } from '@material-ui/core/styles';
+import {withStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
@@ -67,33 +67,33 @@ class PrimarySearchAppBar extends React.Component {
     };
 
     handleProfileMenuOpen = event => {
-        this.setState({ anchorEl: event.currentTarget });
+        this.setState({anchorEl: event.currentTarget});
     };
 
     handleMenuClose = () => {
-        this.setState({ anchorEl: null });
+        this.setState({anchorEl: null});
         this.handleMobileMenuClose();
     };
 
     handleMobileMenuOpen = event => {
-        this.setState({ mobileMoreAnchorEl: event.currentTarget });
+        this.setState({mobileMoreAnchorEl: event.currentTarget});
     };
 
     handleMobileMenuClose = () => {
-        this.setState({ mobileMoreAnchorEl: null });
+        this.setState({mobileMoreAnchorEl: null});
     };
 
     render() {
-        const { anchorEl, mobileMoreAnchorEl } = this.state;
-        const { classes } = this.props;
+        const {anchorEl, mobileMoreAnchorEl} = this.state;
+        const {classes} = this.props;
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
         const renderMenu = (
             <Menu
                 anchorEl={anchorEl}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+                transformOrigin={{vertical: 'top', horizontal: 'right'}}
                 open={isMenuOpen}
                 onClose={this.handleMenuClose}
             >
@@ -105,15 +105,15 @@ class PrimarySearchAppBar extends React.Component {
         const renderMobileMenu = (
             <Menu
                 anchorEl={mobileMoreAnchorEl}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+                transformOrigin={{vertical: 'top', horizontal: 'right'}}
                 open={isMobileMenuOpen}
                 onClose={this.handleMenuClose}
             >
                 <MenuItem onClick={this.handleMobileMenuClose}>
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
-                            <MailIcon />
+                            <MailIcon/>
                         </Badge>
                     </IconButton>
                     <p>Сообщения</p>
@@ -121,14 +121,14 @@ class PrimarySearchAppBar extends React.Component {
                 <MenuItem onClick={this.handleMobileMenuClose}>
                     <IconButton color="inherit">
                         <Badge badgeContent={11} color="secondary">
-                            <NotificationsIcon />
+                            <NotificationsIcon/>
                         </Badge>
                     </IconButton>
                     <p>Уведомления</p>
                 </MenuItem>
                 <MenuItem onClick={this.handleProfileMenuOpen}>
                     <IconButton color="inherit">
-                        <AccountCircle />
+                        <AccountCircle/>
                     </IconButton>
                     <p>Профиль</p>
                 </MenuItem>
@@ -140,21 +140,21 @@ class PrimarySearchAppBar extends React.Component {
                 <AppBar position="static">
                     <Toolbar>
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-                            <MenuIcon />
+                            <MenuIcon/>
                         </IconButton>
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                             AMI
                         </Typography>
-                        <div className={classes.grow} />
+                        <div className={classes.grow}/>
                         <div className={classes.sectionDesktop}>
                             <IconButton color="inherit">
                                 <Badge badgeContent={4} color="secondary">
-                                    <MailIcon />
+                                    <MailIcon/>
                                 </Badge>
                             </IconButton>
                             <IconButton color="inherit">
                                 <Badge badgeContent={17} color="secondary">
-                                    <NotificationsIcon />
+                                    <NotificationsIcon/>
                                 </Badge>
                             </IconButton>
                             <IconButton
@@ -163,12 +163,12 @@ class PrimarySearchAppBar extends React.Component {
                                 onClick={this.handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle />
+                                <AccountCircle/>
                             </IconButton>
                         </div>
                         <div className={classes.sectionMobile}>
                             <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
-                                <MoreIcon />
+                                <MoreIcon/>
                             </IconButton>
                         </div>
                     </Toolbar>
