@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import DeadlineCard from './components/DeadlineCard';
 import NavBar from './components/NavBar.jsx'
 import DeadlineCardList from "./components/DeadlineCardList";
+import TinyCourseList from "./components/TinyCourseList";
 
 
 function Elements() {
@@ -62,6 +63,8 @@ function Elements() {
                 files={["file1.txt", "kek.pdf", "lections.pdf", "cheatsheet.pdf", "yet_another_file.pdf"]}
                 date={1554}/>
             <DeadlineCardList/>
+            <TinyCourseList/>
+
         </div>
     )
 }
