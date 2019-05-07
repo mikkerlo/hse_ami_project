@@ -2,6 +2,7 @@ import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import {Route} from 'react-router-dom';
 import Exp from './exp';
+import DeadlinesPage from './components/DeadlinesPage.jsx'
 
 import logo from './logo.svg';
 import './App.css';
@@ -29,6 +30,8 @@ class App extends React.Component {
             <BrowserRouter>
                 <>
                     <Switch>
+                        <Route
+                            path='/deadlines' component={DeadlinesPage}/>
                         <Route
                             path='/exp' component={Exp}/>
                         <Route
