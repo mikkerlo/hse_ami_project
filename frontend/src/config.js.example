@@ -1,0 +1,2 @@
+
+export const apiPrefix = 'https://api.nicklavr.ru';
