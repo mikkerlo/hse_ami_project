@@ -1,14 +1,9 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Fab from '@material-ui/core/Fab';
-import NavigationIcon from '@material-ui/icons/Navigation';
-import Card from '@material-ui/core/Card';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import DeadlineCard from './components/DeadlineCard';
 import NavBar from './components/NavBar.jsx'
 import DeadlineCardList from "./components/DeadlineCardList";
 import TinyCourseList from "./components/TinyCourseList";
+import CourseCard from './components/CourseCard.jsx'
 
 
 function Elements() {
@@ -65,6 +60,11 @@ function Elements() {
             <DeadlineCardList/>
             <TinyCourseList/>
 
+            <CourseCard
+                caption="Матан"
+                text="Шаповал крут, будь как Шаповал!"
+            >
+            </CourseCard>
         </div>
     )
 }
