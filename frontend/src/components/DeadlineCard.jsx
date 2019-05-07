@@ -12,7 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 const styles = {
     card: {
         minWidth: 275,
-        maxWidth: 600,
+        maxWidth: 800,
         boxSizing: 'inherit',
         borderRadius: 30,
         margin: '10px',

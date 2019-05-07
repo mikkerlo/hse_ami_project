@@ -26,7 +26,7 @@ class DeadlineCardList extends React.Component {
     }
 
     render() {
-        return <div>
+        return <div style={{width: '100%'}}>
             {this.state.deadlines.map(deadline => (
                 <DeadlineCard
                     text={deadline.content}
