@@ -9,10 +9,9 @@ class DeadlineCardList extends React.Component {
         let deadlines = [];
         this.state = {};
         this.state.deadlines = deadlines;
-        this.update();
     }
 
-    update() {
+    fetchData() {
         getFromApi('/api/deadlines/all', function (err, res) {
             if (err) {
                 console.log('error occurred');
@@ -20,6 +19,10 @@ class DeadlineCardList extends React.Component {
                 this.setState({deadlines: res});
             }
         }.bind(this));
+    }
+
+    componentDidMount() {
+        this.fetchData();
     }
 
     render() {
