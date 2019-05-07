@@ -9,9 +9,13 @@ class DeadlineCardList extends React.Component {
         let deadlines = [];
         this.state = {};
         this.state.deadlines = deadlines;
+        this.update();
+    }
+
+    update() {
         getFromApi('/api/deadlines/all', function (err, res) {
             if (err) {
-                console.log('error occured');
+                console.log('error occurred');
             } else {
                 this.setState({deadlines: res});
             }
