@@ -7,12 +7,13 @@ class DeadlineCardList extends React.Component {
     constructor(props) {
         super(props);
         let deadlines = [];
+        this.apiLink = props.link || '/api/deadlines/all';
         this.state = {};
         this.state.deadlines = deadlines;
     }
 
     fetchData() {
-        getFromApi('/api/deadlines/all', function (err, res) {
+        getFromApi(this.apiLink, function (err, res) {
             if (err) {
                 console.log('error occurred');
             } else {
@@ -40,4 +41,4 @@ class DeadlineCardList extends React.Component {
     }
 }
 
-export default (DeadlineCardList);
+export default DeadlineCardList;

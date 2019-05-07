@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import NavBar from './components/NavBar.jsx'
-import DeadlineCardList from "./components/DeadlineCardList";
+import {AllDeadlineCardList} from "./components/ApiDeadlineCardList";
 import TinyCourseList from "./components/TinyCourseList";
 import DeadlineCard from './components/DeadlineCard';
 import CourseCard from './components/CourseCard';
@@ -69,7 +69,7 @@ function Elements() {
                 caption={"Caption"}
                 files={["file1.txt", "kek.pdf", "lections.pdf", "cheatsheet.pdf", "yet_another_file.pdf"]}
                 date={1554}/>
-            <DeadlineCardList/>
+            <AllDeadlineCardList/>
             <TinyCourseList/>
         </div>
     )
