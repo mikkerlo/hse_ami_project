@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='File',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('url', models.URLField()),
                 ('name', models.CharField(max_length=4096)),
             ],
@@ -23,7 +23,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Group',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('full_name', models.CharField(max_length=255)),
                 ('short_name', models.CharField(max_length=255)),
                 ('description', models.TextField(blank=True)),
@@ -33,13 +34,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Homework',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField()),
                 ('header', models.TextField()),
                 ('content', models.TextField(blank=True)),
                 ('valid_until', models.DateTimeField()),
-                ('content_file', models.ManyToManyField(blank=True, to='backend.File')),
-                ('group_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='backend.Group')),
+                ('content_file',
+                 models.ManyToManyField(blank=True, to='backend.File')),
+                ('group_id',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                   to='backend.Group')),
             ],
             options={
                 'abstract': False,
@@ -48,12 +53,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Material',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField()),
                 ('header', models.TextField()),
                 ('content', models.TextField(blank=True)),
-                ('content_file', models.ManyToManyField(blank=True, to='backend.File')),
-                ('group_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='backend.Group')),
+                ('content_file',
+                 models.ManyToManyField(blank=True, to='backend.File')),
+                ('group_id',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                   to='backend.Group')),
             ],
             options={
                 'abstract': False,
@@ -62,12 +71,16 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Notification',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('created_at', models.DateTimeField()),
                 ('header', models.TextField()),
                 ('content', models.TextField(blank=True)),
-                ('content_file', models.ManyToManyField(blank=True, to='backend.File')),
-                ('group_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='backend.Group')),
+                ('content_file',
+                 models.ManyToManyField(blank=True, to='backend.File')),
+                ('group_id',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                   to='backend.Group')),
             ],
             options={
                 'abstract': False,
@@ -76,22 +89,30 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Student',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('first_name', models.CharField(max_length=255)),
                 ('last_name', models.CharField(max_length=255)),
-                ('patronymic_name', models.CharField(blank=True, max_length=255)),
+                ('patronymic_name',
+                 models.CharField(blank=True, max_length=255)),
                 ('birth_date', models.DateField()),
                 ('email', models.EmailField(blank=True, max_length=254)),
-                ('telegram_account', models.CharField(blank=True, max_length=255)),
-                ('completed_homeworks', models.ManyToManyField(to='backend.Homework')),
+                ('telegram_account',
+                 models.CharField(blank=True, max_length=255)),
+                ('completed_homeworks',
+                 models.ManyToManyField(to='backend.Homework')),
             ],
         ),
         migrations.CreateModel(
             name='StudentJar',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True, primary_key=True,
+                                        serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255, unique=True)),
-                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='student_jars_created', to='backend.Student')),
+                ('created_by',
+                 models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                   related_name='student_jars_created',
+                                   to='backend.Student')),
                 ('students', models.ManyToManyField(to='backend.Student')),
             ],
         ),
