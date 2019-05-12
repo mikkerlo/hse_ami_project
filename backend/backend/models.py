@@ -6,6 +6,9 @@ See each class docstring to more details
 
 from django.db import models
 from django.db.models import Model
+from django.conf import settings
+import time
+import secrets
 
 
 class Student(Model):
@@ -18,6 +21,8 @@ class Student(Model):
         patronymic_name  (string):   Partonymic name of person
         email            (string):   Email of person at edu.hse.ru domain
         telegram_account (string):   Telegram login, with @ sign: "@john_smith"
+        completed homeworks (Many to Many): all homeworks completed by user
+        auth_user (One to One): User model corresponding to the student
     """
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -25,6 +30,10 @@ class Student(Model):
     email = models.EmailField(blank=True)
     telegram_account = models.CharField(max_length=255, blank=True)
     completed_homeworks = models.ManyToManyField('Homework')
+    auth_user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
 
     def to_json(self):
         """Transform the object to json dict for api usage"""
@@ -36,7 +45,8 @@ class Student(Model):
                 'patronymic_name': self.patronymic_name,
             },
             'email': self.email,
-            'telegram_account': self.telegram_account
+            'telegram_account': self.telegram_account,
+            'username': self.auth_user.username,
         }
 
     def apply_json(self, data):
@@ -210,3 +220,30 @@ class StudentJar(Model):
     created_by = models.ForeignKey(Student, on_delete=models.CASCADE,
                                    related_name='student_jars_created')
     students = models.ManyToManyField(Student)
+
+
+class AuthToken(Model):
+    """
+    This class is an API session token.
+    """
+    token = models.CharField(max_length=256, unique=True, db_index=True)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    last_access = models.BigIntegerField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.token = secrets.token_urlsafe(64)
+        self.last_access = int(time.time())
+
+    def validate(self):
+        current_time = int(time.time())
+        if self.last_access + settings.API_TOKEN_EXPIRE >= current_time:
+            self.last_access = current_time
+            self.save()
+            return True
+        return False
+
+    def to_json(self):
+        return {
+            'token': self.token
+        }
