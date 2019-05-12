@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "33a7d2f1_89a0d9be",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-12T16:05:54Z",
+      "side": 1,
+      "message": "это был дебаг принт, убрано",
+      "parentUuid": "e8f731e6_b29d7be6",
+      "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2f2719b0_0e12e676",
         "filename": "backend/api/views.py",
         "patchSetId": 1
@@ -50,6 +68,24 @@
       "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e5d9758c_62e71e96",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-12T16:05:54Z",
+      "side": 1,
+      "message": "Юзер имеет полное право на подобное изменения пароля",
+      "parentUuid": "2f2719b0_0e12e676",
+      "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     },
     {
       "key": {
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "1d1283fe_0b6fe47c",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-12T16:05:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "665c1a3a_00ee3bc2",
+      "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "85b38b62_f7a20a5d",
         "filename": "backend/api/views.py",
         "patchSetId": 1
@@ -84,6 +138,24 @@
       "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e0ba4243_a961f519",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-12T16:05:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85b38b62_f7a20a5d",
+      "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     },
     {
       "key": {
