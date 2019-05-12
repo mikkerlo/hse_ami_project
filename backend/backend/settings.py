@@ -132,3 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# API settings
+API_TOKEN_HEADER = 'HTTP_X_TOKEN'
+API_TOKEN_EXPIRE = 24*60*60  # 1 day.
