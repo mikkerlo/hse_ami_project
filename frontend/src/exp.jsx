@@ -11,6 +11,7 @@ import {AllDeadlineCardList} from "./components/ApiDeadlineCardList";
 import TinyCourseList from "./components/TinyCourseList";
 import DeadlineCard from './components/DeadlineCard';
 import CourseCard from './components/CourseCard';
+import {Link} from "react-router-dom";
 
 
 function Elements() {
@@ -49,11 +50,13 @@ function Elements() {
                     />
                 </div>
                 <div style={{padding: '10px 0px 10px 80px'}}>
-                    <Button
-                        color='primary'
-                        variant="contained">
-                        GO
-                    </Button>
+                    <Link to={"/go"} style={{ textDecoration: 'none' }}>
+                        <Button
+                            color='primary'
+                            variant="contained">
+                            GO
+                        </Button>
+                    </Link>
                 </div>
             </Card>
             <div className="box">

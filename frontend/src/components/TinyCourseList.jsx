@@ -5,6 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Card from '@material-ui/core/Card';
+import {LinkUndecorated} from "./utils";
 
 
 const styles = theme => ({
@@ -41,9 +42,11 @@ class TinyCourseList extends React.Component {
         return <Card className={this.classes.root}>
             <List component="nav">
                 {this.state.courses.map(course => (
-                    <ListItem button divider>
-                        <ListItemText primary={course.full_name}/>
-                    </ListItem>
+                    <LinkUndecorated to={"/courses/" + course.id} key={course.id}>
+                        <ListItem button divider>
+                            <ListItemText primary={course.full_name}/>
+                        </ListItem>
+                    </LinkUndecorated>
                 ))}
             </List>
 
