@@ -16,6 +16,74 @@
       "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e8f731e6_b29d7be6",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-05-12T16:02:43Z",
+      "side": 1,
+      "message": "Тудушку можно убрать, печатаешь же ошибку",
+      "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2f2719b0_0e12e676",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-05-12T16:02:43Z",
+      "side": 1,
+      "message": "что делать, если new_password \u003d\u003d password?",
+      "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "665c1a3a_00ee3bc2",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-05-12T16:02:43Z",
+      "side": 1,
+      "message": "Хардкод константы",
+      "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85b38b62_f7a20a5d",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 243,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-05-12T16:02:43Z",
+      "side": 1,
+      "message": "хардкод константы",
+      "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
     }
   ]
 }
