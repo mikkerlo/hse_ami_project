@@ -23,6 +23,13 @@ class ApiCourseCard extends React.Component {
         this.fetchData();
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.apiID !== this.apiID) {
+            this.apiID = nextProps.apiID;
+            this.fetchData();
+        }
+    }
+
     render() {
         const {id, full_name, description} = this.state;
         if (id && full_name && description) {

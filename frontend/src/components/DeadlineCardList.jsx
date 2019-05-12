@@ -27,6 +27,12 @@ class DeadlineCardList extends React.Component {
         this.fetchData();
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.apiLink = nextProps.link;
+        this.setState({deadlines:[]});
+        this.fetchData();
+    }
+
     render() {
         return <div style={{width: '100%'}}>
             {this.state.deadlines.map(deadline => (
