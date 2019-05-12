@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "083f557c_3989e488",
+        "filename": "backend/api/urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-05-12T15:56:07Z",
+      "side": 1,
+      "message": "Может поменять имя ручки на change_password?",
+      "revId": "b858e4c3095a37e3189d3a2f051d5690d0a64304",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
