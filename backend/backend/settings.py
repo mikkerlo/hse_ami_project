@@ -132,3 +132,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# API settings
+API_TOKEN_HEADER = 'HTTP_X_TOKEN'
+
+# After API_TOKEN_SPOIL token becomes unusable and must be refreshed.
+API_TOKEN_SPOIL = 60 * 60  # 1 hour.
+# After API_TOKEN_EXPIRE token is deleted from the backend.
+API_TOKEN_EXPIRE = 30 * 24 * 60 * 60  # 1 month.
