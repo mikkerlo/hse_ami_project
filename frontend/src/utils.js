@@ -17,7 +17,38 @@ export function getFromApi(url, callback) {
             err = e;
         }
 
+        if (err) {
+            console.log(`error was occurred while getting ${apiPrefix}${url}`);
+            console.log(err);
+        }
+
         callback(err, res);
     };
     xhr.send();
+}
+
+
+export function postToApi(url, body, callback) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("POST", apiPrefix + url);
+
+    xhr.onreadystatechange = function () {
+        callback(xhr.response);
+    };
+    xhr.send(JSON.stringify(body));
+}
+
+
+export function patchApi(url, body, callback) {
+    const xhr = new XMLHttpRequest();
+
+    // TODO replace POST with PATCH and set up CORP policy
+    xhr.open("POST", apiPrefix + url);
+
+    xhr.onreadystatechange = function () {
+        callback(xhr.response);
+    };
+    console.log(JSON.stringify(body));
+    xhr.send(JSON.stringify(body));
 }
