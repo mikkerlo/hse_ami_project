@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "61f157ce_34777f91",
+        "filename": "backend/api/urls.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-05-13T18:17:20Z",
+      "side": 1,
+      "message": "Лучше убрать второй \"student\" из пути",
+      "revId": "ce8e77fcc5e16c2887c20203cd2f0044946fc896",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7499636_75f10ffb",
         "filename": "backend/api/views.py",
         "patchSetId": 3
