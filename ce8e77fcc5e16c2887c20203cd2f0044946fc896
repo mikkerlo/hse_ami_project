@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "e79b376c_b156e7c2",
+        "filename": "backend/api/urls.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-13T18:42:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61f157ce_34777f91",
+      "revId": "ce8e77fcc5e16c2887c20203cd2f0044946fc896",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ce209687_544a11d9",
         "filename": "backend/api/views.py",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "18344d2e_74fbbe36",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-13T18:42:24Z",
+      "side": 1,
+      "message": "Это ровно это и делает, смотри validate более внимательно",
+      "parentUuid": "ce209687_544a11d9",
+      "revId": "ce8e77fcc5e16c2887c20203cd2f0044946fc896",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "80771170_c6993539",
         "filename": "backend/api/views.py",
         "patchSetId": 3
@@ -50,6 +86,24 @@
       "revId": "ce8e77fcc5e16c2887c20203cd2f0044946fc896",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9fbd3727_f7da1df1",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-13T18:42:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80771170_c6993539",
+      "revId": "ce8e77fcc5e16c2887c20203cd2f0044946fc896",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     },
     {
       "key": {
