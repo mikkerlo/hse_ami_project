@@ -19,6 +19,40 @@
     },
     {
       "key": {
+        "uuid": "ce209687_544a11d9",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-13T18:33:48Z",
+      "side": 1,
+      "message": "но это же не проверяет на spoil, или я что-то пропустил?",
+      "revId": "ce8e77fcc5e16c2887c20203cd2f0044946fc896",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "80771170_c6993539",
+        "filename": "backend/api/views.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-13T18:33:48Z",
+      "side": 1,
+      "message": "Давай брать токен из того-же хедера как и обычно",
+      "revId": "ce8e77fcc5e16c2887c20203cd2f0044946fc896",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e7499636_75f10ffb",
         "filename": "backend/api/views.py",
         "patchSetId": 3
