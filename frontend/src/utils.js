@@ -21,3 +21,29 @@ export function getFromApi(url, callback) {
     };
     xhr.send();
 }
+
+
+export function postToApi(url, body, callback) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("POST", apiPrefix + url);
+
+    xhr.onreadystatechange = function () {
+        callback(xhr.response);
+    };
+    xhr.send(JSON.stringify(body));
+}
+
+
+export function patchApi(url, body, callback) {
+    const xhr = new XMLHttpRequest();
+
+    // TODO replace POST with PATCH and set up CORP policy
+    xhr.open("POST", apiPrefix + url);
+
+    xhr.onreadystatechange = function () {
+        callback(xhr.response);
+    };
+    console.log(JSON.stringify(body));
+    xhr.send(JSON.stringify(body));
+}

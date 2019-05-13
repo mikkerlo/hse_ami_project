@@ -17,7 +17,7 @@ const styles = {
         borderRadius: 30,
         margin: '10px',
     },
-    date: {
+    valid_until: {
         maxWidth: 300,
         marginLeft: 'auto',
         display: 'inline-block',
@@ -54,8 +54,8 @@ class DeadlineCard extends React.Component {
                         <Typography className={classes.caption} variant="h5" component="h2">
                             {caption}
                         </Typography>
-                        <Typography className={classes.date}>
-                            {Date(date)}
+                        <Typography className={classes.valid_until}>
+                            {(new Date(date * 1000)).toString()}
                         </Typography>
                         <Typography className={classes.done}>
                             <Checkbox checked={is_done} enabled={"false"}/>
