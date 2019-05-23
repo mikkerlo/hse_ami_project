@@ -17,6 +17,7 @@ _STATUS_UNAUTHORIZED = 401
 
 def validate_auth(func):
     """Decorator, validating authentication of the user."""
+
     def decorator(request, *args, **kwargs):
         user_token = request.META.get(settings.API_TOKEN_HEADER, None)
         if not user_token:
@@ -29,6 +30,7 @@ def validate_auth(func):
             return _STATUS_UNAUTHORIZED, 'Invalid auth token'
         request.student = token.student
         return func(request, *args, **kwargs)
+
     return decorator
 
 
@@ -36,15 +38,17 @@ def json_response(func):
     """Decorator, returning api specified json from view result.
 
     The view is expected to return a tuple of (status_code, result)"""
+
     def decorator(request, *args, **kwargs):
         try:
             status_code, result = func(request, *args, **kwargs)
-        except Exception:
+        except Exception as e:
             # Unhandled exception caught. Returning 400 without any details.
             # TODO(solonkovda): log exception
             json_response = {
                 'ok': False,
                 'error': 'Internal error has occurred',
+                'description': e
             }
             return JsonResponse(json_response, status=_STATUS_BAD_REQUEST)
         if status_code != _STATUS_OK:
@@ -67,22 +71,25 @@ def json_response(func):
                 'result': json_result,
             }
         return JsonResponse(json_response, status=status_code)
+
     return decorator
 
 
 def api_method(require_auth=True):
     """Decorator, validating authentication of the user and returning json."""
+
     def wrapper(func):
         if not require_auth:
             return json_response(func)
         return json_response(validate_auth(func))
+
     return wrapper
 
 
 @require_POST
 @api_method(require_auth=False)
 def auth_login(request):
-    data = json.loads(request.body)
+    data = request.POST
 
     username = data.get('username')
     password = data.get('password')
@@ -149,7 +156,9 @@ def student_new(request):
 
     student = models.Student.from_json(data)
 
-    auth_user = User.objects.create_user(username, password=password)
+    auth_user = User.objects.create_user(username)
+    auth_user.set_password(password)
+    auth_user.save()
 
     student.auth_user = auth_user
     student.save()
