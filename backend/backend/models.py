@@ -7,8 +7,11 @@ See each class docstring to more details
 from django.db import models
 from django.db.models import Model
 from django.conf import settings
+from django.dispatch import receiver
+
 import time
 import secrets
+import os
 
 
 class Student(Model):
@@ -117,12 +120,25 @@ class File(Model):
     This class represents a file that can be attached to a content element.
 
     Fields:
-        url  (string): URL of file, starting at root of server, for example,
-        '/<api_endpoint>/example.txt'
         name (string): Name of a file, corresponding to a name in file storage
+        file (FileField): Actual file.
     """
-    url = models.URLField()
     name = models.CharField(max_length=4096)
+    file = models.FileField(upload_to='files/')
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'url': self.file.url,
+            'name': self.name,
+        }
+
+
+@receiver(models.signals.post_delete, sender=File)
+def auto_delete_file_on_delete(sender, instance, **kwargs):
+    if instance.file:
+        if os.path.isfile(instance.file.path):
+            os.remove(instance.file.path)
 
 
 class ContentElement(Model):
@@ -138,7 +154,7 @@ class ContentElement(Model):
         created_at   (int): Creation timestamp
         header       (string):   Header of element
         content      (string):   Main content of element
-        content_file (file):     Attached files if any are provided
+        content_file (file):     Attached media if any are provided
 
     """
     class Meta:
@@ -154,8 +170,19 @@ class ContentElement(Model):
         self.created_at = data['created_at']
         self.header = data['header']
         self.content = data['content']
+        if 'files' in data:
+            files_id = []
+            for f in data['files']:
+                files_id.append(f['id'])
+            files = File.objects.filter(id__in=files_id)
+            self.content_file.clear()
+            self.content_file.add(*files)
 
     def to_json(self):
+        files = self.content_file.all()
+        files_json = []
+        for file in files:
+            files_json.append(file.to_json())
         return {
             'id': self.id,
             'group_id': self.group_id.id,
@@ -163,6 +190,7 @@ class ContentElement(Model):
             'created_at': self.created_at,
             'header': self.header,
             'content': self.content,
+            'files': files_json,
         }
 
 

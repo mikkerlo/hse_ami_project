@@ -6,6 +6,8 @@ urlpatterns = [
     path('auth/refresh/', views.refresh_token),
     path('auth/change', views.change_password),
 
+    path('file/upload/', views.upload_file),
+
     path('students/all/', views.students_all,
          name='api_students_all'),
     path('students/student/', views.student_view,
