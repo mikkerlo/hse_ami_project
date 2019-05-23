@@ -41,7 +41,6 @@ def json_response(func):
             status_code, result = func(request, *args, **kwargs)
         except Exception:
             # Unhandled exception caught. Returning 400 without any details.
-            # TODO(solonkovda): log exception
             json_response = {
                 'ok': False,
                 'error': 'Internal error has occurred',
@@ -134,6 +133,20 @@ def change_password(request):
     models.AuthToken.objects.filter(student=user.student).delete()
 
     return _STATUS_OK, None
+
+
+@require_POST
+@api_method()
+def upload_file(request):
+    raw_file = request.FILES['file']
+
+    name = request.POST.get('name', raw_file.name)
+
+    file = models.File()
+    file.name = name
+    file.file = raw_file
+    file.save()
+    return _STATUS_OK, file
 
 
 @require_POST
@@ -264,7 +277,7 @@ def deadline_view(request, deadline_id):
     else:
         data = json.loads(request.body)
         deadline.apply_json(data)
-        data.save()
+        deadline.save()
         return _STATUS_OK, deadline
 
 
