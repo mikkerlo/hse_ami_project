@@ -431,6 +431,23 @@
       "revId": "718533e85f83aa53b8df10a9865879731a7744a9",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4fc059dc_cb51cd7b",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-05-24T09:14:53Z",
+      "side": 1,
+      "message": "Мне питон настойчиво подсказывает, что json.loads() возвращает dict(), у которого нет .save(). Это происходит при любом PATCH запросе. Внимание вопрос: как так?",
+      "revId": "718533e85f83aa53b8df10a9865879731a7744a9",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
     }
   ]
 }
