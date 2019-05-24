@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "76f19109_1355cefb",
+        "filename": "frontend/src/components/DeadlineCard.jsx",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-24T17:15:32Z",
+      "side": 1,
+      "message": "Вынеси это в отдельный элемент",
+      "revId": "5b410452009b0aee807ee134f7074380c2645dc9",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c811670c_cf2c4bd0",
+        "filename": "frontend/src/components/DeadlineEditPage.jsx",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-24T17:15:32Z",
+      "side": 1,
+      "message": "Го выводить полностью)))",
+      "revId": "5b410452009b0aee807ee134f7074380c2645dc9",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8bf67d7e_8a7e4aa7",
+        "filename": "frontend/src/components/DeadlineEditPage.jsx",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-24T17:15:32Z",
+      "side": 1,
+      "message": "Разнеси в пару строк",
+      "revId": "5b410452009b0aee807ee134f7074380c2645dc9",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0153ab30_280e2b88",
+        "filename": "frontend/src/components/DeadlineEditPage.jsx",
+        "patchSetId": 5
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-24T17:15:32Z",
+      "side": 1,
+      "message": "Разнеси на разные строчки для читаемости",
+      "revId": "5b410452009b0aee807ee134f7074380c2645dc9",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d808953d_dd061b11",
+        "filename": "frontend/src/utils.js",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-24T17:15:32Z",
+      "side": 1,
+      "message": "гав",
+      "revId": "5b410452009b0aee807ee134f7074380c2645dc9",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
