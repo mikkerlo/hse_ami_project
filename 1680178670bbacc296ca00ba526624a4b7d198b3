@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "086a3a21_c883d715",
+        "filename": "frontend/src/components/Register.jsx",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-26T20:26:19Z",
+      "side": 1,
+      "message": "Го в консоль",
+      "revId": "1680178670bbacc296ca00ba526624a4b7d198b3",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
