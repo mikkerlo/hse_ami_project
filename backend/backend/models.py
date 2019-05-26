@@ -92,6 +92,8 @@ class Group(Model):
     description = models.TextField(blank=True)
     is_hidden = models.BooleanField()
     students = models.ManyToManyField(Student)
+    student_creator = models.ForeignKey(Student, on_delete=models.SET_NULL, null=True, related_name='groups_created')
+    moderators = models.ManyToManyField(Student, related_name='groups_moderated')
 
     def apply_json(self, data):
         self.full_name = data.get('full_name', self.full_name)
@@ -258,10 +260,13 @@ class AuthToken(Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     last_access = models.BigIntegerField()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.token = secrets.token_urlsafe(64)
-        self.last_access = int(time.time())
+    @classmethod
+    def create_token(cls):
+        token = cls()
+        token.token = secrets.token_urlsafe(64)
+        token.last_access = int(time.time())
+        return token
+
 
     def validate(self):
         current_time = int(time.time())
