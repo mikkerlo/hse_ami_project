@@ -16,6 +16,23 @@
       "revId": "1680178670bbacc296ca00ba526624a4b7d198b3",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c2befd7e_54dc0610",
+        "filename": "frontend/src/utils.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-26T23:07:15Z",
+      "side": 1,
+      "message": "Добавь коммент плез чтобы не забыть",
+      "revId": "1680178670bbacc296ca00ba526624a4b7d198b3",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
     }
   ]
 }
