@@ -12,12 +12,14 @@ import TinyCourseList from "./components/TinyCourseList";
 import DeadlineCard from './components/DeadlineCard';
 import CourseCard from './components/CourseCard';
 import {Link} from "react-router-dom";
+import Login from "./components/Login";
 
 
 function Elements() {
     return (
         <div>
             <NavBar/>
+            <Login/>
             <CourseCard
                 caption="Матан"
                 text="Шаповал крут, будь как Шаповал!"
@@ -32,33 +34,7 @@ function Elements() {
                 Extended
                 <img alt={"kek"} src={"https://material-ui.com/static/images/grid-list/breakfast.jpg"} height={"40"}/>
             </Fab>
-            <Card style={{width: '300px'}}>
-                <div style={{padding: '0px 0px 0px 80px'}}>
-                    <TextField
-                        id="standard-uncontrolled"
-                        label="Login"
-                        defaultValue=""
-                        margin="normal"
-                    />
-                </div>
-                <div style={{padding: '0px 0px 0px 80px'}}>
-                    <TextField
-                        id="standard-uncontrolled"
-                        label="Password"
-                        defaultValue=""
-                        margin="normal"
-                    />
-                </div>
-                <div style={{padding: '10px 0px 10px 80px'}}>
-                    <Link to={"/go"} style={{ textDecoration: 'none' }}>
-                        <Button
-                            color='primary'
-                            variant="contained">
-                            GO
-                        </Button>
-                    </Link>
-                </div>
-            </Card>
+
             <div className="box">
                 <div>One</div>
                 <div>Two</div>

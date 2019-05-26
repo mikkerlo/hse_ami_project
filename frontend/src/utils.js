@@ -34,7 +34,9 @@ export function postToApi(url, body, callback) {
     xhr.open("POST", apiPrefix + url);
 
     xhr.onreadystatechange = function () {
-        callback(xhr.response);
+        if (xhr.readyState === 4) {
+            callback(JSON.parse(xhr.response));
+        }
     };
     xhr.send(JSON.stringify(body));
 }
