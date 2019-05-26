@@ -27,6 +27,10 @@ urlpatterns = [
          name='api_groups_deadlines'),
     path('groups/<int:group_id>/students/', views.group_students,
          name='api_groups_students'),
+    path('groups/<int:group_id>/add-moderator/', views.group_add_moderator,
+         name='api_groups_add_moderator'),
+    path('groups/<int:group_id>/remove-moderator/',
+         views.group_remove_moderator, name='api_groups_remove_moderator'),
     path('groups/new/', views.group_new,
          name='api_groups_new'),
 
