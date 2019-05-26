@@ -72,7 +72,9 @@ def json_response(func):
                 'error': result,
             }
         else:
-            if isinstance(result, Iterable):
+            if isinstance(result, dict):
+                json_result = result
+            elif isinstance(result, Iterable):
                 json_result = []
                 for el in result:
                     json_result.append(el.to_json())
@@ -322,6 +324,39 @@ def group_remove_moderator(request, group_id):
 
     group.moderators.remove(student)
     return _STATUS_OK, None
+
+
+@require_http_methods(['GET', 'POST', 'DELETE'])
+@api_method()
+def group_invite_token(request, group_id):
+    try:
+        group = models.Group.objects.get(pk=group_id)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Group not found'
+
+    if not _is_group_creator(request.student, group_id):
+        return _STATUS_FORBIDDEN, 'Only group creator can edit invite tokens'
+
+    if request.method == 'POST':
+        group.generate_invite_token()
+        group.save()
+    elif request.method == 'DELETE':
+        group.invite_token = None
+        group.save()
+    return _STATUS_OK, {'token': group.invite_token}
+
+
+@require_POST
+@api_method()
+def use_invite_token(request):
+    data = json.loads(request.body)
+    token = data.get('token', '')
+    try:
+        group = models.Group.objects.get(invite_token=token)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Failed to resolve invite token'
+    group.students.add(request.student)
+    return _STATUS_OK, group
 
 
 @require_GET
