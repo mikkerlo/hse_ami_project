@@ -88,7 +88,7 @@ class Registration extends Component {
                     />
                     <TextField
                         id="login"
-                        label="email"
+                        label="e-mail"
                         defaultValue=""
                         margin="normal"
                         value={this.state.email}
@@ -97,7 +97,7 @@ class Registration extends Component {
                     <TextField
                         type='password'
                         id="password"
-                        label="Password"
+                        label="Пароль"
                         defaultValue=""
                         margin="normal"
                         value={this.state.password}
