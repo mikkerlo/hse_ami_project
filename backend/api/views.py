@@ -13,6 +13,33 @@ _STATUS_OK = 200
 _STATUS_NOT_FOUND = 404
 _STATUS_BAD_REQUEST = 400
 _STATUS_UNAUTHORIZED = 401
+_STATUS_FORBIDDEN = 403
+
+
+def _get_user_permission(student_id, group_id):
+    try:
+        perm = models.GroupPermission.objects.get(
+            student_id=student_id, group_id=group_id).permission_Level
+    except models.GroupPermission.DoesNotExist:
+        perm = models.GroupPermission.NOT_A_MEMBER
+    return perm
+
+
+def _check_perm(student_id, group_id, perm):
+    return _get_user_permission(student_id, group_id) >= perm
+
+
+def _can_modify_group(student_id, group_id):
+    return _check_perm(student_id, group_id, models.GroupPermission.CREATOR)
+
+
+def _can_modify_deadline(student_id, deadline):
+    group_id = deadline.group_id.pk
+    return _check_perm(student_id, group_id, models.GroupPermission.MODERATOR)
+
+
+def _can_create_deadline(student_id, group_id):
+    return _check_perm(student_id, group_id, models.GroupPermission.MODERATOR)
 
 
 def validate_auth(func):
@@ -52,7 +79,9 @@ def json_response(func):
                 'error': result,
             }
         else:
-            if isinstance(result, Iterable):
+            if isinstance(result, dict):
+                json_result = result
+            elif isinstance(result, Iterable):
                 json_result = []
                 for el in result:
                     json_result.append(el.to_json())
@@ -89,7 +118,7 @@ def auth_login(request):
     user = authenticate(username=username, password=password)
     if user is None:
         return _STATUS_UNAUTHORIZED, 'Login failed'
-    token = models.AuthToken()
+    token = models.AuthToken.create_token()
     token.student = user.student
     token.save()
     return _STATUS_OK, token
@@ -104,10 +133,10 @@ def refresh_token(request):
     try:
         token = models.AuthToken.objects.get(token=token_str)
     except models.AuthToken.DoesNotExist:
-        return _STATUS_NOT_FOUND, 'Token not found or expired'
+        return _STATUS_UNAUTHORIZED, 'Token not found or expired'
     if token.is_expired():
-        return _STATUS_NOT_FOUND, 'Token not found or expired'
-    new_token = models.AuthToken()
+        return _STATUS_UNAUTHORIZED, 'Token not found or expired'
+    new_token = models.AuthToken.create_token()
     new_token.student = token.student
     new_token.save()
     token.delete()
@@ -132,7 +161,11 @@ def change_password(request):
     # Invalidating all user tokens
     models.AuthToken.objects.filter(student=user.student).delete()
 
-    return _STATUS_OK, None
+    new_token = models.AuthToken.create_token()
+    new_token.student = user.student
+    new_token.save()
+
+    return _STATUS_OK, new_token
 
 
 @require_POST
@@ -224,6 +257,8 @@ def group_view(request, group_id):
     if request.method == 'GET':
         return _STATUS_OK, group
     else:
+        if not _can_modify_group(request.student, group):
+            return _STATUS_FORBIDDEN, 'Only creator can edit the group'
         data = json.loads(request.body)
         group.apply_json(data)
         group.save()
@@ -255,7 +290,95 @@ def group_students(request, group_id):
 def group_new(request):
     data = json.loads(request.body)
     group = models.Group.from_json(data)
+    group.student_creator = request.student
     group.save()
+    return _STATUS_OK, group
+
+
+@require_POST
+@api_method()
+def group_add_moderator(request, group_id):
+    try:
+        group = models.Group.objects.get(pk=group_id)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Group not found'
+
+    if not _can_modify_group(request.student.pk, group_id):
+        return _STATUS_FORBIDDEN, 'Only group creator can add moderators'
+
+    data = json.loads(request.body)
+    try:
+        student = models.Student.objects.get(pk=data['student_id'])
+    except models.Student.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Student not found'
+
+    try:
+        permission = models.GroupPermission.objects.get(
+            student=student, group=group)
+    except models.GroupPermission.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Student is not a member of the group'
+    if permission.permission_level < models.GroupPermission.MODERATOR:
+        permission.permission_level = models.GroupPermission.MODERATOR
+        permission.save()
+    return _STATUS_OK, None
+
+
+@require_POST
+@api_method()
+def group_remove_moderator(request, group_id):
+    try:
+        group = models.Group.objects.get(pk=group_id)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Group not found'
+
+    if not _can_modify_group(request.student.pk, group_id):
+        return _STATUS_FORBIDDEN, 'Only group creator can remove moderators'
+
+    data = json.loads(request.body)
+    try:
+        student = models.Student.objects.get(pk=data['student_id'])
+    except models.Student.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Student not found'
+
+    try:
+        permission = models.GroupPermission.objects.get(student=student, group=group)
+        permission.permission_level = models.GroupPermission.STUDENT
+        permission.save()
+    except models.GroupPermission.DoesNotExist:
+        pass
+    return _STATUS_OK, None
+
+
+@require_http_methods(['GET', 'POST', 'DELETE'])
+@api_method()
+def group_invite_token(request, group_id):
+    try:
+        group = models.Group.objects.get(pk=group_id)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Group not found'
+
+    if not _is_group_creator(request.student, group_id):
+        return _STATUS_FORBIDDEN, 'Only group creator can edit invite tokens'
+
+    if request.method == 'POST':
+        group.generate_invite_token()
+        group.save()
+    elif request.method == 'DELETE':
+        group.invite_token = None
+        group.save()
+    return _STATUS_OK, {'token': group.invite_token}
+
+
+@require_POST
+@api_method()
+def use_invite_token(request):
+    data = json.loads(request.body)
+    token = data.get('token', '')
+    try:
+        group = models.Group.objects.get(invite_token=token)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Failed to resolve invite token'
+    group.students.add(request.student)
     return _STATUS_OK, group
 
 
@@ -275,9 +398,15 @@ def deadline_view(request, deadline_id):
     if request.method == 'GET':
         return _STATUS_OK, deadline
     else:
+        if not _can_modify_deadline(request.student, deadline):
+            return (
+                _STATUS_FORBIDDEN,
+                'Only group moderator or creator can edit this deadline'
+            )
         data = json.loads(request.body)
         deadline.apply_json(data)
         deadline.save()
+        deadline.apply_files(data)
         return _STATUS_OK, deadline
 
 
@@ -285,7 +414,11 @@ def deadline_view(request, deadline_id):
 @api_method()
 def deadline_new(request):
     data = json.loads(request.body)
+    if not _can_create_deadline(request.student.pk, data['group_id']):
+        return (_STATUS_FORBIDDEN,
+                'Only moderator or creator can add deadlines to the group')
     deadline = models.Homework.from_json(data)
     deadline.group_id = models.Group.objects.get(pk=data['group_id'])
     deadline.save()
+    deadline.apply_files(data)
     return _STATUS_OK, deadline

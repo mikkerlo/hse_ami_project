@@ -85,13 +85,19 @@ class Group(Model):
         short_name  (string):  Group short name, used to search in database
         description (string):  Group description, provided by group creator
         is_hidden   (bool):    If is true group is not shown on result page
+        invite_token (string): Invite token for students to join
         students      (Student): Ids of students that are linked to this group
     """
     full_name = models.CharField(max_length=255)
     short_name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     is_hidden = models.BooleanField()
-    students = models.ManyToManyField(Student)
+    students = models.ManyToManyField(Student, through='GroupPermission')
+    invite_token = models.CharField(
+        max_length=256, null=True, default=None, db_index=True)
+
+    def generate_invite_token(self):
+        self.invite_token = secrets.token_urlsafe(64)
 
     def apply_json(self, data):
         self.full_name = data.get('full_name', self.full_name)
@@ -113,6 +119,21 @@ class Group(Model):
         obj = cls()
         obj.apply_json(data)
         return obj
+
+
+class GroupPermission(Model):
+    """
+    This class represents a permission of a student, belonging to group.
+    """
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+
+    NOT_A_MEMBER = -1
+    STUDENT = 0
+    MODERATOR = 1
+    CREATOR = 2
+
+    permission_level = models.IntegerField(default=STUDENT)
 
 
 class File(Model):
@@ -166,17 +187,20 @@ class ContentElement(Model):
     content = models.TextField(blank=True)
     content_file = models.ManyToManyField(File, blank=True)
 
+    def apply_files(self, data):
+        if not 'files' in data:
+            return
+        files_id = []
+        for f in data['files']:
+            files_id.append(f['id'])
+        files = File.objects.filter(id__in=files_id)
+        self.content_file.clear()
+        self.content_file.add(*files)
+
     def apply_json(self, data):
         self.created_at = data['created_at']
         self.header = data['header']
         self.content = data['content']
-        if 'files' in data:
-            files_id = []
-            for f in data['files']:
-                files_id.append(f['id'])
-            files = File.objects.filter(id__in=files_id)
-            self.content_file.clear()
-            self.content_file.add(*files)
 
     def to_json(self):
         files = self.content_file.all()
@@ -258,10 +282,12 @@ class AuthToken(Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     last_access = models.BigIntegerField()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.token = secrets.token_urlsafe(64)
-        self.last_access = int(time.time())
+    @classmethod
+    def create_token(cls):
+        token = cls()
+        token.token = secrets.token_urlsafe(64)
+        token.last_access = int(time.time())
+        return token
 
     def validate(self):
         current_time = int(time.time())
@@ -273,7 +299,7 @@ class AuthToken(Model):
 
     def is_expired(self):
         current_time = int(time.time())
-        return self.last_access + settings.API_TOKEN_EXPIRE >= current_time
+        return self.last_access + settings.API_TOKEN_EXPIRE < current_time
 
     def to_json(self):
         return {
