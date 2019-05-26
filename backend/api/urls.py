@@ -31,6 +31,10 @@ urlpatterns = [
          name='api_groups_add_moderator'),
     path('groups/<int:group_id>/remove-moderator/',
          views.group_remove_moderator, name='api_groups_remove_moderator'),
+    path('groups/<int:group_id>/invite-token/', views.group_invite_token,
+         name='api_groups_invite_token'),
+    path('groups/invite-token/', views.use_invite_token,
+         name='api_use_invite_token'),
     path('groups/new/', views.group_new,
          name='api_groups_new'),
 
