@@ -13,6 +13,26 @@ _STATUS_OK = 200
 _STATUS_NOT_FOUND = 404
 _STATUS_BAD_REQUEST = 400
 _STATUS_UNAUTHORIZED = 401
+_STATUS_FORBIDDEN = 403
+
+
+def _is_group_creator(student, group_id):
+    return student.groups_created.filter(pk=group_id).exists()
+
+
+def _is_group_moderator(student, group_id):
+    if _is_group_creator(student, group_id):
+        return True
+    return student.groups_moderated.filter(pk=group_id).exists()
+
+
+def _can_modify_group(student, group):
+    return _is_group_moderator(student, group.pk)
+
+
+def _can_modify_deadline(student, deadline):
+    group_id = deadline.group_id.pk
+    return _is_group_moderator(student, group_id)
 
 
 def validate_auth(func):
@@ -89,7 +109,7 @@ def auth_login(request):
     user = authenticate(username=username, password=password)
     if user is None:
         return _STATUS_UNAUTHORIZED, 'Login failed'
-    token = models.AuthToken()
+    token = models.AuthToken.create_token()
     token.student = user.student
     token.save()
     return _STATUS_OK, token
@@ -107,7 +127,7 @@ def refresh_token(request):
         return _STATUS_NOT_FOUND, 'Token not found or expired'
     if token.is_expired():
         return _STATUS_NOT_FOUND, 'Token not found or expired'
-    new_token = models.AuthToken()
+    new_token = models.AuthToken.create_token()
     new_token.student = token.student
     new_token.save()
     token.delete()
@@ -224,6 +244,8 @@ def group_view(request, group_id):
     if request.method == 'GET':
         return _STATUS_OK, group
     else:
+        if not _can_modify_group(request.student, group):
+            return _STATUS_FORBIDDEN, 'Only creator can edit the group'
         data = json.loads(request.body)
         group.apply_json(data)
         group.save()
@@ -255,8 +277,51 @@ def group_students(request, group_id):
 def group_new(request):
     data = json.loads(request.body)
     group = models.Group.from_json(data)
+    group.student_creator = request.student
     group.save()
     return _STATUS_OK, group
+
+
+@require_POST
+@api_method()
+def group_add_moderator(request, group_id):
+    try:
+        group = models.Group.objects.get(pk=group_id)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Group not found'
+
+    if not _is_group_creator(request.student, group_id):
+        return _STATUS_FORBIDDEN, 'Only group creator can add moderators'
+
+    data = json.loads(request.body)
+    try:
+        student = models.Student.objects.get(pk=data['student_id'])
+    except models.Student.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Student not found'
+
+    group.moderators.add(student)
+    return _STATUS_OK, None
+
+
+@require_POST
+@api_method()
+def group_remove_moderator(request, group_id):
+    try:
+        group = models.Group.objects.get(pk=group_id)
+    except models.Group.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Group not found'
+
+    if not _is_group_creator(request.student, group_id):
+        return _STATUS_FORBIDDEN, 'Only group creator can remove moderators'
+
+    data = json.loads(request.body)
+    try:
+        student = models.Student.objects.get(pk=data['student_id'])
+    except models.Student.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Student not found'
+
+    group.moderators.remove(student)
+    return _STATUS_OK, None
 
 
 @require_GET
@@ -275,6 +340,9 @@ def deadline_view(request, deadline_id):
     if request.method == 'GET':
         return _STATUS_OK, deadline
     else:
+        if not _can_modify_deadline(request.student, deadline):
+            return (_STATUS_FORBIDDEN,
+                   'Only group moderator or creator can edit this deadline')
         data = json.loads(request.body)
         deadline.apply_json(data)
         deadline.save()
@@ -285,6 +353,9 @@ def deadline_view(request, deadline_id):
 @api_method()
 def deadline_new(request):
     data = json.loads(request.body)
+    if not _is_group_moderator(request.student, data['group_id']):
+        return (_STATUS_FORBIDDEN,
+                'Only moderator or creator can add deadlines to the group')
     deadline = models.Homework.from_json(data)
     deadline.group_id = models.Group.objects.get(pk=data['group_id'])
     deadline.save()
