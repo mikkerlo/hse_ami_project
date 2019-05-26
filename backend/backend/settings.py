@@ -134,6 +134,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # API settings
 API_TOKEN_HEADER = 'HTTP_X_TOKEN'
