@@ -16,6 +16,24 @@
       "revId": "39ff90102f13134c21d6222485295258466549b1",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6db055f1_a14458cb",
+        "filename": "backend/api/views.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-27T18:51:47Z",
+      "side": 1,
+      "message": "Ну вроде бы нет конфликтов.",
+      "parentUuid": "42ca74c0_d54b06b2",
+      "revId": "39ff90102f13134c21d6222485295258466549b1",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     }
   ]
 }
