@@ -13,6 +13,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Cookies from "universal-cookie";
 
 const styles = theme => ({
     root: {
@@ -83,6 +84,12 @@ class PrimarySearchAppBar extends React.Component {
         this.setState({mobileMoreAnchorEl: null});
     };
 
+    handleLogOut = function() {
+        const cookie = new Cookies();
+        cookie.remove('userToken');
+        window.location = '/';
+    };
+
     render() {
         const {anchorEl, mobileMoreAnchorEl} = this.state;
         const {classes} = this.props;
@@ -99,6 +106,7 @@ class PrimarySearchAppBar extends React.Component {
             >
                 <MenuItem onClick={this.handleMenuClose}>Профиль</MenuItem>
                 <MenuItem onClick={this.handleMenuClose}>Мой аккаунт</MenuItem>
+                <MenuItem onClick={this.handleLogOut}>Выйти из аккаунта</MenuItem>
             </Menu>
         );
 
