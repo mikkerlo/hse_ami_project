@@ -1,11 +1,12 @@
 import React from 'react';
 import {Component} from 'react';
 import TextField from "@material-ui/core/TextField";
-import {Button, Card} from "@material-ui/core";
+import {Button, Card, Snackbar, SnackbarContent} from "@material-ui/core";
 import withStyles from "@material-ui/core/es/styles/withStyles";
 import {postToApi} from "../utils";
 import Cookies from "universal-cookie";
-
+import ErrorIcon from '@material-ui/icons/Error';
+import red from '@material-ui/core/colors/red';
 
 const styles = {};
 
@@ -15,15 +16,30 @@ class Registration extends Component {
         this.state = {
             username: '',
             password: '',
+            alert: false,
+            alertMessage: 'default alert'
         };
         this.SubmitHandler = this.SubmitHandler.bind(this);
     }
 
     SubmitHandler() {
-        postToApi('/api/auth/login/', this.state, request => {
+        let body = {
+            username: this.state.username,
+            password: this.state.password,
+        };
+
+        postToApi('/api/auth/login/', body, request => {
             console.log(request);
-            const cookies = new Cookies();
-            cookies.set('userToken', request.result.token, {path: '/'});
+            if (request.ok) {
+                const cookies = new Cookies();
+                cookies.set('userToken', request.result.token, {path: '/'});
+                window.location = '/';
+            } else {
+                this.setState({
+                    alert: true,
+                    alertMessage: request.error,
+                })
+            }
         });
     }
 
@@ -56,9 +72,33 @@ class Registration extends Component {
                         variant='contained'
                         onClick={this.SubmitHandler}
                     >
-                        Зарегистрироваться
+                        Войти
                     </Button>
                 </div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    }}
+                    open={this.state.alert}
+                    autoHideDuration={6000}
+                >
+                    <SnackbarContent
+                        variant="success"
+                        style={{
+                            backgroundColor: red[600],
+                        }}
+                        message={
+                            <span id="client-snackbar" style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                            }}>
+                            <ErrorIcon/>
+                                {this.state.alertMessage}
+                            </span>
+                        }
+                    />
+                </Snackbar>
             </Card>
         );
     }
