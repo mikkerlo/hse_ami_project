@@ -10,6 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import {getFromApi, patchApi, postToApi} from "../utils";
 import Button from "@material-ui/core/Button";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import {Typography} from "@material-ui/core";
 
 
 const styles = {
@@ -35,6 +36,11 @@ const styles = {
         margin: 5,
         minWidth: 120,
     },
+    editControls: {
+        display: 'inline-block',
+        width: 'auto',
+        margin: "1em",
+    }
 };
 
 class CourseSelector extends React.Component {
@@ -210,35 +216,49 @@ class DeadlineEditPage extends React.Component {
         return (
             <div>
                 <NavBar/>
-                <Input
-                    multiline={"true"}
-                    value={this.state.deadline.text}
-                    onChange={this.handleTextChange}
-                />
-                <p/>
-                <Input
-                    value={this.state.deadline.caption}
-                    onChange={this.handleCaptionChange}
-                />
-                <p/>
-                <form className={classes.container} noValidate>
-                    <TextField
-                        id="deadline-date"
-                        label="Дедлайн"
-                        type="datetime-local"
-                        value={this.state.timeText}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        onChange={this.handleDeadlineDateChange}
+                <div>
+                    <Typography className={classes.editControls} noWrap>Описание дедлайна: </Typography>
+                    <Input
+                        multiline={true}
+                        value={this.state.deadline.text}
+                        onChange={this.handleTextChange}
+                        className={classes.editControls}
                     />
+                </div>
+                <div>
+                    <Typography className={classes.editControls} noWrap>Текст дедлайна: </Typography>
+                    <Input
+                        multiline={true}
+                        value={this.state.deadline.caption}
+                        onChange={this.handleCaptionChange}
+                        className={classes.editControls}
+                    />
+                </div>
+
+                <form className={classes.container} noValidate>
+                    <div>
+                        <Typography className={classes.editControls} noWrap>Дата дедлайна: </Typography>
+                        <TextField
+                            id="deadline-date"
+                            label="Дедлайн"
+                            type="datetime-local"
+                            value={this.state.timeText}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={this.handleDeadlineDateChange}
+                            className={classes.editControls}
+                        />
+                    </div>
                 </form>
-                <p/>
-                <CourseSelector
+                {this.state.isNew ? <CourseSelector
+                    hidden={this.state.isNew}
                     handleChange={this.handleCourseChange}
                     classes={classes}
                     group_name={this.state.deadline.group_name}
-                />
+                /> : null
+                }
+
                 <DeadlineCard {...this.state.deadline}/>
                 <Button
                     color='primary'
