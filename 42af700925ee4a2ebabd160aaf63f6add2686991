@@ -33,6 +33,24 @@
       "revId": "42af700925ee4a2ebabd160aaf63f6add2686991",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "07247722_ad3454e3",
+        "filename": "frontend/src/App.js",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-05-27T10:24:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa1318c4_f48dd41b",
+      "revId": "42af700925ee4a2ebabd160aaf63f6add2686991",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     }
   ]
 }
