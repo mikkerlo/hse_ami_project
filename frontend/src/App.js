@@ -10,6 +10,8 @@ import NavBar from './components/NavBar.jsx'
 import {Switch} from "react-router";
 import CoursePage from "./components/CoursePage";
 import DeadlineEditPage from "./components/DeadlineEditPage";
+import Cookies from "universal-cookie";
+import AuthenticationPage from "./components/AuthenticationPage";
 
 
 class SimplePage extends React.Component {
@@ -26,25 +28,47 @@ class SimplePage extends React.Component {
 }
 
 
+class HandleLogin extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const cookie = new Cookies();
+        let token = cookie.get('userToken');
+        if (token) {
+            return this.props.logged;
+        } else {
+            return this.props.unlogged;
+        }
+    }
+}
+
 class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
                 <>
-                    <Switch>
-                        <Route
-                            path='/deadlines' component={DeadlinesPage}/>
-                        <Route
-                            path='/exp' component={Exp}/>
-                        <Route
-                            path='/deadline/:number/edit' component={DeadlineEditPage}/>
-                        <Route
-                            path='/deadline/new' component={DeadlineEditPage}/>
-                        <Route path='/courses/:number' component={CoursePage}/>
-                        <Route
-                            path='/'
-                            component={SimplePage}/>
-                    </Switch>
+                    <HandleLogin
+                        unlogged={<AuthenticationPage/>}
+                        logged={
+                            <Switch>
+                                <Route
+                                    path='/deadlines' component={DeadlinesPage}/>
+                                <Route
+                                    path='/exp' component={Exp}/>
+                                <Route
+                                    path='/deadline/:number/edit' component={DeadlineEditPage}/>
+                                <Route
+                                    path='/deadline/new' component={DeadlineEditPage}/>
+                                <Route path='/courses/:number' component={CoursePage}/>
+                                <Route
+                                    path='/'
+                                    component={SimplePage}/>
+                            </Switch>
+                        }
+                    />
+
                 </>
             </BrowserRouter>
         );

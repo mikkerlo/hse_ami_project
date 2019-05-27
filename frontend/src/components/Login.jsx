@@ -24,6 +24,7 @@ class Registration extends Component {
             console.log(request);
             const cookies = new Cookies();
             cookies.set('userToken', request.result.token, {path: '/'});
+            window.location = '/';
         });
     }
 
@@ -56,7 +57,7 @@ class Registration extends Component {
                         variant='contained'
                         onClick={this.SubmitHandler}
                     >
-                        Зарегистрироваться
+                        Войти
                     </Button>
                 </div>
             </Card>
