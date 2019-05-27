@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import {Button, Card} from "@material-ui/core";
 import withStyles from "@material-ui/core/es/styles/withStyles";
 import {postToApi} from "../utils";
+import {newStudentUrl} from "../apiUrls";
 
 
 const styles = {};
@@ -25,7 +26,7 @@ class Registration extends Component {
     }
 
     SubmitHandler() {
-        postToApi('/api/students/new/', this.state, request => {
+        postToApi(newStudentUrl(), this.state, request => {
             if (!request.ok) {
                 alert(request.error);
                 console.log(request.error);

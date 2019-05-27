@@ -7,6 +7,7 @@ import {postToApi} from "../utils";
 import Cookies from "universal-cookie";
 import ErrorIcon from '@material-ui/icons/Error';
 import red from '@material-ui/core/colors/red';
+import {loginUrl} from "../apiUrls";
 
 const styles = {};
 
@@ -28,7 +29,7 @@ class Login extends Component {
             password: this.state.password,
         };
 
-        postToApi('/api/auth/login/', body, request => {
+        postToApi(loginUrl(), body, request => {
             console.log(request);
             if (request.ok) {
                 const cookies = new Cookies();

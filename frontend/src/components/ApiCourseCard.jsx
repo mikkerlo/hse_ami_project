@@ -1,6 +1,7 @@
 import React from "react";
 import {getFromApi} from "../utils";
 import CourseCard from './CourseCard';
+import {groupUrl} from "../apiUrls";
 
 class ApiCourseCard extends React.Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class ApiCourseCard extends React.Component {
     }
 
     fetchData() {
-        getFromApi('/api/groups/' + this.apiID, function (err, res) {
+        getFromApi(groupUrl(this.apiID), function (err, res) {
             if (err) {
                 console.log('error occurred');
             } else {

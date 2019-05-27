@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Card from '@material-ui/core/Card';
 import {LinkUndecorated} from "./utils";
+import {allGroupsUrl} from "../apiUrls";
 
 
 const styles = theme => ({
@@ -25,7 +26,7 @@ class TinyCourseList extends React.Component {
     }
 
     fetchData() {
-        getFromApi('/api/groups/all', function (err, res) {
+        getFromApi(allGroupsUrl(), function (err, res) {
             if (err) {
                 console.log('error occurred');
             } else {

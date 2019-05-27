@@ -1,21 +1,22 @@
 import React from 'react';
 import DeadlineCardList from './DeadlineCardList';
+import {allDeadlinesUrl, groupDeadlinesUrl, studentDeadlinesUrl} from "../apiUrls";
 
 export function AllDeadlineCardList() {
     return <DeadlineCardList
-        link={'/api/deadlines/all'}
+        link={allDeadlinesUrl()}
     />
 }
 
 export function StudentDeadlineCardList() {
     return <DeadlineCardList
-        link={'/api/students/deadlines/'}
+        link={studentDeadlinesUrl()}
     />
 }
 
 export function CourseDeadlineCardList(props) {
     return <DeadlineCardList
-        link={'/api/groups/' + props.id + '/deadlines/'}
+        link={groupDeadlinesUrl(props.id)}
     />
 }
 

@@ -11,6 +11,7 @@ import {getFromApi, patchApi, postToApi} from "../utils";
 import Button from "@material-ui/core/Button";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import {Typography} from "@material-ui/core";
+import {allGroupsUrl, deadlineUrl, newDeadlineUrl} from "../apiUrls";
 
 
 const styles = {
@@ -51,7 +52,7 @@ class CourseSelector extends React.Component {
     }
 
     fetchData() {
-        getFromApi('/api/groups/all', function (err, res) {
+        getFromApi(allGroupsUrl(), function (err, res) {
             if (!err) {
                 this.setState({courses: res});
             }
@@ -126,7 +127,7 @@ class DeadlineEditPage extends React.Component {
     }
 
     fetchData() {
-        getFromApi('/api/deadlines/' + this.state.deadline.id + '/', function (err, res) {
+        getFromApi(deadlineUrl(this.state.deadline.id), function (err, res) {
             if (err) {
                 console.log('error occurred');
                 alert('deadline not found; creating new deadline');
@@ -201,10 +202,10 @@ class DeadlineEditPage extends React.Component {
             created_at: this.state.deadline.date, // temporary until backend fix it
         };
         if (this.state.isNew) {
-            postToApi('/api/deadlines/new/', body, response => {
+            postToApi(newDeadlineUrl(), body, response => {
             });
         } else {
-            patchApi('/api/deadlines/' + this.state.deadline.id + '/', body, response => {
+            patchApi(deadlineUrl(this.state.deadline.id), body, response => {
             });
         }
 
