@@ -10,7 +10,7 @@ class ApiCourseCard extends React.Component {
     }
 
     fetchData() {
-        getFromApi('/api/groups/' + this.apiID, function (err, res) {
+        getFromApi('/api/groups/' + this.apiID + '/', function (err, res) {
             if (err) {
                 console.log('error occurred');
             } else {

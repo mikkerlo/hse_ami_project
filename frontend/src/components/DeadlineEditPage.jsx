@@ -51,7 +51,7 @@ class CourseSelector extends React.Component {
     }
 
     fetchData() {
-        getFromApi('/api/groups/all', function (err, res) {
+        getFromApi('/api/groups/all/', function (err, res) {
             if (!err) {
                 this.setState({courses: res});
             }

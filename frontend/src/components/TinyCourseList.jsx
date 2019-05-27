@@ -25,7 +25,7 @@ class TinyCourseList extends React.Component {
     }
 
     fetchData() {
-        getFromApi('/api/groups/all', function (err, res) {
+        getFromApi('/api/groups/all/', function (err, res) {
             if (err) {
                 console.log('error occurred');
             } else {

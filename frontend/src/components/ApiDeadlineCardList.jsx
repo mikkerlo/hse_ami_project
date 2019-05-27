@@ -3,7 +3,7 @@ import DeadlineCardList from './DeadlineCardList';
 
 export function AllDeadlineCardList() {
     return <DeadlineCardList
-        link={'/api/deadlines/all'}
+        link={'/api/deadlines/all/'}
     />
 }
 
