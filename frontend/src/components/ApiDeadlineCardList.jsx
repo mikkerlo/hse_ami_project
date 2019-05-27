@@ -7,6 +7,12 @@ export function AllDeadlineCardList() {
     />
 }
 
+export function StudentDeadlineCardList() {
+    return <DeadlineCardList
+        link={'/api/students/deadlines/'}
+    />
+}
+
 export function CourseDeadlineCardList(props) {
     return <DeadlineCardList
         link={'/api/groups/' + props.id + '/deadlines/'}

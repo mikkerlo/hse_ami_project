@@ -7,7 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AttachmentIcon from '@material-ui/icons/AttachFile';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import Link from "@material-ui/core/Link";
+import dateFormat from 'dateformat';
 
 const styles = {
     card: {
@@ -27,19 +28,29 @@ const styles = {
     },
     caption: {
         display: 'inline-block',
+    },
+    group_name: {
+        display: 'inline-block',
     }
 };
 
 
 class DeadlineCard extends React.Component {
     render() {
-        const {classes, text, caption, files, date, is_done} = this.props;
+        const {classes, text, caption, files, date, is_done, group_name} = this.props;
         let files_buttons = <div>
             {files.map(file => (
-                <Button variant="contained" style={{margin: '10px'}} key={file}>
+                <Button
+                    variant="contained"
+                    style={{margin: '10px'}}
+                    key={file.id}
+                    onClick={() => window.location = file.url}
+                >
                     <AttachmentIcon/>
-                    {file}
-                </Button>))}
+                    {file.name}
+                </Button>
+            ))
+            }
         </div>;
         if (files.length > 0) {
             files_buttons = <div>
@@ -55,12 +66,15 @@ class DeadlineCard extends React.Component {
                             {caption}
                         </Typography>
                         <Typography className={classes.valid_until}>
-                            {(new Date(date * 1000)).toString()}
+                            {dateFormat(new Date(date * 1000), "HH:MM hh.mm yyyy")}
                         </Typography>
-                        <Typography className={classes.done}>
-                            <Checkbox checked={is_done} enabled={"false"}/>
-                            Done
+                        <Typography  className={classes.group_name}>
+                            {group_name}
                         </Typography>
+                        {/*<Typography className={classes.done}>*/}
+                        {/*    <Checkbox checked={is_done} enabled={"false"}/>*/}
+                        {/*    Done*/}
+                        {/*</Typography>*/}
                     </div>
                     <hr style={{clear: 'both'}}/>
                     <Typography component="p">

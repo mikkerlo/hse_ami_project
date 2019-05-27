@@ -1,8 +1,9 @@
 import React from 'react';
 import NavBar from './NavBar.jsx'
-import {AllDeadlineCardList} from "./ApiDeadlineCardList";
+import {AllDeadlineCardList, StudentDeadlineCardList} from "./ApiDeadlineCardList";
 import TinyCourseList from "./TinyCourseList";
 import {withStyles} from '@material-ui/core/styles';
+import AuthenticationPage from "./AuthenticationPage";
 
 
 const styles = {

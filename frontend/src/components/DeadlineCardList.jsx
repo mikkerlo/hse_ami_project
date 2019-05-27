@@ -39,9 +39,10 @@ class DeadlineCardList extends React.Component {
                 <DeadlineCard
                     text={deadline.content}
                     caption={deadline.header}
-                    files={[]}
+                    files={deadline.files}
                     date={deadline.valid_until}
                     key={deadline.id}
+                    group_name={deadline.group_name}
                 />
             ))}
         </div>;
