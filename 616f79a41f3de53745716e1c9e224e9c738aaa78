@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b3c9ad4_36ff7866",
+        "filename": "frontend/src/components/Login.jsx",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-27T10:14:44Z",
+      "side": 1,
+      "message": "Давай на Login заменим",
+      "revId": "616f79a41f3de53745716e1c9e224e9c738aaa78",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c1c6bb4e_5eaa77ce",
+        "filename": "frontend/src/components/NavBar.jsx",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-27T10:14:44Z",
+      "side": 1,
+      "message": "Давай погасим эти кнопки(они же никуда не ведут)",
+      "revId": "616f79a41f3de53745716e1c9e224e9c738aaa78",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
