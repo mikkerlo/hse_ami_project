@@ -27,7 +27,7 @@ const styles = {
     done: {
         display: 'inline-block',
     },
-    caption: {
+    header: {
         display: 'inline-block',
     },
     group_name: {
@@ -38,7 +38,7 @@ const styles = {
 
 class DeadlineCard extends React.Component {
     render() {
-        const {classes, text, caption, files, date, is_done, group_name, id} = this.props;
+        const {classes, content, header, files, valid_until, group_name, group_id, id} = this.props;
         let files_buttons = <div>
             {files.map(file => (
                 <Button
@@ -63,15 +63,17 @@ class DeadlineCard extends React.Component {
             <Card className={classes.card}>
                 <CardContent>
                     <div style={{display: 'flex'}}>
-                        <Typography className={classes.caption} variant="h5" component="h2">
-                            {caption}
+                        <Typography className={classes.header} variant="h5" component="h2">
+                            {header}
                         </Typography>
                         <Typography className={classes.valid_until}>
-                            {dateFormat(new Date(date * 1000), "HH:MM hh.mm yyyy")}
+                            {dateFormat(new Date(valid_until * 1000), "HH:MM hh.mm yyyy")}
                         </Typography>
+                        <Link to={`/courses/${group_id}`}>
                         <Typography  className={classes.group_name}>
                             {group_name}
                         </Typography>
+                        </Link>
                         {/*<Typography className={classes.done}>*/}
                         {/*    <Checkbox checked={is_done} enabled={"false"}/>*/}
                         {/*    Done*/}
@@ -82,7 +84,7 @@ class DeadlineCard extends React.Component {
                     </div>
                     <hr style={{clear: 'both'}}/>
                     <Typography component="p">
-                        {text}
+                        {content}
                         <br/>
                     </Typography>
                     {files_buttons}
