@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ec55a3c_3afa5502",
+        "filename": "frontend/src/components/DeadlineCard.jsx",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-28T20:55:29Z",
+      "side": 1,
+      "message": "Не нрав название",
+      "revId": "40dd575353a21fe9d28ac3d6030fb832b311b5d2",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
