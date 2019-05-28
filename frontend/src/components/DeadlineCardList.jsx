@@ -37,13 +37,7 @@ class DeadlineCardList extends React.Component {
         return <div style={{width: '100%'}}>
             {this.state.deadlines.map(deadline => (
                 <DeadlineCard
-                    id={deadline.id}
-                    text={deadline.content}
-                    caption={deadline.header}
-                    files={deadline.files}
-                    date={deadline.valid_until}
-                    key={deadline.id}
-                    group_name={deadline.group_name}
+                    {...deadline}
                 />
             ))}
         </div>;

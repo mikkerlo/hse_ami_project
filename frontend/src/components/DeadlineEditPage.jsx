@@ -108,10 +108,10 @@ class DeadlineEditPage extends React.Component {
                 id: 0,
                 group_id: 0,
                 group_name: 'loading',
-                text: 'loading',
-                caption: 'loading',
+                content: 'loading',
+                header: 'loading',
                 files: [],
-                date: 0,
+                valid_until: 0,
                 is_done: false,
             },
             isNew: true,
@@ -135,16 +135,7 @@ class DeadlineEditPage extends React.Component {
             } else {
                 let dateIsoStr = (new Date(res.valid_until * 1000)).toISOString();
                 this.setState({
-                    deadline: {
-                        id: res.id,
-                        group_id: res.group_id,
-                        group_name: res.group_name,
-                        text: res.content,
-                        caption: res.header,
-                        files: [],
-                        date: res.valid_until,
-                        is_done: false,
-                    },
+                    deadline: res,
                     timeText: dateIsoStr.split('.')[0]
                 });
 
@@ -159,7 +150,7 @@ class DeadlineEditPage extends React.Component {
     handleTextChange(event) {
         let newText = event.target.value;
         this.setState(prevState => {
-            prevState.deadline.text = newText;
+            prevState.deadline.content = newText;
             return prevState;
         });
     }
@@ -167,7 +158,7 @@ class DeadlineEditPage extends React.Component {
     handleCaptionChange(event) {
         let newCaption = event.target.value;
         this.setState(prevState => {
-            prevState.deadline.caption = newCaption;
+            prevState.deadline.header = newCaption;
             return prevState;
         });
     }
@@ -185,7 +176,7 @@ class DeadlineEditPage extends React.Component {
         let text = event.target.value;
         let newDate = new Date(event.target.value).getTime() / 1000;
         this.setState(prevState => {
-            prevState.deadline.date = newDate;
+            prevState.deadline.valid_until = newDate;
             prevState.timeText = text;
             return prevState;
         });
@@ -193,14 +184,10 @@ class DeadlineEditPage extends React.Component {
 
     handleSave(event) {
         let body = {
-            id: this.state.deadline.id,
-            group_id: this.state.deadline.group_id,
-            group_name: this.state.deadline.group_name,
-            valid_until: this.state.deadline.date,
-            header: this.state.deadline.caption,
-            content: this.state.deadline.text,
-            created_at: this.state.deadline.date, // temporary until backend fix it
+            ...this.state.deadline,
+            created_at: this.state.deadline.valid_until, // temporary until backend fix it
         };
+        delete body.files;
         if (this.state.isNew) {
             postToApi(newDeadlineUrl(), body, response => {
             });
@@ -218,20 +205,20 @@ class DeadlineEditPage extends React.Component {
             <div>
                 <NavBar/>
                 <div>
-                    <Typography className={classes.editControls} noWrap>Описание дедлайна: </Typography>
+                    <Typography className={classes.editControls} noWrap>Текст дедлайна: </Typography>
                     <Input
                         multiline={true}
-                        value={this.state.deadline.text}
-                        onChange={this.handleTextChange}
+                        value={this.state.deadline.header}
+                        onChange={this.handleCaptionChange}
                         className={classes.editControls}
                     />
                 </div>
                 <div>
-                    <Typography className={classes.editControls} noWrap>Текст дедлайна: </Typography>
+                    <Typography className={classes.editControls} noWrap>Описание дедлайна: </Typography>
                     <Input
                         multiline={true}
-                        value={this.state.deadline.caption}
-                        onChange={this.handleCaptionChange}
+                        value={this.state.deadline.content}
+                        onChange={this.handleTextChange}
                         className={classes.editControls}
                     />
                 </div>

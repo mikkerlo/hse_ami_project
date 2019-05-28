@@ -18,7 +18,7 @@ const styles = {
         borderRadius: 30,
         margin: '10px',
     },
-    caption: {
+    header: {
         display: 'inline-block',
     },
     leave: {
@@ -44,7 +44,7 @@ class CourseCard extends React.Component {
                 <CardContent>
                     <div className={classes.headBlock}>
                         <Typography
-                            className={classes.caption}
+                            className={classes.header}
                             variant="h5"
                             component="h2"
                         >
