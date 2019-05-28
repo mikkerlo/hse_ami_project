@@ -36,7 +36,7 @@ const styles = {
 
 class CourseCard extends React.Component {
     render() {
-        const {classes, text, caption, courseID} = this.props;
+        const {classes, full_name, description, id} = this.props;
         return (
             <Card
                 className={classes.card}
@@ -48,7 +48,7 @@ class CourseCard extends React.Component {
                             variant="h5"
                             component="h2"
                         >
-                            {caption}
+                            {full_name}
                         </Typography>
                         <Typography className={classes.leave}
                                     variant="h5"
@@ -57,7 +57,7 @@ class CourseCard extends React.Component {
                             <Button className={classes.leaveButton}
                                     variant="contained"
                                     color="secondary"
-                                    key={courseID}
+                                    key={id}
                             >
                                 Отписаться
                                 <DeleteIcon/>
@@ -68,7 +68,7 @@ class CourseCard extends React.Component {
                     <Typography
                         component="p"
                     >
-                        {text}
+                        {description}
                     </Typography>
                 </CardContent>
             </Card>

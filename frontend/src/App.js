@@ -12,6 +12,8 @@ import CoursePage from "./components/CoursePage";
 import DeadlineEditPage from "./components/DeadlineEditPage";
 import Cookies from "universal-cookie";
 import AuthenticationPage from "./components/AuthenticationPage";
+import CourseListPage from "./components/CourseListPage";
+import CourseEditPage from "./components/CourseEditPage";
 
 
 class SimplePage extends React.Component {
@@ -61,7 +63,14 @@ class App extends React.Component {
                                     path='/deadline/:number/edit' component={DeadlineEditPage}/>
                                 <Route
                                     path='/deadline/new' component={DeadlineEditPage}/>
+                                <Route
+                                    path='/courses/new' component={CourseEditPage}/>
+                                <Route
+                                path='/courses/:number/edit' component={CourseEditPage}/>
                                 <Route path='/courses/:number' component={CoursePage}/>
+                                <Route path='/courses' component={CourseListPage}/>
+
+
                                 <Route
                                     path='/'
                                     component={SimplePage}/>

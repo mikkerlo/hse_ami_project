@@ -35,9 +35,9 @@ class ApiCourseCard extends React.Component {
         const {id, full_name, description} = this.state;
         if (id && full_name && description) {
             return <CourseCard
-                text={description}
-                caption={full_name}
-                courseID={id}
+                description={description}
+                full_name={full_name}
+                id={id}
             />
         } else {
             return <div/>

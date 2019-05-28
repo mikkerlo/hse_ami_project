@@ -20,8 +20,8 @@ class Elements extends React.Component {
                 <Login/>
 
                 <CourseCard
-                    caption="Матан"
-                    text="Шаповал крут, будь как Шаповал!"
+                    full_name="Матан"
+                    description="Шаповал крут, будь как Шаповал!"
                 >
                 </CourseCard>
                 <h1>Simple text inside h1</h1>
