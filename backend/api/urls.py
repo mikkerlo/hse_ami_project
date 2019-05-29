@@ -40,6 +40,8 @@ urlpatterns = [
 
     path('deadlines/<int:deadline_id>/', views.deadline_view,
          name='api_deadlines_id'),
+    path('deadlines/<int:deadline_id>/is-done', views.deadline_change_is_done,
+         name='api_deadlines_is_done'),
     path('deadlines/new/', views.deadline_new,
          name='api_deadlines_new'),
 ]
