@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from collections.abc import Iterable
 import json
+import time
 
 import logging
 logger = logging.getLogger(__name__)
@@ -59,6 +60,36 @@ class _StudentDeadlinesResult:
         result = self.content_element.to_json()
         result['permission'] = self.permission
         return result
+
+
+def _filter_deadlines(request, deadlines):
+    if 'isDone' in request.GET:
+        done_deadlines = set()
+        for deadline in request.student.completed_homeworks.all():
+            done_deadlines.add(deadline.pk)
+        if request.GET['isDone'] == 1:
+            deadlines = list(filter(
+                lambda x: x.content_element.pk in done_deadlines,
+                deadlines
+            ))
+        else:
+            deadlines = list(filter(
+                lambda x: x.content_element.pk not in done_deadlines,
+                deadlines
+            ))
+    if 'isCurrent' in request.GET:
+        current_time = time.time()
+        if request.GET['isCurrent'] == 1:
+            deadlines = list(filter(
+                lambda x: x.content_element.valid_until >= current_time,
+                deadlines
+            ))
+        else:
+            deadlines = list(filter(
+                lambda x: x.content_element.valid_until <= current_time,
+                deadlines
+            ))
+    return deadlines
 
 
 def validate_auth(func):
@@ -245,8 +276,6 @@ def student_view(request):
 @require_GET
 @api_method()
 def student_deadlines(request):
-
-
     student = request.student
     permissions = models.GroupPermission.objects.filter(
         student=student).select_related('group').\
@@ -258,7 +287,7 @@ def student_deadlines(request):
             deadlines.append(
                 _StudentDeadlinesResult(homework, permission.permission_level))
 
-    return _STATUS_OK, deadlines
+    return _STATUS_OK, _filter_deadlines(request, deadlines)
 
 
 @require_GET
@@ -304,7 +333,7 @@ def group_deadlines(request, group_id):
     result = []
     for homework in group.homework_set.all():
         result.append(_StudentDeadlinesResult(homework, permission))
-    return _STATUS_OK, result
+    return _STATUS_OK, _filter_deadlines(request, result)
 
 
 @require_GET
@@ -449,6 +478,20 @@ def deadline_view(request, deadline_id):
         deadline.save()
         deadline.apply_files(data)
         return _STATUS_OK, deadline
+
+
+@require_http_methods(['POST', 'DELETE'])
+@api_method()
+def deadline_change_is_done(request, deadline_id):
+    try:
+        deadline = models.Homework.objects.get(pk=deadline_id)
+    except models.Homework.DoesNotExist:
+        return _STATUS_NOT_FOUND, 'Deadline not found'
+    if request.method == 'POST':
+        request.student.completed_homeworks.add(deadline)
+    else:
+        request.student.completed_homeworks.remove(deadline)
+    return _STATUS_OK, deadline
 
 
 @require_POST
