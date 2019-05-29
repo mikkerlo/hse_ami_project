@@ -9,6 +9,9 @@ from django.contrib.auth import authenticate
 from collections.abc import Iterable
 import json
 
+import logging
+logger = logging.getLogger(__name__)
+
 _STATUS_OK = 200
 _STATUS_NOT_FOUND = 404
 _STATUS_BAD_REQUEST = 400
@@ -46,6 +49,18 @@ def _can_create_deadline(student_id, group_id):
     return _check_perm(student_id, group_id, models.GroupPermission.MODERATOR)
 
 
+class _StudentDeadlinesResult:
+    """This class allows one to return permission along with content element."""
+    def __init__(self, content_element, permission):
+        self.content_element = content_element
+        self.permission = permission
+
+    def to_json(self):
+        result = self.content_element.to_json()
+        result['permission'] = self.permission
+        return result
+
+
 def validate_auth(func):
     """Decorator, validating authentication of the user."""
     def decorator(request, *args, **kwargs):
@@ -71,6 +86,7 @@ def json_response(func):
         try:
             status_code, result = func(request, *args, **kwargs)
         except Exception:
+            logger.error('view returned exception', exc_info=True)
             # Unhandled exception caught. Returning 400 without any details.
             json_response = {
                 'ok': False,
@@ -229,12 +245,20 @@ def student_view(request):
 @require_GET
 @api_method()
 def student_deadlines(request):
+
+
     student = request.student
-    student_groups = student.group_set.prefetch_related('homework_set')
-    homeworks = []
-    for group in student_groups:
-        homeworks.extend(group.homework_set.all())
-    return _STATUS_OK, homeworks
+    permissions = models.GroupPermission.objects.filter(
+        student=student).select_related('group').\
+        prefetch_related('group__homework_set')
+
+    deadlines = []
+    for permission in permissions:
+        for homework in permission.group.homework_set.all():
+            deadlines.append(
+                _StudentDeadlinesResult(homework, permission.permission_level))
+
+    return _STATUS_OK, deadlines
 
 
 @require_GET
@@ -276,7 +300,11 @@ def group_deadlines(request, group_id):
         group = models.Group.objects.get(pk=group_id)
     except models.Group.DoesNotExist:
         return _STATUS_NOT_FOUND, 'Group not found'
-    return _STATUS_OK, group.homework_set.all()
+    permission = _get_user_permission(request.student.pk, group.pk)
+    result = []
+    for homework in group.homework_set.all():
+        result.append(_StudentDeadlinesResult(homework, permission))
+    return _STATUS_OK, result
 
 
 @require_GET
@@ -399,12 +427,6 @@ def use_invite_token(request):
         permission.permission_level = models.GroupPermission.STUDENT
         permission.save()
     return _STATUS_OK, group
-
-
-@require_GET
-@api_method()
-def deadlines_all(request):
-    return _STATUS_OK, models.Homework.objects.all()
 
 
 @require_http_methods(['GET', 'PATCH'])

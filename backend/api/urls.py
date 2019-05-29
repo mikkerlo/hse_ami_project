@@ -38,8 +38,6 @@ urlpatterns = [
     path('groups/new/', views.group_new,
          name='api_groups_new'),
 
-    path('deadlines/all/', views.deadlines_all,
-         name='api_deadlines_all'),
     path('deadlines/<int:deadline_id>/', views.deadline_view,
          name='api_deadlines_id'),
     path('deadlines/new/', views.deadline_new,
