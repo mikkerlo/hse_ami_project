@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 '''
 
 import os
+import logging
 
 from django.core.management.utils import get_random_secret_key
 
@@ -137,6 +138,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # API settings
+log_config = {
+        'level': logging.INFO,
+        'format': '%(asctime)s\t%(levelname)s\t%(message)s',
+        'datefmt': '%Y-%m-%d %H:%M:%S',
+}
+logging.basicConfig(**log_config)
+
 API_TOKEN_HEADER = 'HTTP_X_TOKEN'
 
 # After API_TOKEN_SPOIL token becomes unusable and must be refreshed.
