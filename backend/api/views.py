@@ -9,6 +9,9 @@ from django.contrib.auth import authenticate
 from collections.abc import Iterable
 import json
 
+import logging
+logger = logging.getLogger(__name__)
+
 _STATUS_OK = 200
 _STATUS_NOT_FOUND = 404
 _STATUS_BAD_REQUEST = 400
@@ -67,6 +70,7 @@ def json_response(func):
         try:
             status_code, result = func(request, *args, **kwargs)
         except Exception:
+            logger.error('view returned exception', exc_info=True)
             # Unhandled exception caught. Returning 400 without any details.
             json_response = {
                 'ok': False,
@@ -225,12 +229,28 @@ def student_view(request):
 @require_GET
 @api_method()
 def student_deadlines(request):
+    class StudentDeadlinesResult:
+        def __init__(self, student, permission):
+            self.student = student
+            self.permission = permission
+
+        def to_json(self):
+            result = self.student.to_json()
+            result['permission'] = self.permission
+            return result
+
     student = request.student
-    student_groups = student.group_set.prefetch_related('homework_set')
-    homeworks = []
-    for group in student_groups:
-        homeworks.extend(group.homework_set.all())
-    return _STATUS_OK, homeworks
+    permissions = models.GroupPermission.objects.filter(
+        student=student).select_related('group').\
+        prefetch_related('group__homework_set')
+
+    deadlines = []
+    for permission in permissions:
+        for homework in permission.group.homework_set.all():
+            deadlines.append(
+                StudentDeadlinesResult(homework, permission.permission_level))
+
+    return _STATUS_OK, deadlines
 
 
 @require_GET
