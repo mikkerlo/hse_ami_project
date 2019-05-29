@@ -2,10 +2,10 @@ import React from 'react';
 import NavBar from './NavBar.jsx'
 import {withStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-import {getFromApi, patchApi, postToApi} from "../utils";
+import {deleteApi, getFromApi, patchApi, postToApi} from "../utils";
 import Button from "@material-ui/core/Button";
-import {Typography} from "@material-ui/core";
-import {deadlineUrl, groupUrl, newGroupUrl, newDeadlineUrl} from "../apiUrls";
+import {TextField, Typography} from "@material-ui/core";
+import {deadlineUrl, groupUrl, newGroupUrl, newDeadlineUrl, groupTokenUrl} from "../apiUrls";
 import CourseCard from "./CourseCard";
 
 
@@ -46,8 +46,10 @@ class CourseEditPage extends React.Component {
         this.init(props);
         this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
         this.handleFullNameChange = this.handleFullNameChange.bind(this);
-
         this.handleSave = this.handleSave.bind(this);
+        this.createInviteToken = this.createInviteToken.bind(this);
+        this.deleteInviteToken = this.deleteInviteToken.bind(this);
+        this.copyToken = this.copyToken.bind(this);
     }
 
     init(props) {
@@ -60,6 +62,7 @@ class CourseEditPage extends React.Component {
                 is_hidden: false,
             },
             isNew: true,
+            inviteToken: null,
         };
         if (props.match && props.match.params.number) {
             this.state.isNew = false;
@@ -82,6 +85,13 @@ class CourseEditPage extends React.Component {
 
             }
         }.bind(this));
+        getFromApi(groupTokenUrl(this.state.group.id), (err, result) => {
+            if (!err) {
+                this.setState({
+                    inviteToken: result.token
+                })
+            }
+        })
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -96,6 +106,26 @@ class CourseEditPage extends React.Component {
         });
     }
 
+    createInviteToken() {
+        postToApi(groupTokenUrl(this.state.group.id), '', response => {
+            if (response.ok) {
+                this.setState({
+                    inviteToken: response.result.token
+                });
+            }
+        });
+    }
+
+    deleteInviteToken() {
+        deleteApi(groupTokenUrl(this.state.group.id), '', response => {
+            if (response.ok) {
+                this.setState({
+                    inviteToken: null
+                });
+            }
+        });
+    }
+
     handleFullNameChange(event) {
         let newCaption = event.target.value;
         this.setState(prevState => {
@@ -104,6 +134,15 @@ class CourseEditPage extends React.Component {
             return prevState
         });
     }
+
+    copyToken(event) {
+        if (this.tokenTextField) {
+            this.tokenTextField.select();
+            document.execCommand('copy');
+            event.target.focus();
+        }
+    }
+
 
     handleSave(event) {
         let body = {
@@ -152,6 +191,36 @@ class CourseEditPage extends React.Component {
                 >
                     {this.state.isNew ? 'Создать' : 'Сохранить'}
                 </Button>
+                <p/>
+                {
+                    this.state.isNew ?
+                        <div/>
+                        :
+                        this.state.inviteToken ?
+                            <div>
+                                <textarea
+                                    ref={(tokenTextField) => this.tokenTextField = tokenTextField}>
+                                {window.location.origin + '/j/' + this.state.inviteToken}
+                                </textarea>
+                                <Button
+                                    onClick={this.copyToken}
+                                >
+                                    {'Скопировать'}
+                                </Button>
+                                <Button
+                                    onClick={this.deleteInviteToken}
+                                >
+                                    {'Удалить инвайт-токен'}
+                                </Button>
+                            </div>
+                            :
+                            <Button
+                                onClick={this.createInviteToken}
+                            >
+                                {'Создать инвайт-токен'}
+                            </Button>
+                }
+
             </div>
         )
     }

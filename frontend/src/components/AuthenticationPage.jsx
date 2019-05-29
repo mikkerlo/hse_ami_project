@@ -24,6 +24,7 @@ class AuthenticationPage extends React.Component {
                 <div className={classes.login}>
                     <Login className={classes.loginEl}/>
                 </div>
+                <Registration/>
             </div>
         )
     }
