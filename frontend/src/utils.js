@@ -61,6 +61,12 @@ export function patchApi(url, body, callback) {
     });
 }
 
+export function deleteApi(url, body, callback) {
+    basicApiRequest(url, "DELETE", JSON.stringify(body), xhr => {
+        callback(JSON.parse(xhr.response));
+    });
+}
+
 export function withCookieAuth(Component, options) {
     return function (props, ctx) {
         return <Component
