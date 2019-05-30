@@ -339,11 +339,24 @@ def group_deadlines(request, group_id):
 @require_GET
 @api_method()
 def group_students(request, group_id):
-    try:
-        group = models.Group.objects.get(pk=group_id)
-    except models.Group.DoesNotExist:
-        return _STATUS_NOT_FOUND, 'Group not found'
-    return _STATUS_OK, group.students.all()
+    class _GroupStudentsResponse:
+        def __init__(self, student, permission):
+            self.student = student
+            self.permission = permission
+
+        def to_json(self):
+            result = self.student.to_json()
+            result['permission'] = self.permission
+            return result
+
+    permissions = models.GroupPermission.objects.filter(group_id=group_id)
+
+    result = []
+    for permission in permissions:
+        result.append(_GroupStudentsResponse(permission.student,
+                                             permission.permission_level))
+
+    return _STATUS_OK, result
 
 
 @require_POST
