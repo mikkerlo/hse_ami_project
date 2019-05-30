@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "f7273627_6dc68a7f",
+        "filename": "backend/api/views.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-30T16:34:03Z",
+      "side": 1,
+      "message": "Да",
+      "parentUuid": "e7343cfd_31e2d05f",
+      "revId": "e3481870c9349a5a781fe08a21e317a4995828b4",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c59c0e91_60a6806a",
         "filename": "backend/api/views.py",
         "patchSetId": 8
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "261a528a_9e7f33dd",
+        "filename": "backend/api/views.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-30T16:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c59c0e91_60a6806a",
+      "revId": "e3481870c9349a5a781fe08a21e317a4995828b4",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0e16c4a7_4f7c21cc",
         "filename": "backend/api/views.py",
         "patchSetId": 8
@@ -50,6 +86,24 @@
       "revId": "e3481870c9349a5a781fe08a21e317a4995828b4",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "85a8fa4e_66b68bf7",
+        "filename": "backend/api/views.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1000001
+      },
+      "writtenOn": "2019-05-30T16:34:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e16c4a7_4f7c21cc",
+      "revId": "e3481870c9349a5a781fe08a21e317a4995828b4",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": false
     }
   ]
 }
