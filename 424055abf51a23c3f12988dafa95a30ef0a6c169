@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6f99b804_a80c2c89",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-05-30T15:42:39Z",
+      "side": 1,
+      "message": "Я бы без подчеркивания записал",
+      "revId": "424055abf51a23c3f12988dafa95a30ef0a6c169",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
