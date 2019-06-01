@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8db96d62_ebc9a243",
+        "filename": "frontend/src/App.js",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-06-01T18:37:19Z",
+      "side": 1,
+      "message": "го поменьше длину",
+      "revId": "bc401a12bb6df82c7a8f4373a2bf1c867502cd05",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "331bec3c_81f51b61",
+        "filename": "frontend/src/components/CourseEditPage.jsx",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2019-06-01T18:37:19Z",
+      "side": 1,
+      "message": "Тяжко здесь выводить текст аля login failed на странице логина",
+      "revId": "bc401a12bb6df82c7a8f4373a2bf1c867502cd05",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    }
+  ]
+}
