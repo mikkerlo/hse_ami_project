@@ -11,7 +11,7 @@ import {getFromApi, patchApi, postToApi} from "../utils";
 import Button from "@material-ui/core/Button";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import {Typography} from "@material-ui/core";
-import {allGroupsUrl, deadlineUrl, newDeadlineUrl} from "../apiUrls";
+import {studentGroupsUrl, deadlineUrl, newDeadlineUrl} from "../apiUrls";
 
 
 const styles = {
@@ -52,7 +52,7 @@ class CourseSelector extends React.Component {
     }
 
     fetchData() {
-        getFromApi(allGroupsUrl(), function (err, res) {
+        getFromApi(studentGroupsUrl(), function (err, res) {
             if (!err) {
                 this.setState({courses: res});
             }
