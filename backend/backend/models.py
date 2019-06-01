@@ -8,10 +8,10 @@ from django.db import models
 from django.db.models import Model
 from django.conf import settings
 from django.dispatch import receiver
+from backend import storage
 
 import time
 import secrets
-import os
 
 
 class Student(Model):
@@ -148,21 +148,22 @@ class File(Model):
         file (FileField): Actual file.
     """
     name = models.CharField(max_length=4096)
-    file = models.FileField(upload_to='files/')
+    blob_name = models.CharField(max_length=4096)
+    file_url = models.URLField()
 
     def to_json(self):
         return {
             'id': self.id,
-            'url': self.file.url,
+            'url': self.file_url,
             'name': self.name,
         }
 
 
 @receiver(models.signals.post_delete, sender=File)
 def auto_delete_file_on_delete(sender, instance, **kwargs):
-    if instance.file:
-        if os.path.isfile(instance.file.path):
-            os.remove(instance.file.path)
+    bucket = storage.get_bucket()
+    blob = bucket.blob(instance.blob_name)
+    blob.delete()
 
 
 class ContentElement(Model):
