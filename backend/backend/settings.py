@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import logging
+from google.cloud import storage
 
 from django.core.management.utils import get_random_secret_key
 
