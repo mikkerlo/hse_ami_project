@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "67dd0c00_9e921aab",
+        "filename": "backend/api/views.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2019-06-01T19:48:39Z",
+      "side": 1,
+      "message": "Поясни почему false?",
+      "revId": "0b967d3a134e7428c5a561617ba87ab2517196f3",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e0a60a19_99df48da",
         "filename": "backend/backend/models.py",
         "patchSetId": 1
