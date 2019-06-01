@@ -1,8 +1,7 @@
 import React from "react";
-import DeadlineCard from "./DeadlineCard";
 import {getFromApi} from "../utils";
 import CourseCard from "./CourseCard";
-import {allGroupsUrl} from "../apiUrls";
+import {studentGroupsUrl} from "../apiUrls";
 
 
 class CourseList extends React.Component {
@@ -14,7 +13,7 @@ class CourseList extends React.Component {
     }
 
     fetchData() {
-        getFromApi(allGroupsUrl(), function (err, res) {
+        getFromApi(studentGroupsUrl(), function (err, res) {
             if (err) {
                 console.log('error occurred');
             } else {

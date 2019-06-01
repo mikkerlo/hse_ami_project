@@ -13,3 +13,4 @@ export const newGroupUrl = () => `/api/groups/new/`;
 export const newDeadlineUrl = () => `/api/deadlines/new/`;
 export const newStudentUrl = () => `/api/students/new/`;
 export const studentDeadlinesUrl = () => `/api/students/deadlines/`;
+export const studentGroupsUrl = () => `/api/students/groups/`;
