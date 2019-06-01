@@ -2,12 +2,120 @@ import React from 'react';
 import NavBar from './NavBar.jsx'
 import {withStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-import {deleteApi, getFromApi, patchApi, postToApi} from "../utils";
+import {deleteApi, getFromApi, patchApi, PERMISSIONS, postToApi} from "../utils";
 import Button from "@material-ui/core/Button";
 import {Typography} from "@material-ui/core";
-import {deadlineUrl, groupUrl, newGroupUrl, newDeadlineUrl, groupTokenUrl} from "../apiUrls";
+import {
+    groupUrl,
+    newGroupUrl,
+    groupTokenUrl,
+    groupStudentsUrl,
+    addModeratorUrl, removeModeratorUrl
+} from "../apiUrls";
 import CourseCard from "./CourseCard";
 import {InviteLink} from "./utils";
+
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Checkbox from '@material-ui/core/Checkbox';
+
+
+const useStylesForTable = () => {
+    return {
+        root: {
+            width: '100%',
+            marginTop: 15,
+            overflowX: 'auto',
+        }
+        ,
+        table: {
+            minWidth: 650,
+        }
+        ,
+    }
+};
+
+class StudentTable extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            students: [],
+        };
+        this.fetchData();
+    }
+
+    fetchData() {
+        getFromApi(groupStudentsUrl(this.props.group_id), (err, result) => {
+            console.log(result);
+            if (!err) {
+                this.setState({
+                    students: result
+                });
+            }
+        })
+    }
+
+    getUpdatePermissionHandler(student_index) {
+        return function updatePermissionHandler(event) {
+
+            let isChecked = event.target.checked;
+            let url = isChecked ? addModeratorUrl(this.props.group_id) : removeModeratorUrl(this.props.group_id);
+            postToApi(url, {student_id: this.state.students[student_index].id}, response => {
+                if (response.ok) {
+                    this.setState(prevState => {
+                        prevState.students[student_index].permission = isChecked ? PERMISSIONS.EDITING : PERMISSIONS.READING;
+                        return prevState;
+                    });
+                }
+            });
+        }.bind(this);
+    }
+
+    render() {
+        const classes = useStylesForTable();
+        return (
+            <Paper className={classes.root}>
+                <Table className={classes.table}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Модератор</TableCell>
+                            <TableCell>Имя</TableCell>
+                            <TableCell>Фамилия</TableCell>
+                            <TableCell>Отчество</TableCell>
+                            <TableCell>Почта</TableCell>
+                            <TableCell>Телеграм</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {this.state.students.map((student, index) => (
+                            <TableRow key={student.id}>
+                                <TableCell>
+                                    {student.permission === PERMISSIONS.CREATOR ? "Создатель" :
+                                        <Checkbox
+                                            checked={student.permission >= PERMISSIONS.EDITING}
+                                            onChange={this.getUpdatePermissionHandler(index)}
+                                            disabled={(student.permission === PERMISSIONS.CREATOR)}
+                                        />
+                                    }
+                                </TableCell>
+                                <TableCell>{student.name.first_name}</TableCell>
+                                <TableCell>{student.name.last_name || '-'}</TableCell>
+                                <TableCell>{student.name.patronymic_name || '-'}</TableCell>
+                                <TableCell>{student.email || '-'}</TableCell>
+                                <TableCell>{student.telegram_account || '-'}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </Paper>
+        );
+    }
+}
 
 
 const styles = {
@@ -86,12 +194,12 @@ class CourseEditPage extends React.Component {
             }
         }.bind(this));
         getFromApi(groupTokenUrl(this.state.group.id), (err, result) => {
-            if (!err && result.ok) {
+            if (!err) {
                 this.setState({
                     inviteToken: result.token
                 })
             }
-        })
+        });
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
@@ -206,7 +314,14 @@ class CourseEditPage extends React.Component {
                                 {'Создать инвайт-токен'}
                             </Button>
                 }
-
+                <p/>
+                {this.state.isNew ?
+                    <div/>
+                    :
+                    <StudentTable
+                        group_id={this.state.group.id}
+                    />
+                }
             </div>
         )
     }

@@ -35,7 +35,7 @@ class DeadlinesPage extends React.Component {
                 <NavBar/>
                 <div className={classes.main}>
                     <div className={classes.deadlineList}>
-                        <AllDeadlineCardList/>
+                        <StudentDeadlineCardList/>
                     </div>
                     <div className={classes.sidebar}>
                         <TinyCourseList/>

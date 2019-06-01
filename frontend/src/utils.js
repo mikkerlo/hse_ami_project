@@ -81,3 +81,10 @@ export function withCookieAuth(Component, options) {
         />
     }
 }
+
+export const PERMISSIONS = {
+    FORBIDDEN: -1,
+    READING: 0,
+    EDITING: 1,
+    CREATOR: 2,
+};
