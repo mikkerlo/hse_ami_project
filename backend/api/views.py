@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from backend import models
+from backend import storage
 from django.conf import settings
 from django.views.decorators.http import require_GET
 from django.views.decorators.http import require_POST
@@ -9,6 +10,7 @@ from django.contrib.auth import authenticate
 from collections.abc import Iterable
 import json
 import time
+import secrets
 
 import logging
 logger = logging.getLogger(__name__)
@@ -220,15 +222,20 @@ def change_password(request):
 
 
 @require_POST
-@api_method()
+@api_method(require_auth=False)
 def upload_file(request):
     raw_file = request.FILES['file']
-
     name = request.POST.get('name', raw_file.name)
+
+    bucket = storage.get_bucket()
+    blob_name = secrets.token_urlsafe(10) + '/' + raw_file.name
+    blob = bucket.blob(blob_name)
+    blob.upload_from_file(raw_file)
 
     file = models.File()
     file.name = name
-    file.file = raw_file
+    file.blob_name = blob_name
+    file.file_url = blob.public_url
     file.save()
     return _STATUS_OK, file
 
