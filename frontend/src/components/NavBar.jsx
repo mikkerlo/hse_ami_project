@@ -14,6 +14,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Cookies from "universal-cookie";
+import {Link} from "react-router-dom";
+import {LinkUndecorated} from "./utils";
 
 const styles = theme => ({
     root: {
@@ -63,12 +65,21 @@ const styles = theme => ({
 
 class PrimarySearchAppBar extends React.Component {
     state = {
+        anchorNav: null,
         anchorEl: null,
         mobileMoreAnchorEl: null,
     };
 
     handleProfileMenuOpen = event => {
         this.setState({anchorEl: event.currentTarget});
+    };
+
+    handleNavigationMenuOpen = event => {
+        this.setState({anchorNav: event.currentTarget});
+    };
+
+    handleNavigationMenuClose = () => {
+        this.setState({anchorNav: null});
     };
 
     handleMenuClose = () => {
@@ -84,17 +95,18 @@ class PrimarySearchAppBar extends React.Component {
         this.setState({mobileMoreAnchorEl: null});
     };
 
-    handleLogOut = function() {
+    handleLogOut = function () {
         const cookie = new Cookies();
         cookie.remove('userToken');
         window.location = '/';
     };
 
     render() {
-        const {anchorEl, mobileMoreAnchorEl} = this.state;
+        const {anchorEl, mobileMoreAnchorEl, anchorNav} = this.state;
         const {classes} = this.props;
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+        const isNavigationOpen = Boolean(anchorNav);
 
         const renderMenu = (
             <Menu
@@ -105,6 +117,29 @@ class PrimarySearchAppBar extends React.Component {
                 onClose={this.handleMenuClose}
             >=
                 <MenuItem onClick={this.handleLogOut}>Выйти из аккаунта</MenuItem>
+            </Menu>
+        );
+
+        const renderNavigation = (
+            <Menu
+                anchorEl={anchorNav}
+                anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+                transformOrigin={{vertical: 'top', horizontal: 'right'}}
+                open={isNavigationOpen}
+                onClose={this.handleNavigationMenuClose}
+            >=
+                <LinkUndecorated to={'/deadlines'} color="inherit"
+                                 component="button">
+                    <MenuItem>Мои Дедлайны</MenuItem>
+                </LinkUndecorated>
+                <LinkUndecorated to={'/courses'} color="inherit"
+                                 component="button">
+                    <MenuItem>Мои Курсы</MenuItem>
+                </LinkUndecorated>
+                <LinkUndecorated to={'/deadline/new'} color="inherit"
+                                 component="button">
+                    <MenuItem>Создать новый дедлайн</MenuItem>
+                </LinkUndecorated>
             </Menu>
         );
 
@@ -145,7 +180,14 @@ class PrimarySearchAppBar extends React.Component {
             <div className={classes.root}>
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+                        <IconButton
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="Open drawer"
+                            // aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                            aria-haspopup="true"
+                            onClick={this.handleNavigationMenuOpen}
+                        >
                             <MenuIcon/>
                         </IconButton>
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
@@ -179,6 +221,7 @@ class PrimarySearchAppBar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
+                {renderNavigation}
                 {renderMenu}
                 {renderMobileMenu}
             </div>
