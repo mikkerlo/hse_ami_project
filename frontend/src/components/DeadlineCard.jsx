@@ -10,35 +10,59 @@ import AttachmentIcon from '@material-ui/icons/AttachFile';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from "@material-ui/core/Link";
 import dateFormat from 'dateformat';
+import {LinkUndecorated} from "./utils";
+import {PERMISSIONS} from "../utils";
+import {Divider, ListItemText, MenuItem} from "@material-ui/core";
+import List from "@material-ui/core/List";
 
 const styles = {
     card: {
         minWidth: 275,
         maxWidth: 800,
-        boxSizing: 'inherit',
         borderRadius: 30,
         margin: '10px',
     },
     valid_until: {
         maxWidth: 300,
         marginLeft: 'auto',
-        display: 'inline-block',
     },
     done: {
-        display: 'inline-block',
     },
-    caption: {
-        display: 'inline-block',
+    header: {
+        boxSizing: 'border-box',
+        borderBottom: '2px solid #efefef',
+        padding: 10,
+    },
+    filesPanel: {
+        float: 'right',
+        width: '100%',
+        // display: 'inline-block',
+        boxSizing: 'border-box',
+        borderTop: '2px solid #efefef',
+        // padding: 10,
     },
     group_name: {
+    },
+    leftInfo: {
+        float: 'left',
+        width: 'auto',
+        boxSizing: 'border-box',
+        // borderRight: '2px solid #efefef',
+    },
+    rightInfo: {
+        float: 'right',
+        width: '70%',
+        height: '100%',
+        // borderLeft: '2px solid #efefef',
         display: 'inline-block',
-    }
+        boxSizing: 'border-box',
+    },
 };
 
 
 class DeadlineCard extends React.Component {
     render() {
-        const {classes, content, header, files, valid_until, group_name, group_id, id} = this.props;
+        const {classes, content, header, files, valid_until, group_name, group_id, id, permission, is_done} = this.props;
         let files_buttons = <div>
             {files.map(file => (
                 <Button
@@ -55,39 +79,50 @@ class DeadlineCard extends React.Component {
         </div>;
         if (files.length > 0) {
             files_buttons = <div>
-                <hr/>
                 {files_buttons}
             </div>;
         }
         return (
             <Card className={classes.card}>
                 <CardContent>
-                    <div style={{display: 'flex'}}>
-                        <Typography className={classes.caption} variant="h5" component="h2">
+                    <div className={classes.header}>
+                        <Typography variant={"h6"}>
                             {header}
                         </Typography>
+                    </div>
+                    <div className={classes.leftInfo}>
+
+
+                        <LinkUndecorated to={`/courses/${group_id}`}>
+                            <Typography variant={"h7"}>
+                                {group_name}
+                            </Typography>
+                        </LinkUndecorated>
+                        <p/>
                         <Typography className={classes.valid_until}>
                             {dateFormat(new Date(valid_until * 1000), "HH:MM hh.mm yyyy")}
                         </Typography>
-                        <Link to={`/courses/${group_id}`}>
-                        <Typography  className={classes.group_name}>
-                            {group_name}
-                        </Typography>
-                        </Link>
-                        {/*<Typography className={classes.done}>*/}
-                        {/*    <Checkbox checked={is_done} enabled={"false"}/>*/}
-                        {/*    Done*/}
-                        {/*</Typography>*/}
-                        <Button onClick={() => window.location = '/deadline/'+ id + '/edit'}>
-                        <EditIcon/>
-                        </Button>
+                        <Checkbox checked={is_done} enabled={"false"}/>
+                        {
+                            permission >= PERMISSIONS.EDITING
+                                ?
+                                <Button onClick={() => window.location = '/deadline/' + id + '/edit'}>
+                                    <EditIcon/>
+                                </Button>
+                                :
+                                <div/>
+                        }
+
                     </div>
-                    <hr style={{clear: 'both'}}/>
-                    <Typography component="p">
-                        {content}
-                        <br/>
-                    </Typography>
-                    {files_buttons}
+                    <div className={classes.rightInfo}>
+                        <Typography component="p">
+                            {content}
+                            <br/>
+                        </Typography>
+                    </div>
+                    <div className={classes.filesPanel}>
+                        {files_buttons}
+                    </div>
                 </CardContent>
             </Card>
         );
