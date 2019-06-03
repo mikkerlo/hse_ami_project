@@ -262,22 +262,6 @@ class Notification(ContentElement):
     pass
 
 
-class StudentJar(Model):
-    """
-    This class stores list of students for ease of navigation and group
-    manipulation. Can be created by any user in system.
-
-    Fields:
-        name (string): Name of student jar, used in search.
-        created_by (student id): Id of student that created this jar.
-        students (student id): Id of students that are linked to this jar.
-    """
-    name = models.CharField(max_length=255, unique=True)
-    created_by = models.ForeignKey(Student, on_delete=models.CASCADE,
-                                   related_name='student_jars_created')
-    students = models.ManyToManyField(Student)
-
-
 class AuthToken(Model):
     """
     This class is an API session token.
