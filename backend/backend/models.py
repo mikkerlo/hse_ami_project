@@ -213,7 +213,7 @@ class ContentElement(Model):
         return {
             'id': self.id,
             'group_id': self.group_id.id,
-            'group_name': self.group_id.full_name,
+            'group_name': self.group_id.short_name,
             'created_at': self.created_at,
             'header': self.header,
             'content': self.content,
