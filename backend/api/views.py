@@ -63,10 +63,27 @@ class _StudentDeadlinesResult:
 
 
 def _filter_deadlines(request, deadlines):
+    """Filters deadlines by GET parameter and returns is_done for deadlines.
+
+    Args:
+        request: Django request object
+        deadlines: list[_StudentDeadlinesResult]
+        """
+    class DeadlineWithIsDone:
+        def __init__(self, deadline, is_done):
+            self.deadline = deadline
+            self.is_done = is_done
+
+        def to_json(self):
+            result = self.deadline.to_json()
+            result['is_done'] = self.is_done
+            return result
+
+    done_deadlines = set()
+    for deadline in request.student.completed_homeworks.all():
+        done_deadlines.add(deadline.pk)
     if 'isDone' in request.GET:
-        done_deadlines = set()
-        for deadline in request.student.completed_homeworks.all():
-            done_deadlines.add(deadline.pk)
+
         if request.GET['isDone'] == 1:
             deadlines = list(filter(
                 lambda x: x.content_element.pk in done_deadlines,
@@ -89,7 +106,11 @@ def _filter_deadlines(request, deadlines):
                 lambda x: x.content_element.valid_until <= current_time,
                 deadlines
             ))
-    return deadlines
+    result = []
+    for deadline in deadlines:
+        result.append(
+            DeadlineWithIsDone(deadline, deadline.content_element.pk in done_deadlines))
+    return result
 
 
 def validate_auth(func):
@@ -299,9 +320,24 @@ def groups_all(request):
 @require_GET
 @api_method()
 def student_groups(request):
+    class GroupsWithPermission:
+        def __init__(self, group, permission):
+            self.group = group
+            self.permission = permission
+
+        def to_json(self):
+            result = self.group.to_json()
+            result['permission'] = self.permission
+            return result
+
     student = request.student
-    student_groups = student.group_set.all()
-    return _STATUS_OK, student_groups
+    permissions = models.GroupPermission.objects.filter(student=student)
+    result = []
+    for permission in permissions:
+        result.append(
+            GroupsWithPermission(permission.group, permission.permission_level)
+        )
+    return _STATUS_OK, result
 
 
 @require_http_methods(['GET', 'PATCH'])
