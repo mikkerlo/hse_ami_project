@@ -17,6 +17,23 @@
       "revId": "8793d4e7ed210ee242544dd228e60e609a0139e8",
       "serverId": "8439e396-71d4-4397-a38b-050d18862341",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a36689c_30a6d250",
+        "filename": "backend/api/views.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1000002
+      },
+      "writtenOn": "2019-06-04T11:18:09Z",
+      "side": 1,
+      "message": "и тут забыл return result",
+      "revId": "8793d4e7ed210ee242544dd228e60e609a0139e8",
+      "serverId": "8439e396-71d4-4397-a38b-050d18862341",
+      "unresolved": true
     }
   ]
 }
